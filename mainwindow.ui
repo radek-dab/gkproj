@@ -69,7 +69,7 @@
    <widget class="QWidget" name="outlineDockContents">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QListWidget" name="listWidget"/>
+      <widget class="OutlineList" name="outlineList"/>
      </item>
     </layout>
    </widget>
@@ -257,6 +257,19 @@
    <class>RasterWidget</class>
    <extends>QOpenGLWidget</extends>
    <header>rasterwidget.h</header>
+   <slots>
+    <signal>objectAdded(Drawable*)</signal>
+    <signal>objectSelected(int)</signal>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>OutlineList</class>
+   <extends>QListWidget</extends>
+   <header>outlinelist.h</header>
+   <slots>
+    <slot>addObject(Drawable*)</slot>
+    <slot>selectObject(int)</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>
@@ -284,8 +297,8 @@
    <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>663</x>
-     <y>197</y>
+     <x>799</x>
+     <y>192</y>
     </hint>
     <hint type="destinationlabel">
      <x>-1</x>
@@ -320,8 +333,8 @@
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>663</x>
-     <y>197</y>
+     <x>799</x>
+     <y>192</y>
     </hint>
    </hints>
   </connection>
@@ -386,6 +399,38 @@
     <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rasterWidget</sender>
+   <signal>objectAdded(Drawable*)</signal>
+   <receiver>outlineList</receiver>
+   <slot>addObject(Drawable*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>270</x>
+     <y>174</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>628</x>
+     <y>146</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rasterWidget</sender>
+   <signal>objectSelected(int)</signal>
+   <receiver>outlineList</receiver>
+   <slot>selectObject(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>433</x>
+     <y>240</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>567</x>
+     <y>238</y>
     </hint>
    </hints>
   </connection>

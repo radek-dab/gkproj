@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     line.cpp \
     grid.cpp \
     circle.cpp \
-    scene.cpp
+    scene.cpp \
+    outlinelist.cpp
 
 HEADERS  += mainwindow.h \
     raster.h \
@@ -27,6 +28,7 @@ HEADERS  += mainwindow.h \
     grid.h \
     circle.h \
     scene.h \
-    drawable.h
+    drawable.h \
+    outlinelist.h
 
 FORMS    += mainwindow.ui

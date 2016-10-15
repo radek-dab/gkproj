@@ -6,10 +6,11 @@
 class Circle : public Drawable
 {
 public:
-    Circle(QPoint pos, int r, quint32 color)
+    Circle(const QPoint &pos, int r, quint32 color)
         : Drawable(pos, color), r(r)
     {
         Q_ASSERT(r >= 0);
+        _name = QString("Circle %1").arg(++counter);
     }
 
     void inflate(const QPoint &p);
@@ -18,6 +19,7 @@ public:
     void move(const QPoint &p);
 
 private:
+    static int counter;
     int r;
 };
 

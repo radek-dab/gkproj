@@ -59,3 +59,5 @@ void Circle::move(const QPoint &p)
 {
     pos += p;
 }
+
+int Circle::counter = 0;

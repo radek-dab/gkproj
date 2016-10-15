@@ -11,9 +11,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->statusBar->addWidget(sizeLabel);
-
-    for (int i = 1; i <= 10; i++)
-        ui->listWidget->addItem(QString("Circle %1").arg(i));
 }
 
 MainWindow::~MainWindow()

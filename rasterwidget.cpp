@@ -62,16 +62,19 @@ void RasterWidget::paintGL()
 void RasterWidget::mousePressEvent(QMouseEvent *event)
 {
     qDebug() << "Mouse clicked at" << event->pos();
-    foreach (Drawable *obj, objects) {
+    for (int i = 0; i < objects.count(); i++) {
+        Drawable *obj = objects[i];
         if (obj->hit(event->pos())) {
             qDebug() << "Dragging" << obj;
             draggingObj = obj;
             draggingPos = event->pos();
+            emit objectSelected(i);
             return;
         }
     }
     inflatingObj = new Circle(event->pos(), 0, foregroundColor);
     objects.push_back(inflatingObj);
+    emit objectAdded(inflatingObj);
 }
 
 void RasterWidget::mouseMoveEvent(QMouseEvent *event)

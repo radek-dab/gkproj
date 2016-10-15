@@ -10,8 +10,10 @@
 
 class RasterWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
+    Q_OBJECT
+
 public:
-    RasterWidget(QWidget *parent);
+    RasterWidget(QWidget *parent = nullptr);
     ~RasterWidget();
     Raster& raster()
         { return *rst; }
@@ -19,6 +21,11 @@ public:
     void setForegroundColor(const QColor &color);
     void setBackgroundColor(quint32 color);
     void setBackgroundColor(const QColor &color);
+
+signals:
+    void objectAdded(Drawable *obj);
+    void objectSelected(int idx);
+
 protected:
     void initializeGL();
     void resizeGL(int width, int height);
@@ -26,6 +33,7 @@ protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
+
 private:
     Raster *rst;
     quint32 foregroundColor;
