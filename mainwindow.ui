@@ -218,9 +218,6 @@
    </property>
   </action>
   <action name="actionGrid">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="icon">
     <iconset theme="grid-rectangular">
      <normaloff>.</normaloff>.</iconset>
@@ -229,7 +226,7 @@
     <string>&amp;Grid</string>
    </property>
    <property name="toolTip">
-    <string>Toggle grid</string>
+    <string>Configure grid</string>
    </property>
   </action>
   <action name="actionCircle">

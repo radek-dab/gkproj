@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "raster.h"
+#include "griddialog.h"
 #include <QDebug>
 #include <QColorDialog>
 
@@ -60,4 +60,11 @@ void MainWindow::chooseShape()
             shape->setChecked(false);
         }
     }
+}
+
+void MainWindow::on_actionGrid_triggered()
+{
+    GridDialog dialog(this);
+
+    dialog.exec();
 }

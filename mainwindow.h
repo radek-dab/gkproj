@@ -25,6 +25,8 @@ private slots:
     void on_actionBackgroundColor_triggered();
     void on_rasterWidget_resized();
 
+    void on_actionGrid_triggered();
+
 private:
     Ui::MainWindow *ui;
     QLabel *sizeLabel;
