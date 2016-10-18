@@ -20,7 +20,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionForegroundColor_triggered()
 {
-    QColor color = QColorDialog::getColor(foregroundColor);
+    QColor color = QColorDialog::getColor(foregroundColor, this);
     if (!color.isValid()) return;
     ui->rasterWidget->setForegroundColor(color);
     qDebug() << "Foreground color:" << foregroundColor;
@@ -28,7 +28,7 @@ void MainWindow::on_actionForegroundColor_triggered()
 
 void MainWindow::on_actionBackgroundColor_triggered()
 {
-    QColor color = QColorDialog::getColor(backgroundColor);
+    QColor color = QColorDialog::getColor(backgroundColor, this);
     if (!color.isValid()) return;
     ui->rasterWidget->setBackgroundColor(color);
     qDebug() << "Foreground color:" << backgroundColor;
