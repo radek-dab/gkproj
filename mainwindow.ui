@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <widget class="RasterWidget" name="rasterWidget"/>
+     <widget class="Scene" name="scene"/>
     </item>
    </layout>
   </widget>
@@ -251,9 +251,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>RasterWidget</class>
+   <class>Scene</class>
    <extends>QOpenGLWidget</extends>
-   <header>rasterwidget.h</header>
+   <header>scene.h</header>
    <slots>
     <signal>objectAdded(Drawable*)</signal>
     <signal>objectSelected(int)</signal>
@@ -400,7 +400,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>rasterWidget</sender>
+   <sender>scene</sender>
    <signal>objectAdded(Drawable*)</signal>
    <receiver>outlineList</receiver>
    <slot>addObject(Drawable*)</slot>
@@ -416,7 +416,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>rasterWidget</sender>
+   <sender>scene</sender>
    <signal>objectSelected(int)</signal>
    <receiver>outlineList</receiver>
    <slot>selectObject(int)</slot>

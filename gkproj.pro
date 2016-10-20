@@ -14,24 +14,22 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    rasterwidget.cpp \
     line.cpp \
     grid.cpp \
     circle.cpp \
-    scene.cpp \
     outlinelist.cpp \
-    griddialog.cpp
+    griddialog.cpp \
+    scene.cpp
 
 HEADERS  += mainwindow.h \
     raster.h \
-    rasterwidget.h \
     line.h \
     grid.h \
     circle.h \
-    scene.h \
     drawable.h \
     outlinelist.h \
-    griddialog.h
+    griddialog.h \
+    scene.h
 
 FORMS    += mainwindow.ui \
     griddialog.ui

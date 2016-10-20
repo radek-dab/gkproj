@@ -22,7 +22,7 @@ void MainWindow::on_actionForegroundColor_triggered()
 {
     QColor color = QColorDialog::getColor(foregroundColor, this);
     if (!color.isValid()) return;
-    ui->rasterWidget->setForegroundColor(color);
+    ui->scene->setForegroundColor(color);
     qDebug() << "Foreground color:" << foregroundColor;
 }
 
@@ -30,13 +30,13 @@ void MainWindow::on_actionBackgroundColor_triggered()
 {
     QColor color = QColorDialog::getColor(backgroundColor, this);
     if (!color.isValid()) return;
-    ui->rasterWidget->setBackgroundColor(color);
+    ui->scene->setBackgroundColor(color);
     qDebug() << "Foreground color:" << backgroundColor;
 }
 
 void MainWindow::on_rasterWidget_resized()
 {
-    QSize size = ui->rasterWidget->size();
+    QSize size = ui->scene->size();
     QString text = QString("%1x%2").arg(size.width()).arg(size.height());
     sizeLabel->setText(text);
 }
