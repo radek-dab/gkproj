@@ -1,12 +1,7 @@
 #include "circle.h"
-#include <cmath>
+#include "dist.h"
 
-void Circle::inflate(const QPoint &p)
-{
-    int dx = pos.x() - p.x();
-    int dy = pos.y() - p.y();
-    r = sqrt(dx*dx + dy*dy);
-}
+int Circle::counter = 0;
 
 static inline void put8(Raster &rst, int cx, int cy,
                         int x, int y, qint32 color)
@@ -48,10 +43,7 @@ void Circle::draw(Raster &rst)
 
 bool Circle::hit(const QPoint &p)
 {
-    int dx = pos.x() - p.x();
-    int dy = pos.y() - p.y();
-    double d = sqrt(dx*dx + dy*dy);
-
+    double d = dist(pos, p);
     return r-HIT_AREA < d && d < r+HIT_AREA;
 }
 
@@ -59,5 +51,3 @@ void Circle::move(const QPoint &p)
 {
     pos += p;
 }
-
-int Circle::counter = 0;

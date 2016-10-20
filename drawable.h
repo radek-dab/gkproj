@@ -19,7 +19,6 @@ public:
     void setName(const QString &name)
         { _name = name; }
 
-    virtual void inflate(const QPoint &p) = 0;
     virtual void draw(Raster &rst) = 0;
     virtual bool hit(const QPoint &p) = 0;
     virtual void move(const QPoint &p) = 0;

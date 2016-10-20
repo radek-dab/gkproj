@@ -2,11 +2,14 @@
 #define SCENE_H
 
 #include "raster.h"
+#include "tool.h"
 #include "drawable.h"
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 #include <QMouseEvent>
 #include <QList>
+
+class Tool;
 
 class Scene : public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -17,10 +20,14 @@ public:
     ~Scene();
     Raster& raster()
         { return *rst; }
+
+    quint32 foregroundColor();
     void setForegroundColor(quint32 color);
     void setForegroundColor(const QColor &color);
     void setBackgroundColor(quint32 color);
     void setBackgroundColor(const QColor &color);
+
+    void addObject(Drawable *obj);
 
 signals:
     void objectAdded(Drawable *obj);
@@ -36,36 +43,41 @@ protected:
 
 private:
     Raster *rst;
-    quint32 foregroundColor;
-    quint32 backgroundColor;
+    quint32 forecol;
+    quint32 backcol;
+    Tool *tool;
     QList<Drawable*> objects;
-    Drawable *inflatingObj;
     Drawable *draggingObj;
     QPoint draggingPos;
     quint32 convertColor(const QColor &color);
 };
 
+inline quint32 Scene::foregroundColor()
+{
+    return forecol;
+}
+
 inline void Scene::setForegroundColor(quint32 color)
 {
-    foregroundColor = color;
+    forecol = color;
     update();
 }
 
 inline void Scene::setForegroundColor(const QColor &color)
 {
-    foregroundColor = convertColor(color);
+    forecol = convertColor(color);
     update();
 }
 
 inline void Scene::setBackgroundColor(quint32 color)
 {
-    backgroundColor = color;
+    backcol = color;
     update();
 }
 
 inline void Scene::setBackgroundColor(const QColor &color)
 {
-    backgroundColor = convertColor(color);
+    backcol = convertColor(color);
     update();
 }
 

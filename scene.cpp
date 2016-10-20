@@ -1,17 +1,16 @@
 #include "scene.h"
 #include "grid.h"
 #include "line.h"
-#include "circle.h"
-#include <cmath>
+#include "circletool.h"
 #include <QDebug>
 #include <QElapsedTimer>
 
 Scene::Scene(QWidget *parent) :
     QOpenGLWidget(parent),
     rst(NULL),
-    foregroundColor(Raster::RED),
-    backgroundColor(Raster::BLACK),
-    inflatingObj(NULL),
+    forecol(Raster::RED),
+    backcol(Raster::BLACK),
+    tool(new CircleTool(*this)),
     draggingObj(NULL)
 {}
 
@@ -21,6 +20,13 @@ Scene::~Scene()
         delete rst;
     foreach (Drawable *obj, objects)
         delete obj;
+}
+
+void Scene::addObject(Drawable *obj)
+{
+    objects.push_back(obj);
+    update();
+    emit objectAdded(obj);
 }
 
 void Scene::initializeGL()
@@ -40,7 +46,7 @@ void Scene::paintGL()
     QElapsedTimer timer;
     timer.start();
 
-    rst->clear(backgroundColor);
+    rst->clear(backcol);
     foreach (Drawable *obj, objects) {
         obj->draw(*rst);
     }
@@ -72,20 +78,17 @@ void Scene::mousePressEvent(QMouseEvent *event)
             return;
         }
     }
-    inflatingObj = new Circle(event->pos(), 0, foregroundColor);
-    objects.push_back(inflatingObj);
-    emit objectAdded(inflatingObj);
+    tool->mousePressEvent(event);
 }
 
 void Scene::mouseMoveEvent(QMouseEvent *event)
 {
     qDebug() << "Mouse move at" << event->pos();
-    if (inflatingObj) {
-        inflatingObj->inflate(event->pos());
-    }
     if (draggingObj) {
         draggingObj->move(event->pos() - draggingPos);
         draggingPos = event->pos();
+    } else {
+        tool->mouseMoveEvent(event);
     }
     update();
 }
@@ -93,6 +96,6 @@ void Scene::mouseMoveEvent(QMouseEvent *event)
 void Scene::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
-    inflatingObj = NULL;
     draggingObj = NULL;
+    tool->mouseReleaseEvent(event);
 }
