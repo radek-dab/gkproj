@@ -34,7 +34,13 @@ void MainWindow::on_actionBackgroundColor_triggered()
     qDebug() << "Foreground color:" << backgroundColor;
 }
 
-void MainWindow::on_rasterWidget_resized()
+void MainWindow::on_actionGrid_triggered()
+{
+    GridDialog dialog(this);
+    dialog.exec();
+}
+
+void MainWindow::on_scene_resized()
 {
     QSize size = ui->scene->size();
     QString text = QString("%1x%2").arg(size.width()).arg(size.height());
@@ -60,11 +66,4 @@ void MainWindow::chooseShape()
             shape->setChecked(false);
         }
     }
-}
-
-void MainWindow::on_actionGrid_triggered()
-{
-    GridDialog dialog(this);
-
-    dialog.exec();
 }

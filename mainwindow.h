@@ -23,9 +23,8 @@ public slots:
 private slots:
     void on_actionForegroundColor_triggered();
     void on_actionBackgroundColor_triggered();
-    void on_rasterWidget_resized();
-
     void on_actionGrid_triggered();
+    void on_scene_resized();
 
 private:
     Ui::MainWindow *ui;
