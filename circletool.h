@@ -14,7 +14,6 @@ public:
     void mouseReleaseEvent(QMouseEvent *event);
 
 private:
-    QPoint center;
     Circle *circle;
 };
 
