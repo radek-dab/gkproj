@@ -8,6 +8,8 @@ class Circle : public Drawable
 public:
     Circle(const QPoint &center, int radius, quint32 color);
 
+    QPoint center();
+    void setCenter(const QPoint &center);
     int radius();
     void setRadius(int radius);
 
@@ -18,14 +20,26 @@ public:
 
 private:
     static int counter;
+    QPoint c;
     int r;
 };
 
 inline Circle::Circle(const QPoint &center, int radius, quint32 color)
-    : Drawable(center, color), r(radius)
+    : Drawable(QString("Circle %1").arg(++counter), color),
+      c(center),
+      r(radius)
 {
     Q_ASSERT(radius >= 0);
-    _name = QString("Circle %1").arg(++counter);
+}
+
+inline QPoint Circle::center()
+{
+    return c;
+}
+
+inline void Circle::setCenter(const QPoint &center)
+{
+    c = center;
 }
 
 inline int Circle::radius()

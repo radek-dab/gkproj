@@ -24,7 +24,7 @@ void Circle::draw(Raster &rst)
     int x = 0;
     int y = r;
 
-    put8(rst, pos.x(), pos.y(), x, y, color);
+    put8(rst, c.x(), c.y(), x, y, color());
     while (y > x) {
         if (d < 0) {
             d += deltaE;
@@ -37,17 +37,17 @@ void Circle::draw(Raster &rst)
             y--;
         }
         x++;
-        put8(rst, pos.x(), pos.y(), x, y, color);
+        put8(rst, c.x(), c.y(), x, y, color());
     }
 }
 
 bool Circle::hit(const QPoint &p)
 {
-    double d = dist(pos, p);
+    double d = dist(c, p);
     return r-HIT_AREA < d && d < r+HIT_AREA;
 }
 
 void Circle::move(const QPoint &p)
 {
-    pos += p;
+    c += p;
 }

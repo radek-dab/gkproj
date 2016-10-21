@@ -10,8 +10,8 @@ class Drawable
 public:
     static const int HIT_AREA = 10;
 
-    Drawable(const QPoint &pos, quint32 color)
-        : pos(pos), color(color) {}
+    Drawable(QString name, quint32 color)
+        : _name(name), _color(color) {}
     virtual ~Drawable() {}
 
     QString name()
@@ -19,14 +19,18 @@ public:
     void setName(const QString &name)
         { _name = name; }
 
+    quint32 color()
+        { return _color; }
+    void setColor(quint32 color)
+        { _color = color; }
+
     virtual void draw(Raster &rst) = 0;
     virtual bool hit(const QPoint &p) = 0;
     virtual void move(const QPoint &p) = 0;
 
-protected:
+private:
     QString _name;
-    QPoint pos;
-    quint32 color;
+    quint32 _color;
 };
 
 #endif // DRAWABLE_H
