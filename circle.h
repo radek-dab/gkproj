@@ -13,7 +13,6 @@ public:
     int radius();
     void setRadius(int radius);
 
-    void inflate(const QPoint &p);
     void draw(Raster &rst);
     bool hit(const QPoint &p);
     void move(const QPoint &p);
