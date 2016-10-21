@@ -2,6 +2,7 @@
 #include "grid.h"
 #include "line.h"
 #include "circletool.h"
+#include "pointtool.h"
 #include <QDebug>
 #include <QElapsedTimer>
 
@@ -10,7 +11,7 @@ Scene::Scene(QWidget *parent) :
     rst(NULL),
     forecol(Raster::RED),
     backcol(Raster::BLACK),
-    tool(new CircleTool(*this)),
+    tool(new PointTool(*this)),
     draggingObj(NULL)
 {}
 

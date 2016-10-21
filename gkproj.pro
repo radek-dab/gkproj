@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     outlinelist.cpp \
     griddialog.cpp \
     scene.cpp \
-    circletool.cpp
+    circletool.cpp \
+    point.cpp \
+    pointtool.cpp
 
 HEADERS  += mainwindow.h \
     raster.h \
@@ -33,7 +35,9 @@ HEADERS  += mainwindow.h \
     scene.h \
     tool.h \
     circletool.h \
-    dist.h
+    dist.h \
+    point.h \
+    pointtool.h
 
 FORMS    += mainwindow.ui \
     griddialog.ui
