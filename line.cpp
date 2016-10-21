@@ -1,20 +1,21 @@
 #include "line.h"
 #include <QDebug>
-#include <QElapsedTimer>
+
+int Line::counter = 0;
 
 void Line::draw(Raster &rst)
 {
-    int dx = end.x() - start.x();
-    int dy = end.y() - start.y();
+    int dx = _end.x() - _start.x();
+    int dy = _end.y() - _start.y();
 
     int d = 2*dy - dx;
     int incrE = 2*dy;
     int incrNE = 2*(dy-dx);
-    int x = start.x();
-    int y = start.y();
+    int x = _start.x();
+    int y = _start.y();
 
-    rst(x, y) = color;
-    while (x < end.x()) {
+    rst.put(x, y, color());
+    while (x < _end.x()) {
         if (d < 0) {
             d += incrE;
             x++;
@@ -23,6 +24,17 @@ void Line::draw(Raster &rst)
             x++;
             y++;
         }
-        rst(x, y) = color;
+        rst.put(x, y, color());
     }
+}
+
+bool Line::hit(const QPoint &p)
+{
+    return false; // TODO
+}
+
+void Line::move(const QPoint &p)
+{
+    _start += p;
+    _end += p;
 }
