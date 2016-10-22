@@ -26,6 +26,7 @@ public:
     quint32 backgroundColor();
     void setBackgroundColor(quint32 color);
 
+    void setTool(Tool *tool);
     void addObject(Drawable *obj);
 
 signals:

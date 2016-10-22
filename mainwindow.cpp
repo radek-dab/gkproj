@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "griddialog.h"
+#include "pointtool.h"
+#include "linetool.h"
+#include "circletool.h"
 #include <QDebug>
 #include <QColorDialog>
 
@@ -65,5 +68,18 @@ void MainWindow::chooseShape()
         if (shape != chosenShape) {
             shape->setChecked(false);
         }
+    }
+
+    if (chosenShape == ui->actionPoint) {
+        ui->scene->setTool(new PointTool(*ui->scene));
+        return;
+    }
+    if (chosenShape == ui->actionLine) {
+        ui->scene->setTool(new LineTool(*ui->scene));
+        return;
+    }
+    if (chosenShape == ui->actionCircle) {
+        ui->scene->setTool(new CircleTool(*ui->scene));
+        return;
     }
 }

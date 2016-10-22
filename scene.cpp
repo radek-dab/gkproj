@@ -20,8 +20,17 @@ Scene::~Scene()
 {
     if (rst)
         delete rst;
+    if (tool)
+        delete tool;
     foreach (Drawable *obj, objects)
         delete obj;
+}
+
+void Scene::setTool(Tool *tool)
+{
+    if (this->tool)
+        delete this->tool;
+    this->tool = tool;
 }
 
 void Scene::addObject(Drawable *obj)
