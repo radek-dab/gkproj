@@ -10,8 +10,8 @@ void Point::draw(Raster &rst)
 
 bool Point::hit(const QPoint &p)
 {
-    double d = dist(_pos, p);
-    return d < HIT_AREA;
+    int d2 = dist2(_pos, p);
+    return d2 < HIT_AREA*HIT_AREA;
 }
 
 void Point::move(const QPoint &p)
