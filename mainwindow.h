@@ -29,8 +29,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QLabel *sizeLabel;
-    QColor foregroundColor;
-    QColor backgroundColor;
 };
 
 #endif // MAINWINDOW_H

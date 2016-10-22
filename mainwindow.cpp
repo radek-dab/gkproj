@@ -20,18 +20,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionForegroundColor_triggered()
 {
-    QColor color = QColorDialog::getColor(foregroundColor, this);
+    QColor color = QColorDialog::getColor(ui->scene->foregroundColor(), this);
     if (!color.isValid()) return;
-    ui->scene->setForegroundColor(color);
-    qDebug() << "Foreground color:" << foregroundColor;
+    ui->scene->setForegroundColor(color.rgba());
+    qDebug() << "Foreground color:" << color;
 }
 
 void MainWindow::on_actionBackgroundColor_triggered()
 {
-    QColor color = QColorDialog::getColor(backgroundColor, this);
+    QColor color = QColorDialog::getColor(ui->scene->backgroundColor(), this);
     if (!color.isValid()) return;
-    ui->scene->setBackgroundColor(color);
-    qDebug() << "Foreground color:" << backgroundColor;
+    ui->scene->setBackgroundColor(color.rgba());
+    qDebug() << "Background color:" << color;
 }
 
 void MainWindow::on_actionGrid_triggered()

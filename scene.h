@@ -23,9 +23,8 @@ public:
 
     quint32 foregroundColor();
     void setForegroundColor(quint32 color);
-    void setForegroundColor(const QColor &color);
+    quint32 backgroundColor();
     void setBackgroundColor(quint32 color);
-    void setBackgroundColor(const QColor &color);
 
     void addObject(Drawable *obj);
 
@@ -49,7 +48,6 @@ private:
     QList<Drawable*> objects;
     Drawable *draggingObj;
     QPoint draggingPos;
-    quint32 convertColor(const QColor &color);
 };
 
 inline quint32 Scene::foregroundColor()
@@ -60,30 +58,17 @@ inline quint32 Scene::foregroundColor()
 inline void Scene::setForegroundColor(quint32 color)
 {
     forecol = color;
-    update();
 }
 
-inline void Scene::setForegroundColor(const QColor &color)
+inline quint32 Scene::backgroundColor()
 {
-    forecol = convertColor(color);
-    update();
+    return backcol;
 }
 
 inline void Scene::setBackgroundColor(quint32 color)
 {
     backcol = color;
     update();
-}
-
-inline void Scene::setBackgroundColor(const QColor &color)
-{
-    backcol = convertColor(color);
-    update();
-}
-
-inline quint32 Scene::convertColor(const QColor &color)
-{
-    return color.red()<<16 | color.green()<<8 | color.blue();
 }
 
 #endif // SCENE_H
