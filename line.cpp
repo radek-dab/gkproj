@@ -1,4 +1,5 @@
 #include "line.h"
+#include "dist.h"
 #include <QDebug>
 
 int Line::counter = 0;
@@ -64,7 +65,19 @@ void Line::draw(Raster &rst)
 
 bool Line::hit(const QPoint &p)
 {
-    return false; // TODO
+    int len2 = dist2(_start, _end);
+    int d2;
+
+    if (len2 == 0) {
+        d2 = dist2(_start, p);
+    } else {
+        double t = (double)QPoint::dotProduct(p-_start, _end-_start) / len2;
+        t = qBound(0.0, t, 1.0);
+        QPoint proj = _start + t * (_end-_start);
+        d2 = dist2(proj, p);
+    }
+
+    return d2 < HIT_AREA*HIT_AREA;
 }
 
 void Line::move(const QPoint &p)
