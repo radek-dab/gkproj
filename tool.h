@@ -10,6 +10,7 @@ class Tool
 {
 public:
     Tool(Scene &scene) : scene(scene) {}
+    virtual ~Tool() {}
 
     virtual void mousePressEvent(QMouseEvent *event) = 0;
     virtual void mouseMoveEvent(QMouseEvent *event) = 0;
