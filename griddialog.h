@@ -1,6 +1,7 @@
 #ifndef GRIDDIALOG_H
 #define GRIDDIALOG_H
 
+#include "grid.h"
 #include <QDialog>
 
 namespace Ui {
@@ -14,6 +15,9 @@ class GridDialog : public QDialog
 public:
     explicit GridDialog(QWidget *parent = 0);
     ~GridDialog();
+
+    Grid grid() const;
+    void setGrid(const Grid &grid);
 
 private:
     Ui::GridDialog *ui;

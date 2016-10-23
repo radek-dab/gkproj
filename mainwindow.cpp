@@ -40,7 +40,10 @@ void MainWindow::on_actionBackgroundColor_triggered()
 void MainWindow::on_actionGrid_triggered()
 {
     GridDialog dialog(this);
-    dialog.exec();
+    dialog.setGrid(ui->scene->grid());
+    if (dialog.exec() == QDialog::Accepted) {
+        ui->scene->setGrid(dialog.grid());
+    }
 }
 
 void MainWindow::on_scene_resized()

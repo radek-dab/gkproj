@@ -12,6 +12,7 @@ Scene::Scene(QWidget *parent) :
     rst(NULL),
     forecol(Raster::RED),
     backcol(Raster::BLACK),
+    _grid(QSize(20, 20)),
     tool(new LineTool(*this)),
     draggingObj(NULL)
 {}
@@ -58,6 +59,7 @@ void Scene::paintGL()
     timer.start();
 
     rst->clear(backcol);
+    _grid.draw(*rst);
     foreach (Drawable *obj, objects) {
         obj->draw(*rst);
     }

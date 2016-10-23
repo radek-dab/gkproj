@@ -2,6 +2,7 @@
 #define SCENE_H
 
 #include "raster.h"
+#include "grid.h"
 #include "tool.h"
 #include "drawable.h"
 #include <QOpenGLWidget>
@@ -21,10 +22,18 @@ public:
     Raster& raster()
         { return *rst; }
 
-    quint32 foregroundColor();
-    void setForegroundColor(quint32 color);
-    quint32 backgroundColor();
-    void setBackgroundColor(quint32 color);
+    quint32 foregroundColor() const
+        { return forecol; }
+    void setForegroundColor(quint32 color)
+        { forecol = color; }
+    quint32 backgroundColor() const
+        { return backcol; }
+    void setBackgroundColor(quint32 color)
+        { backcol = color; update(); }
+    Grid grid() const
+        { return _grid; }
+    void setGrid(const Grid &grid)
+        { _grid = grid; update(); }
 
     void setTool(Tool *tool);
     void addObject(Drawable *obj);
@@ -45,31 +54,11 @@ private:
     Raster *rst;
     quint32 forecol;
     quint32 backcol;
+    Grid _grid;
     Tool *tool;
     QList<Drawable*> objects;
     Drawable *draggingObj;
     QPoint draggingPos;
 };
-
-inline quint32 Scene::foregroundColor()
-{
-    return forecol;
-}
-
-inline void Scene::setForegroundColor(quint32 color)
-{
-    forecol = color;
-}
-
-inline quint32 Scene::backgroundColor()
-{
-    return backcol;
-}
-
-inline void Scene::setBackgroundColor(quint32 color)
-{
-    backcol = color;
-    update();
-}
 
 #endif // SCENE_H
