@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QActionGroup>
 #include <QLabel>
-#include <QColor>
 
 namespace Ui {
 class MainWindow;
@@ -17,17 +17,17 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-public slots:
-    void chooseShape();
-
 private slots:
     void on_actionForegroundColor_triggered();
     void on_actionBackgroundColor_triggered();
     void on_actionGrid_triggered();
     void on_scene_resized();
 
+    void setTool();
+
 private:
     Ui::MainWindow *ui;
+    QActionGroup *toolGroup;
     QLabel *sizeLabel;
 };
 

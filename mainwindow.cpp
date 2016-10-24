@@ -10,9 +10,18 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    sizeLabel(new QLabel)
+    toolGroup(new QActionGroup(this)),
+    sizeLabel(new QLabel(this))
 {
     ui->setupUi(this);
+
+    ui->actionPoint->setActionGroup(toolGroup);
+    ui->actionLine->setActionGroup(toolGroup);
+    ui->actionCircle->setActionGroup(toolGroup);
+
+    ui->scene->setTool(new LineTool(*ui->scene));
+    ui->actionLine->setChecked(true);
+
     ui->statusBar->addWidget(sizeLabel);
 }
 
@@ -53,35 +62,19 @@ void MainWindow::on_scene_resized()
     sizeLabel->setText(text);
 }
 
-void MainWindow::chooseShape()
+void MainWindow::setTool()
 {
-    QAction *shapes[] = {
-        ui->actionPoint,
-        ui->actionLine,
-        ui->actionCircle,
-        NULL
-    };
-    QAction *chosenShape = qobject_cast<QAction*>(sender());
+    QAction *action = qobject_cast<QAction*>(sender());
 
-    if (!chosenShape->isChecked())
-        return;
-
-    for (QAction **p = shapes; *p; p++) {
-        QAction *shape = *p;
-        if (shape != chosenShape) {
-            shape->setChecked(false);
-        }
-    }
-
-    if (chosenShape == ui->actionPoint) {
+    if (action == ui->actionPoint) {
         ui->scene->setTool(new PointTool(*ui->scene));
         return;
     }
-    if (chosenShape == ui->actionLine) {
+    if (action == ui->actionLine) {
         ui->scene->setTool(new LineTool(*ui->scene));
         return;
     }
-    if (chosenShape == ui->actionCircle) {
+    if (action == ui->actionCircle) {
         ui->scene->setTool(new CircleTool(*ui->scene));
         return;
     }

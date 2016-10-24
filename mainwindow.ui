@@ -353,9 +353,9 @@
   </connection>
   <connection>
    <sender>actionPoint</sender>
-   <signal>changed()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>chooseShape()</slot>
+   <slot>setTool()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -369,9 +369,9 @@
   </connection>
   <connection>
    <sender>actionCircle</sender>
-   <signal>changed()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>chooseShape()</slot>
+   <slot>setTool()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -385,9 +385,9 @@
   </connection>
   <connection>
    <sender>actionLine</sender>
-   <signal>changed()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>chooseShape()</slot>
+   <slot>setTool()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -433,6 +433,6 @@
   </connection>
  </connections>
  <slots>
-  <slot>chooseShape()</slot>
+  <slot>setTool()</slot>
  </slots>
 </ui>
