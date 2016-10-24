@@ -6,12 +6,20 @@
 class Circle : public Drawable
 {
 public:
-    Circle(const QPoint &center, int radius, quint32 color);
+    Circle(const QPoint &center, int radius, quint32 color)
+        : Drawable(QString("Circle %1").arg(++counter), color),
+          c(center),
+          r(radius)
+        { Q_ASSERT(radius >= 0); }
 
-    QPoint center();
-    void setCenter(const QPoint &center);
-    int radius();
-    void setRadius(int radius);
+    QPoint center() const
+        { return c; }
+    void setCenter(const QPoint &center)
+        { c = center; }
+    int radius() const
+        { return r; }
+    void setRadius(int radius)
+        { Q_ASSERT(radius >= 0); r = radius; }
 
     void draw(Raster &rst);
     bool hit(const QPoint &p);
@@ -21,35 +29,20 @@ private:
     static int counter;
     QPoint c;
     int r;
+
+    void put8(Raster &rst, int x, int y, qint32 color);
 };
 
-inline Circle::Circle(const QPoint &center, int radius, quint32 color)
-    : Drawable(QString("Circle %1").arg(++counter), color),
-      c(center),
-      r(radius)
+inline void Circle::put8(Raster &rst, int x, int y, qint32 color)
 {
-    Q_ASSERT(radius >= 0);
-}
-
-inline QPoint Circle::center()
-{
-    return c;
-}
-
-inline void Circle::setCenter(const QPoint &center)
-{
-    c = center;
-}
-
-inline int Circle::radius()
-{
-    return r;
-}
-
-inline void Circle::setRadius(int radius)
-{
-    Q_ASSERT(radius >= 0);
-    r = radius;
+    rst.put(c.x() + x, c.y() + y, color); // 1
+    rst.put(c.x() + y, c.y() + x, color); // 2
+    rst.put(c.x() + y, c.y() - x, color); // 3
+    rst.put(c.x() + x, c.y() - y, color); // 4
+    rst.put(c.x() - x, c.y() - y, color); // 5
+    rst.put(c.x() - y, c.y() - x, color); // 6
+    rst.put(c.x() - y, c.y() + x, color); // 7
+    rst.put(c.x() - x, c.y() + y, color); // 8
 }
 
 #endif // CIRCLE_H

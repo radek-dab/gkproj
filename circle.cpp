@@ -3,19 +3,6 @@
 
 int Circle::counter = 0;
 
-static inline void put8(Raster &rst, int cx, int cy,
-                        int x, int y, qint32 color)
-{
-    rst.put(cx + x, cy + y, color); // 1
-    rst.put(cx + y, cy + x, color); // 2
-    rst.put(cx + y, cy - x, color); // 3
-    rst.put(cx + x, cy - y, color); // 4
-    rst.put(cx - x, cy - y, color); // 5
-    rst.put(cx - y, cy - x, color); // 6
-    rst.put(cx - y, cy + x, color); // 7
-    rst.put(cx - x, cy + y, color); // 8
-}
-
 void Circle::draw(Raster &rst)
 {
     int deltaE = 3;
@@ -24,7 +11,7 @@ void Circle::draw(Raster &rst)
     int x = 0;
     int y = r;
 
-    put8(rst, c.x(), c.y(), x, y, color());
+    put8(rst, x, y, color());
     while (y > x) {
         if (d < 0) {
             d += deltaE;
@@ -37,7 +24,7 @@ void Circle::draw(Raster &rst)
             y--;
         }
         x++;
-        put8(rst, c.x(), c.y(), x, y, color());
+        put8(rst, x, y, color());
     }
 }
 
