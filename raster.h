@@ -6,12 +6,12 @@
 class Raster
 {
 public:
-    static const quint32 BLACK = 0x000000;
-    static const quint32 GREY  = 0x7F7F7F;
-    static const quint32 WHITE = 0xFFFFFF;
-    static const quint32 RED   = 0xFF0000;
-    static const quint32 GREEN = 0x00FF00;
-    static const quint32 BLUE  = 0x0000FF;
+    static const quint32 BLACK = 0xFF000000;
+    static const quint32 GREY  = 0xFF7F7F7F;
+    static const quint32 WHITE = 0xFFFFFFFF;
+    static const quint32 RED   = 0xFFFF0000;
+    static const quint32 GREEN = 0xFF00FF00;
+    static const quint32 BLUE  = 0xFF0000FF;
 
     const int w;
     const int h;
