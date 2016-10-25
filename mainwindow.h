@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "drawable.h"
 #include <QMainWindow>
 #include <QActionGroup>
 #include <QLabel>
@@ -16,6 +17,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+public slots:
+    void addObject(Drawable *obj);
+    void selectObject(int idx);
 
 private slots:
     void on_actionForegroundColor_triggered();

@@ -69,7 +69,7 @@
    <widget class="QWidget" name="outlineDockContents">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="OutlineList" name="outlineList"/>
+      <widget class="QListWidget" name="outlineList"/>
      </item>
     </layout>
    </widget>
@@ -259,15 +259,6 @@
     <signal>objectSelected(int)</signal>
    </slots>
   </customwidget>
-  <customwidget>
-   <class>OutlineList</class>
-   <extends>QListWidget</extends>
-   <header>outlinelist.h</header>
-   <slots>
-    <slot>addObject(Drawable*)</slot>
-    <slot>selectObject(int)</slot>
-   </slots>
-  </customwidget>
  </customwidgets>
  <resources/>
  <connections>
@@ -402,7 +393,7 @@
   <connection>
    <sender>scene</sender>
    <signal>objectAdded(Drawable*)</signal>
-   <receiver>outlineList</receiver>
+   <receiver>MainWindow</receiver>
    <slot>addObject(Drawable*)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -410,15 +401,15 @@
      <y>174</y>
     </hint>
     <hint type="destinationlabel">
-     <x>628</x>
-     <y>146</y>
+     <x>399</x>
+     <y>299</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>scene</sender>
    <signal>objectSelected(int)</signal>
-   <receiver>outlineList</receiver>
+   <receiver>MainWindow</receiver>
    <slot>selectObject(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -426,13 +417,15 @@
      <y>240</y>
     </hint>
     <hint type="destinationlabel">
-     <x>567</x>
-     <y>238</y>
+     <x>399</x>
+     <y>299</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
   <slot>setTool()</slot>
+  <slot>addObject(Drawable*)</slot>
+  <slot>selectObject(int)</slot>
  </slots>
 </ui>

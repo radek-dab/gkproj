@@ -30,6 +30,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::addObject(Drawable *obj)
+{
+    ui->outlineList->addItem(obj->name());
+}
+
+void MainWindow::selectObject(int idx)
+{
+    ui->outlineList->setCurrentRow(idx);
+}
+
 void MainWindow::on_actionForegroundColor_triggered()
 {
     QColor color = QColorDialog::getColor(ui->scene->foregroundColor(), this);

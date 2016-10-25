@@ -13,7 +13,7 @@ Scene::Scene(QWidget *parent) :
     forecol(Raster::RED),
     backcol(Raster::BLACK),
     _grid(QSize(20, 20)),
-    tool(new LineTool(*this)),
+    _tool(NULL),
     draggingObj(NULL)
 {}
 
@@ -21,24 +21,33 @@ Scene::~Scene()
 {
     if (rst)
         delete rst;
-    if (tool)
-        delete tool;
-    foreach (Drawable *obj, objects)
+    if (_tool)
+        delete _tool;
+    foreach (Drawable *obj, _objects)
         delete obj;
 }
 
 void Scene::setTool(Tool *tool)
 {
-    if (this->tool)
-        delete this->tool;
-    this->tool = tool;
+    if (_tool)
+        delete _tool;
+    _tool = tool;
 }
 
 void Scene::addObject(Drawable *obj)
 {
-    objects.push_back(obj);
+    _objects.push_back(obj);
     update();
     emit objectAdded(obj);
+    selectObject(_objects.length()-1);
+}
+
+void Scene::selectObject(int idx)
+{
+    if (_selection != idx) {
+        _selection = idx;
+        emit objectSelected(idx);
+    }
 }
 
 void Scene::initializeGL()
@@ -60,7 +69,7 @@ void Scene::paintGL()
 
     rst->clear(backcol);
     _grid.draw(*rst);
-    foreach (Drawable *obj, objects) {
+    foreach (Drawable *obj, _objects) {
         obj->draw(*rst);
     }
 
@@ -81,8 +90,8 @@ void Scene::paintGL()
 void Scene::mousePressEvent(QMouseEvent *event)
 {
     qDebug() << "Mouse clicked at" << event->pos();
-    for (int i = 0; i < objects.count(); i++) {
-        Drawable *obj = objects[i];
+    for (int i = 0; i < _objects.count(); i++) {
+        Drawable *obj = _objects[i];
         if (obj->hit(event->pos())) {
             qDebug() << "Dragging" << obj;
             draggingObj = obj;
@@ -91,7 +100,7 @@ void Scene::mousePressEvent(QMouseEvent *event)
             return;
         }
     }
-    tool->mousePressEvent(event);
+    _tool->mousePressEvent(event);
 }
 
 void Scene::mouseMoveEvent(QMouseEvent *event)
@@ -101,7 +110,7 @@ void Scene::mouseMoveEvent(QMouseEvent *event)
         draggingObj->move(event->pos() - draggingPos);
         draggingPos = event->pos();
     } else {
-        tool->mouseMoveEvent(event);
+        _tool->mouseMoveEvent(event);
     }
     update();
 }
@@ -110,5 +119,5 @@ void Scene::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
     draggingObj = NULL;
-    tool->mouseReleaseEvent(event);
+    _tool->mouseReleaseEvent(event);
 }

@@ -17,7 +17,6 @@ SOURCES += main.cpp\
     line.cpp \
     grid.cpp \
     circle.cpp \
-    outlinelist.cpp \
     griddialog.cpp \
     scene.cpp \
     circletool.cpp \
@@ -31,7 +30,6 @@ HEADERS  += mainwindow.h \
     grid.h \
     circle.h \
     drawable.h \
-    outlinelist.h \
     griddialog.h \
     scene.h \
     tool.h \

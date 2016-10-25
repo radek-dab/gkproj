@@ -26,17 +26,27 @@ public:
         { return forecol; }
     void setForegroundColor(quint32 color)
         { forecol = color; }
+
     quint32 backgroundColor() const
         { return backcol; }
     void setBackgroundColor(quint32 color)
         { backcol = color; update(); }
+
     Grid grid() const
         { return _grid; }
     void setGrid(const Grid &grid)
         { _grid = grid; update(); }
 
+    Tool * tool() const
+        { return _tool; }
     void setTool(Tool *tool);
+
+    const QList<Drawable *> objects() const
+        { return _objects; }
+    int selection() const
+        { return _selection; }
     void addObject(Drawable *obj);
+    void selectObject(int idx);
 
 signals:
     void objectAdded(Drawable *obj);
@@ -55,8 +65,9 @@ private:
     quint32 forecol;
     quint32 backcol;
     Grid _grid;
-    Tool *tool;
-    QList<Drawable*> objects;
+    Tool *_tool;
+    QList<Drawable *> _objects;
+    int _selection;
     Drawable *draggingObj;
     QPoint draggingPos;
 };
