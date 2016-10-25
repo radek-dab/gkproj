@@ -68,8 +68,6 @@ private:
     Tool *_tool;
     QList<Drawable *> _objects;
     int _selection;
-    Drawable *draggingObj;
-    QPoint draggingPos;
 };
 
 #endif // SCENE_H

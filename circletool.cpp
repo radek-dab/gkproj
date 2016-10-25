@@ -11,6 +11,7 @@ void CircleTool::mouseMoveEvent(QMouseEvent *event)
 {
     int radius = dist(circle->center(), event->pos());
     circle->setRadius(radius);
+    scene.update();
 }
 
 void CircleTool::mouseReleaseEvent(QMouseEvent *event)

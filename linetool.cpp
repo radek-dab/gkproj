@@ -9,6 +9,7 @@ void LineTool::mousePressEvent(QMouseEvent *event)
 void LineTool::mouseMoveEvent(QMouseEvent *event)
 {
     line->setEnd(event->pos());
+    scene.update();
 }
 
 void LineTool::mouseReleaseEvent(QMouseEvent *event)

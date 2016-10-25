@@ -43,6 +43,7 @@
     <addaction name="actionBackgroundColor"/>
     <addaction name="actionGrid"/>
     <addaction name="separator"/>
+    <addaction name="actionMove"/>
     <addaction name="actionPoint"/>
     <addaction name="actionLine"/>
     <addaction name="actionCircle"/>
@@ -100,6 +101,7 @@
    <addaction name="actionBackgroundColor"/>
    <addaction name="actionGrid"/>
    <addaction name="separator"/>
+   <addaction name="actionMove"/>
    <addaction name="actionPoint"/>
    <addaction name="actionLine"/>
    <addaction name="actionCircle"/>
@@ -245,6 +247,23 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionMove">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="transform-move"/>
+   </property>
+   <property name="text">
+    <string>Move</string>
+   </property>
+   <property name="toolTip">
+    <string>Move objects</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
    </property>
   </action>
  </widget>
@@ -415,6 +434,22 @@
     <hint type="sourcelabel">
      <x>433</x>
      <y>240</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMove</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setTool()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>

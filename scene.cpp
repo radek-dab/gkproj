@@ -14,7 +14,7 @@ Scene::Scene(QWidget *parent) :
     backcol(Raster::BLACK),
     _grid(QSize(20, 20)),
     _tool(NULL),
-    draggingObj(NULL)
+    _selection(-1)
 {}
 
 Scene::~Scene()
@@ -39,7 +39,7 @@ void Scene::addObject(Drawable *obj)
     _objects.push_back(obj);
     update();
     emit objectAdded(obj);
-    selectObject(_objects.length()-1);
+    selectObject(_objects.count()-1);
 }
 
 void Scene::selectObject(int idx)
@@ -90,34 +90,16 @@ void Scene::paintGL()
 void Scene::mousePressEvent(QMouseEvent *event)
 {
     qDebug() << "Mouse clicked at" << event->pos();
-    for (int i = 0; i < _objects.count(); i++) {
-        Drawable *obj = _objects[i];
-        if (obj->hit(event->pos())) {
-            qDebug() << "Dragging" << obj;
-            draggingObj = obj;
-            draggingPos = event->pos();
-            emit objectSelected(i);
-            return;
-        }
-    }
     _tool->mousePressEvent(event);
 }
 
 void Scene::mouseMoveEvent(QMouseEvent *event)
 {
     qDebug() << "Mouse move at" << event->pos();
-    if (draggingObj) {
-        draggingObj->move(event->pos() - draggingPos);
-        draggingPos = event->pos();
-    } else {
-        _tool->mouseMoveEvent(event);
-    }
-    update();
+    _tool->mouseMoveEvent(event);
 }
 
 void Scene::mouseReleaseEvent(QMouseEvent *event)
 {
-    Q_UNUSED(event);
-    draggingObj = NULL;
     _tool->mouseReleaseEvent(event);
 }

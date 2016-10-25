@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "griddialog.h"
+#include "movetool.h"
 #include "pointtool.h"
 #include "linetool.h"
 #include "circletool.h"
@@ -15,12 +16,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->actionMove->setActionGroup(toolGroup);
     ui->actionPoint->setActionGroup(toolGroup);
     ui->actionLine->setActionGroup(toolGroup);
     ui->actionCircle->setActionGroup(toolGroup);
 
-    ui->scene->setTool(new LineTool(*ui->scene));
-    ui->actionLine->setChecked(true);
+    ui->scene->setTool(new MoveTool(*ui->scene));
+    ui->actionMove->setChecked(true);
 
     ui->statusBar->addWidget(sizeLabel);
 }
@@ -76,6 +78,10 @@ void MainWindow::setTool()
 {
     QAction *action = qobject_cast<QAction*>(sender());
 
+    if (action == ui->actionMove) {
+        ui->scene->setTool(new MoveTool(*ui->scene));
+        return;
+    }
     if (action == ui->actionPoint) {
         ui->scene->setTool(new PointTool(*ui->scene));
         return;
