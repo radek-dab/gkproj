@@ -58,14 +58,14 @@ void MainWindow::on_actionBackgroundColor_triggered()
     qDebug() << "Background color:" << color;
 }
 
-//void MainWindow::on_actionGrid_triggered()
-//{
-//    GridDialog dialog(this);
-//    dialog.setGrid(ui->scene->grid());
-//    if (dialog.exec() == QDialog::Accepted) {
-//        ui->scene->setGrid(dialog.grid());
-//    }
-//}
+void MainWindow::on_actionConfigureGrid_triggered()
+{
+    GridDialog dialog(this);
+    dialog.setGrid(ui->scene->grid());
+    if (dialog.exec() == QDialog::Accepted) {
+        ui->scene->setGrid(dialog.grid());
+    }
+}
 
 void MainWindow::on_scene_resized()
 {

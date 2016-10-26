@@ -42,6 +42,7 @@
     <addaction name="actionForegroundColor"/>
     <addaction name="actionBackgroundColor"/>
     <addaction name="actionGrid"/>
+    <addaction name="actionConfigureGrid"/>
     <addaction name="separator"/>
     <addaction name="actionMove"/>
     <addaction name="actionPoint"/>
@@ -245,10 +246,7 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>&amp;Grid</string>
-   </property>
-   <property name="toolTip">
-    <string>Toggle grid</string>
+    <string>Grid</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
@@ -290,9 +288,20 @@
     <string>Ctrl+M</string>
    </property>
   </action>
+  <action name="actionConfigureGrid">
+   <property name="text">
+    <string>Configure grid...</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
+  <customwidget>
+   <class>ColorEdit</class>
+   <extends>QWidget</extends>
+   <header>coloredit.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>Scene</class>
    <extends>QOpenGLWidget</extends>
@@ -302,12 +311,6 @@
     <signal>objectSelected(int)</signal>
     <slot>toggleGrid(bool)</slot>
    </slots>
-  </customwidget>
-  <customwidget>
-   <class>ColorEdit</class>
-   <extends>QWidget</extends>
-   <header>coloredit.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

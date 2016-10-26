@@ -13,7 +13,7 @@ Scene::Scene(QWidget *parent) :
     forecol(Raster::RED),
     backcol(Raster::BLACK),
     _gridVisible(false),
-    _grid(QSize(20, 20)),
+    _grid(20, Raster::GREY),
     _tool(NULL),
     _selection(-1)
 {}
