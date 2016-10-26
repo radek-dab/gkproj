@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     point.cpp \
     pointtool.cpp \
     linetool.cpp \
-    movetool.cpp
+    movetool.cpp \
+    coloredit.cpp
 
 HEADERS  += mainwindow.h \
     raster.h \
@@ -39,7 +40,9 @@ HEADERS  += mainwindow.h \
     point.h \
     pointtool.h \
     linetool.h \
-    movetool.h
+    movetool.h \
+    coloredit.h
 
 FORMS    += mainwindow.ui \
-    griddialog.ui
+    griddialog.ui \
+    coloredit.ui
