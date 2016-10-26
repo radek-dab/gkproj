@@ -237,6 +237,9 @@
    </property>
   </action>
   <action name="actionGrid">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset theme="grid-rectangular">
      <normaloff>.</normaloff>.</iconset>
@@ -245,7 +248,10 @@
     <string>&amp;Grid</string>
    </property>
    <property name="toolTip">
-    <string>Configure grid</string>
+    <string>Toggle grid</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
    </property>
   </action>
   <action name="actionCircle">
@@ -294,6 +300,7 @@
    <slots>
     <signal>objectAdded(Drawable*)</signal>
     <signal>objectSelected(int)</signal>
+    <slot>toggleGrid(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -478,6 +485,22 @@
     <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionGrid</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>scene</receiver>
+   <slot>toggleGrid(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>263</x>
+     <y>322</y>
     </hint>
    </hints>
   </connection>

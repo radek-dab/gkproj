@@ -32,6 +32,8 @@ public:
     void setBackgroundColor(quint32 color)
         { backcol = color; update(); }
 
+    bool isGridVisible() const
+        { return _gridVisible; }
     Grid grid() const
         { return _grid; }
     void setGrid(const Grid &grid)
@@ -47,6 +49,9 @@ public:
         { return _selection; }
     void addObject(Drawable *obj);
     void selectObject(int idx);
+
+public slots:
+    void toggleGrid(bool visible);
 
 signals:
     void objectAdded(Drawable *obj);
@@ -64,6 +69,7 @@ private:
     Raster *rst;
     quint32 forecol;
     quint32 backcol;
+    bool _gridVisible;
     Grid _grid;
     Tool *_tool;
     QList<Drawable *> _objects;

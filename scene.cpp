@@ -12,6 +12,7 @@ Scene::Scene(QWidget *parent) :
     rst(NULL),
     forecol(Raster::RED),
     backcol(Raster::BLACK),
+    _gridVisible(false),
     _grid(QSize(20, 20)),
     _tool(NULL),
     _selection(-1)
@@ -50,6 +51,12 @@ void Scene::selectObject(int idx)
     }
 }
 
+void Scene::toggleGrid(bool visible)
+{
+    _gridVisible = visible;
+    update();
+}
+
 void Scene::initializeGL()
 {
     initializeOpenGLFunctions();
@@ -68,10 +75,10 @@ void Scene::paintGL()
     timer.start();
 
     rst->clear(backcol);
-    _grid.draw(*rst);
-    foreach (Drawable *obj, _objects) {
+    if (_gridVisible)
+        _grid.draw(*rst);
+    foreach (Drawable *obj, _objects)
         obj->draw(*rst);
-    }
 
     quint64 drawing = timer.nsecsElapsed();
     timer.start();
