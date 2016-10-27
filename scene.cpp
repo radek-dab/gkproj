@@ -43,6 +43,12 @@ void Scene::addObject(Drawable *obj)
     selectObject(_objects.count()-1);
 }
 
+void Scene::toggleGrid(bool visible)
+{
+    _gridVisible = visible;
+    update();
+}
+
 void Scene::selectObject(int idx)
 {
     if (_selection != idx) {
@@ -51,10 +57,21 @@ void Scene::selectObject(int idx)
     }
 }
 
-void Scene::toggleGrid(bool visible)
+void Scene::deleteObject()
 {
-    _gridVisible = visible;
+    if (_selection == -1)
+        return;
+
+    Drawable *obj = _objects[_selection];
+    _objects.removeAt(_selection);
+    delete obj;
     update();
+    emit objectDeleted(_selection);
+
+    if (_selection == _objects.count())
+        selectObject(_selection-1);
+    else
+        selectObject(_selection);
 }
 
 void Scene::initializeGL()

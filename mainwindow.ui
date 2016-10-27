@@ -353,7 +353,10 @@
    <slots>
     <signal>objectAdded(Drawable*)</signal>
     <signal>objectSelected(int)</signal>
+    <signal>objectDeleted(int)</signal>
     <slot>toggleGrid(bool)</slot>
+    <slot>deleteObject()</slot>
+    <slot>selectObject(int)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -551,10 +554,59 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionDelete</sender>
+   <signal>triggered()</signal>
+   <receiver>scene</receiver>
+   <slot>deleteObject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>263</x>
+     <y>322</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scene</sender>
+   <signal>objectDeleted(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>deleteObject(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>263</x>
+     <y>322</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>outlineList</sender>
+   <signal>currentRowChanged(int)</signal>
+   <receiver>scene</receiver>
+   <slot>selectObject(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>663</x>
+     <y>256</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>263</x>
+     <y>322</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>setTool()</slot>
   <slot>addObject(Drawable*)</slot>
   <slot>selectObject(int)</slot>
+  <slot>deleteObject(int)</slot>
  </slots>
 </ui>

@@ -48,14 +48,16 @@ public:
     int selection() const
         { return _selection; }
     void addObject(Drawable *obj);
-    void selectObject(int idx);
 
 public slots:
     void toggleGrid(bool visible);
+    void selectObject(int idx);
+    void deleteObject();
 
 signals:
     void objectAdded(Drawable *obj);
     void objectSelected(int idx);
+    void objectDeleted(int idx);
 
 protected:
     void initializeGL();

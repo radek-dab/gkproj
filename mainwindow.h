@@ -21,6 +21,10 @@ public:
 public slots:
     void addObject(Drawable *obj);
     void selectObject(int idx);
+    void deleteObject(int idx);
+
+signals:
+    void objectSelected(int idx);
 
 private slots:
     void on_actionForegroundColor_triggered();
