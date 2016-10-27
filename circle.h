@@ -6,10 +6,9 @@
 class Circle : public Drawable
 {
 public:
-    Circle(const QPoint &center, int radius, quint32 color)
-        : Drawable(QString("Circle %1").arg(++counter), color),
-          c(center),
-          r(radius)
+    Circle(const QPoint &center, int radius, quint32 color,
+           const QString name = QString("Circle %1").arg(++counter))
+        : Drawable(name, color), c(center), r(radius)
         { Q_ASSERT(radius >= 0); }
 
     QPoint center() const
@@ -25,12 +24,14 @@ public:
     bool hit(const QPoint &p);
     void move(const QPoint &p);
 
-private:
-    static int counter;
+protected:
     QPoint c;
     int r;
 
     void put8(Raster &rst, int x, int y, qint32 color);
+
+private:
+    static int counter;
 };
 
 inline void Circle::put8(Raster &rst, int x, int y, qint32 color)

@@ -13,6 +13,18 @@ public:
     static const quint32 GREEN = 0xFF00FF00;
     static const quint32 BLUE  = 0xFF0000FF;
 
+    static quint8 alpha(quint32 color)
+        { return color>>24 & 255; }
+    static quint8 red(quint32 color)
+        { return color>>16 & 255; }
+    static quint8 green(quint32 color)
+        { return color>>8 & 255; }
+    static quint8 blue(quint32 color)
+        { return color & 255; }
+
+    static quint32 makeColor(quint8 red, quint8 green, quint8 blue)
+        { return 0xFF000000 | red<<16 | green<<8 | blue; }
+
     const int w;
     const int h;
 
@@ -42,10 +54,19 @@ public:
             _pixels[w*y + x] = color;
     }
 
-//    void mixin(int x, int y, quint32 color)
-//    {
+    void mixin(int x, int y, quint32 color, double alpha)
+    {
+        if (x < 0 || w <= x || y < 0 || h <= y)
+            return;
 
-//    }
+        quint32 backcol = _pixels[w*y + x];
+
+        quint8 r = red(color)   * alpha + red(backcol)   * (1-alpha);
+        quint8 g = green(color) * alpha + green(backcol) * (1-alpha);
+        quint8 b = blue(color)  * alpha + blue(backcol)  * (1-alpha);
+
+        _pixels[w*y + x] = makeColor(r, g, b);
+    }
 
     void clear(quint32 color)
     {

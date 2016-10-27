@@ -1,9 +1,12 @@
 #include "circletool.h"
 #include "dist.h"
 
+#include "smoothcircle.h"
+
 void CircleTool::mousePressEvent(QMouseEvent *event)
 {
-    circle = new Circle(event->pos(), 0, scene.foregroundColor());
+//    circle = new Circle(event->pos(), 0, scene.foregroundColor());
+    circle = new SmoothCircle(event->pos(), 0, scene.foregroundColor());
     scene.addObject(circle);
 }
 
