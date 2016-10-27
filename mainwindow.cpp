@@ -5,6 +5,7 @@
 #include "pointtool.h"
 #include "linetool.h"
 #include "circletool.h"
+#include "smoothcircletool.h"
 #include <QDebug>
 #include <QColorDialog>
 #include <QListWidgetItem>
@@ -21,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionPoint->setActionGroup(toolGroup);
     ui->actionLine->setActionGroup(toolGroup);
     ui->actionCircle->setActionGroup(toolGroup);
+    ui->actionSmoothCircle->setActionGroup(toolGroup);
 
     ui->scene->setTool(new MoveTool(*ui->scene));
     ui->actionMove->setChecked(true);
@@ -122,6 +124,10 @@ void MainWindow::setTool()
     }
     if (action == ui->actionCircle) {
         ui->scene->setTool(new CircleTool(*ui->scene));
+        return;
+    }
+    if (action == ui->actionSmoothCircle) {
+        ui->scene->setTool(new SmoothCircleTool(*ui->scene));
         return;
     }
 }

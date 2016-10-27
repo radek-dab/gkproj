@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     linetool.cpp \
     movetool.cpp \
     coloredit.cpp \
-    smoothcircle.cpp
+    smoothcircle.cpp \
+    smoothcircletool.cpp
 
 HEADERS  += mainwindow.h \
     raster.h \
@@ -43,7 +44,8 @@ HEADERS  += mainwindow.h \
     linetool.h \
     movetool.h \
     coloredit.h \
-    smoothcircle.h
+    smoothcircle.h \
+    smoothcircletool.h
 
 FORMS    += mainwindow.ui \
     griddialog.ui \

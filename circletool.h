@@ -13,7 +13,7 @@ public:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
-private:
+protected:
     Circle *circle;
 };
 
