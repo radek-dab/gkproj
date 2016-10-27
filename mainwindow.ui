@@ -56,8 +56,17 @@
     <addaction name="actionOutline"/>
     <addaction name="actionProperties"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionFront"/>
+    <addaction name="actionBack"/>
+    <addaction name="actionDelete"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuView"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -124,7 +133,9 @@
    <addaction name="actionLine"/>
    <addaction name="actionCircle"/>
    <addaction name="separator"/>
-   <addaction name="actionQuit"/>
+   <addaction name="actionFront"/>
+   <addaction name="actionBack"/>
+   <addaction name="actionDelete"/>
   </widget>
   <action name="actionQuit">
    <property name="icon">
@@ -246,7 +257,7 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Grid</string>
+    <string>&amp;Grid</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
@@ -290,7 +301,40 @@
   </action>
   <action name="actionConfigureGrid">
    <property name="text">
-    <string>Configure grid...</string>
+    <string>C&amp;onfigure grid...</string>
+   </property>
+  </action>
+  <action name="actionFront">
+   <property name="icon">
+    <iconset theme="layer-top"/>
+   </property>
+   <property name="text">
+    <string>Move to front</string>
+   </property>
+   <property name="shortcut">
+    <string>Home</string>
+   </property>
+  </action>
+  <action name="actionBack">
+   <property name="icon">
+    <iconset theme="layer-bottom"/>
+   </property>
+   <property name="text">
+    <string>Move to back</string>
+   </property>
+   <property name="shortcut">
+    <string>End</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="icon">
+    <iconset theme="edit-delete"/>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
    </property>
   </action>
  </widget>
