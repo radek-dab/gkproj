@@ -96,6 +96,14 @@ void Scene::deleteObject()
         selectObject(_selection);
 }
 
+void Scene::renameObject(const QString &name)
+{
+    if (_selection != -1) {
+        _objects[_selection]->setName(name);
+        emit objectRenamed(_selection, name);
+    }
+}
+
 void Scene::initializeGL()
 {
     initializeOpenGLFunctions();

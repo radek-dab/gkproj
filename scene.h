@@ -56,12 +56,14 @@ public slots:
     void moveToFront();
     void moveToBack();
     void deleteObject();
+    void renameObject(const QString &name);
 
 signals:
     void objectAdded(Drawable *obj);
     void objectSelected(int idx);
     void objectReordered(int from, int to);
     void objectDeleted(int idx);
+    void objectRenamed(int idx, const QString &name);
 
 protected:
     void initializeGL();

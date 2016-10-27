@@ -23,6 +23,7 @@ public slots:
     void selectObject(int idx);
     void reorderObject(int from, int to);
     void deleteObject(int idx);
+    void renameObject(int idx, const QString &name);
 
 signals:
     void objectSelected(int idx);

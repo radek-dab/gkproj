@@ -306,10 +306,11 @@
   </action>
   <action name="actionFront">
    <property name="icon">
-    <iconset theme="layer-top"/>
+    <iconset theme="layer-top">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Move to front</string>
+    <string>&amp;Move to front</string>
    </property>
    <property name="shortcut">
     <string>Home</string>
@@ -317,10 +318,11 @@
   </action>
   <action name="actionBack">
    <property name="icon">
-    <iconset theme="layer-bottom"/>
+    <iconset theme="layer-bottom">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Move to back</string>
+    <string>Move to &amp;back</string>
    </property>
    <property name="shortcut">
     <string>End</string>
@@ -328,10 +330,11 @@
   </action>
   <action name="actionDelete">
    <property name="icon">
-    <iconset theme="edit-delete"/>
+    <iconset theme="edit-delete">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Delete</string>
+    <string>&amp;Delete</string>
    </property>
    <property name="shortcut">
     <string>Del</string>
@@ -355,11 +358,13 @@
     <signal>objectSelected(int)</signal>
     <signal>objectDeleted(int)</signal>
     <signal>objectReordered(int,int)</signal>
+    <signal>objectRenamed(int,QString)</signal>
     <slot>toggleGrid(bool)</slot>
     <slot>deleteObject()</slot>
     <slot>selectObject(int)</slot>
     <slot>moveToFront()</slot>
     <slot>moveToBack()</slot>
+    <slot>renameObject(QString)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -653,6 +658,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>nameEdit</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>scene</receiver>
+   <slot>renameObject(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>693</x>
+     <y>467</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>263</x>
+     <y>322</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scene</sender>
+   <signal>objectRenamed(int,QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>renameObject(int,QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>263</x>
+     <y>322</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>setTool()</slot>
@@ -660,5 +697,6 @@
   <slot>selectObject(int)</slot>
   <slot>deleteObject(int)</slot>
   <slot>reorderObject(int,int)</slot>
+  <slot>renameObject(int,QString)</slot>
  </slots>
 </ui>

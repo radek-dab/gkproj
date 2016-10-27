@@ -62,6 +62,11 @@ void MainWindow::deleteObject(int idx)
     delete ui->outlineList->takeItem(idx);
 }
 
+void MainWindow::renameObject(int idx, const QString &name)
+{
+    ui->outlineList->item(idx)->setText(name);
+}
+
 void MainWindow::on_actionForegroundColor_triggered()
 {
     QColor color = QColorDialog::getColor(ui->scene->foregroundColor(), this);
