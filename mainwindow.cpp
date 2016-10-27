@@ -43,9 +43,14 @@ void MainWindow::selectObject(int idx)
     qDebug() << "Select:" << idx;
     ui->outlineList->setCurrentRow(idx);
 
-    Drawable *obj = ui->scene->objects()[idx];
-    ui->nameEdit->setText(obj->name());
-    ui->colorEdit->setColor(obj->color());
+    if (idx != -1) {
+        Drawable *obj = ui->scene->objects()[idx];
+        ui->nameEdit->setText(obj->name());
+        ui->colorEdit->setColor(obj->color());
+    } else {
+        ui->nameEdit->setText("");
+        ui->colorEdit->setColor(Qt::white);
+    }
 }
 
 void MainWindow::reorderObject(int from, int to)
