@@ -66,7 +66,10 @@ void MainWindow::reorderObject(int from, int to)
 
 void MainWindow::deleteObject(int idx)
 {
+    qDebug() << "Delete object:" << idx;
+    ui->outlineList->blockSignals(true); // Selection is changing.
     delete ui->outlineList->takeItem(idx);
+    ui->outlineList->blockSignals(false);
 }
 
 void MainWindow::renameObject(int idx, const QString &name)

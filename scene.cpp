@@ -51,10 +51,8 @@ void Scene::toggleGrid(bool visible)
 
 void Scene::selectObject(int idx)
 {
-    if (_selection != idx) {
-        _selection = idx;
-        emit objectSelected(idx);
-    }
+    _selection = idx;
+    emit objectSelected(idx);
 }
 
 void Scene::reorderObject(int idx)
