@@ -348,6 +348,9 @@
    <extends>QWidget</extends>
    <header>coloredit.h</header>
    <container>1</container>
+   <slots>
+    <signal>colorEdited(QColor)</signal>
+   </slots>
   </customwidget>
   <customwidget>
    <class>Scene</class>
@@ -365,6 +368,7 @@
     <slot>moveToFront()</slot>
     <slot>moveToBack()</slot>
     <slot>renameObject(QString)</slot>
+    <slot>setObjectColor(QColor)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -687,6 +691,22 @@
     <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>colorEdit</sender>
+   <signal>colorEdited(QColor)</signal>
+   <receiver>scene</receiver>
+   <slot>setObjectColor(QColor)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>594</x>
+     <y>503</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>263</x>
+     <y>322</y>
     </hint>
    </hints>
   </connection>

@@ -57,6 +57,7 @@ public slots:
     void moveToBack();
     void deleteObject();
     void renameObject(const QString &name);
+    void setObjectColor(const QColor &color);
 
 signals:
     void objectAdded(Drawable *obj);

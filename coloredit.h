@@ -20,6 +20,9 @@ public:
         { return _color; }
     void setColor(const QColor &color);
 
+signals:
+    void colorEdited(const QColor &color);
+
 private slots:
     void on_toolButton_clicked();
 

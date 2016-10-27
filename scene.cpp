@@ -104,6 +104,13 @@ void Scene::renameObject(const QString &name)
     }
 }
 
+void Scene::setObjectColor(const QColor &color)
+{
+    if (_selection != -1) {
+        _objects[_selection]->setColor(color.rgba());
+    }
+}
+
 void Scene::initializeGL()
 {
     initializeOpenGLFunctions();

@@ -27,6 +27,8 @@ void ColorEdit::setColor(const QColor &color)
 void ColorEdit::on_toolButton_clicked()
 {
     QColor color = QColorDialog::getColor(_color, this);
-    if (color.isValid())
+    if (color.isValid()) {
         setColor(color);
+        emit colorEdited(color);
+    }
 }
