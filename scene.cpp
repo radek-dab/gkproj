@@ -57,6 +57,28 @@ void Scene::selectObject(int idx)
     }
 }
 
+void Scene::reorderObject(int idx)
+{
+    if (_selection == -1 || _selection == idx)
+        return;
+
+    _objects.move(_selection, idx);
+    update();
+    emit objectReordered(_selection, idx);
+
+    selectObject(idx);
+}
+
+void Scene::moveToFront()
+{
+    reorderObject(_objects.count()-1);
+}
+
+void Scene::moveToBack()
+{
+    reorderObject(0);
+}
+
 void Scene::deleteObject()
 {
     if (_selection == -1)

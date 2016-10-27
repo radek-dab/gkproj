@@ -7,6 +7,7 @@
 #include "circletool.h"
 #include <QDebug>
 #include <QColorDialog>
+#include <QListWidgetItem>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -39,7 +40,17 @@ void MainWindow::addObject(Drawable *obj)
 
 void MainWindow::selectObject(int idx)
 {
+    qDebug() << "Select:" << idx;
     ui->outlineList->setCurrentRow(idx);
+}
+
+void MainWindow::reorderObject(int from, int to)
+{
+    qDebug() << "Reorder object:" << from << "->" << to;
+    ui->outlineList->blockSignals(true); // Selection is changing.
+    QListWidgetItem *item = ui->outlineList->takeItem(from);
+    ui->outlineList->insertItem(to, item);
+    ui->outlineList->blockSignals(false);
 }
 
 void MainWindow::deleteObject(int idx)

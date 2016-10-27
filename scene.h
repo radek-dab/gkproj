@@ -52,11 +52,15 @@ public:
 public slots:
     void toggleGrid(bool visible);
     void selectObject(int idx);
+    void reorderObject(int idx);
+    void moveToFront();
+    void moveToBack();
     void deleteObject();
 
 signals:
     void objectAdded(Drawable *obj);
     void objectSelected(int idx);
+    void objectReordered(int from, int to);
     void objectDeleted(int idx);
 
 protected:

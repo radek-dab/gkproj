@@ -21,6 +21,7 @@ public:
 public slots:
     void addObject(Drawable *obj);
     void selectObject(int idx);
+    void reorderObject(int from, int to);
     void deleteObject(int idx);
 
 signals:

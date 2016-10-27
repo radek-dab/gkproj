@@ -354,9 +354,12 @@
     <signal>objectAdded(Drawable*)</signal>
     <signal>objectSelected(int)</signal>
     <signal>objectDeleted(int)</signal>
+    <signal>objectReordered(int,int)</signal>
     <slot>toggleGrid(bool)</slot>
     <slot>deleteObject()</slot>
     <slot>selectObject(int)</slot>
+    <slot>moveToFront()</slot>
+    <slot>moveToBack()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -602,11 +605,60 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionFront</sender>
+   <signal>triggered()</signal>
+   <receiver>scene</receiver>
+   <slot>moveToFront()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>263</x>
+     <y>322</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionBack</sender>
+   <signal>triggered()</signal>
+   <receiver>scene</receiver>
+   <slot>moveToBack()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>263</x>
+     <y>322</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scene</sender>
+   <signal>objectReordered(int,int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>reorderObject(int,int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>263</x>
+     <y>322</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>setTool()</slot>
   <slot>addObject(Drawable*)</slot>
   <slot>selectObject(int)</slot>
   <slot>deleteObject(int)</slot>
+  <slot>reorderObject(int,int)</slot>
  </slots>
 </ui>
