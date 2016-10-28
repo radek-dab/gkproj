@@ -2,7 +2,8 @@
 
 void LineTool::mousePressEvent(QMouseEvent *event)
 {
-    line = new Line(event->pos(), event->pos(), scene.foregroundColor());
+    line = new Line(event->pos(), event->pos(),
+                    thickness, scene.foregroundColor());
     scene.addObject(line);
 }
 

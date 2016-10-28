@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QColorDialog>
 #include <QListWidgetItem>
+#include <QInputDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -122,7 +123,9 @@ void MainWindow::setTool()
         return;
     }
     if (action == ui->actionLine) {
-        ui->scene->setTool(new LineTool(*ui->scene));
+        int d = QInputDialog::getInt(this, "Line", "Line thickness",
+                                     1, 0, 9999);
+        ui->scene->setTool(new LineTool(*ui->scene, d));
         return;
     }
     if (action == ui->actionCircle) {

@@ -26,7 +26,7 @@ void Line::draw(Raster &rst)
     }
 
     int x = _start.x(), y = _start.y();
-    rst.put(x, y, color());
+    put(rst, x, y);
 
     if (dx > dy) {
         int ai = (dy-dx) << 1;
@@ -42,7 +42,7 @@ void Line::draw(Raster &rst)
                 x += xi;
                 d += bi;
             }
-            rst.put(x, y, color());
+            put(rst, x, y);
         }
     } else {
         int ai = (dx-dy) << 1;
@@ -58,7 +58,7 @@ void Line::draw(Raster &rst)
                 y += yi;
                 d += bi;
             }
-            rst.put(x, y, color());
+            put(rst, x, y);
         }
     }
 }
