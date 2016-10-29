@@ -49,6 +49,7 @@
     <addaction name="actionLine"/>
     <addaction name="actionCircle"/>
     <addaction name="actionSmoothCircle"/>
+    <addaction name="actionPolygon"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -133,6 +134,7 @@
    <addaction name="actionPoint"/>
    <addaction name="actionLine"/>
    <addaction name="actionCircle"/>
+   <addaction name="actionPolygon"/>
    <addaction name="separator"/>
    <addaction name="actionFront"/>
    <addaction name="actionBack"/>
@@ -346,10 +348,28 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Smooth circle</string>
+    <string>&amp;Smooth circle</string>
    </property>
    <property name="toolTip">
     <string>Draw a smooth circle</string>
+   </property>
+  </action>
+  <action name="actionPolygon">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="draw-polygon">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Pol&amp;ygon</string>
+   </property>
+   <property name="toolTip">
+    <string>Draw a polygon</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
  </widget>
@@ -724,6 +744,22 @@
   </connection>
   <connection>
    <sender>actionSmoothCircle</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setTool()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPolygon</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>setTool()</slot>
