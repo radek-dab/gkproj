@@ -12,19 +12,31 @@ public:
         : Drawable(name, color), _vertices(vertices) {}
 
     void addVertex(const QPoint &p)
-        { _vertices.push_back(p); }
+        { _vertices.push_back(p);  updateEdges(); }
     void setVertex(const QPoint &p)
-        { _vertices.last() = p; }
+        { _vertices.last() = p; updateEdges(); }
     void deleteVertex()
-        { _vertices.pop_back(); }
+        { _vertices.pop_back(); updateEdges(); }
 
     void draw(Raster &rst);
     bool hit(const QPoint &p);
     void move(const QPoint &p);
 
 private:
+    struct Edge
+    {
+        int ymin;
+        int ymax;
+        float x;
+        float slope;
+    };
+
     static int counter;
     QList<QPoint> _vertices;
+    QList<Edge> _edges;
+
+    void addEdge(const QPoint &a, const QPoint &b);
+    void updateEdges();
 };
 
 #endif // POLYGON_H
