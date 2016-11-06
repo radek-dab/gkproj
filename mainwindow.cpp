@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionCircle->setActionGroup(toolGroup);
     ui->actionSmoothCircle->setActionGroup(toolGroup);
     ui->actionPolygon->setActionGroup(toolGroup);
+    ui->actionFill->setActionGroup(toolGroup);
 
     ui->scene->setTool(new MoveTool(*ui->scene));
     ui->actionMove->setChecked(true);
@@ -140,6 +141,10 @@ void MainWindow::setTool()
     }
     if (action == ui->actionPolygon) {
         ui->scene->setTool(new PolygonTool(*ui->scene));
+        return;
+    }
+    if (action == ui->actionFill) {
+        ui->scene->setTool(NULL);
         return;
     }
 }

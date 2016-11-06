@@ -50,6 +50,7 @@
     <addaction name="actionCircle"/>
     <addaction name="actionSmoothCircle"/>
     <addaction name="actionPolygon"/>
+    <addaction name="actionFill"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -135,6 +136,7 @@
    <addaction name="actionLine"/>
    <addaction name="actionCircle"/>
    <addaction name="actionPolygon"/>
+   <addaction name="actionFill"/>
    <addaction name="separator"/>
    <addaction name="actionFront"/>
    <addaction name="actionBack"/>
@@ -370,6 +372,24 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionFill">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="color-fill">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>F&amp;ill</string>
+   </property>
+   <property name="toolTip">
+    <string>Fill region</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
    </property>
   </action>
  </widget>
@@ -760,6 +780,22 @@
   </connection>
   <connection>
    <sender>actionPolygon</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setTool()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFill</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>setTool()</slot>
