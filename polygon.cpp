@@ -44,7 +44,7 @@ void Polygon::draw(Raster &rst)
                 activeEdges.move(i, j+1);
             }
         }
-    } while (!activeEdges.empty());
+    } while (et != _edges.end() || !activeEdges.empty());
 }
 
 bool Polygon::hit(const QPoint &p)
