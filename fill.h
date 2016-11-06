@@ -1,13 +1,13 @@
-#ifndef POINT_H
-#define POINT_H
+#ifndef FILL_H
+#define FILL_H
 
 #include "drawable.h"
 
-class Point : public Drawable
+class Fill : public Drawable
 {
 public:
-    Point(const QPoint &pos, quint32 color)
-        : Drawable(QString("Point %1").arg(++counter), color),
+    Fill(const QPoint pos, quint32 color)
+        : Drawable(QString("Fill %1").arg(++counter), color),
           _pos(pos) {}
 
     QPoint pos() const
@@ -24,4 +24,4 @@ private:
     QPoint _pos;
 };
 
-#endif // POINT_H
+#endif // FILL_H

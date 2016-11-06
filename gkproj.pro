@@ -28,7 +28,9 @@ SOURCES += main.cpp\
     smoothcircle.cpp \
     smoothcircletool.cpp \
     polygon.cpp \
-    polygontool.cpp
+    polygontool.cpp \
+    filltool.cpp \
+    fill.cpp
 
 HEADERS  += mainwindow.h \
     raster.h \
@@ -49,7 +51,9 @@ HEADERS  += mainwindow.h \
     smoothcircle.h \
     smoothcircletool.h \
     polygon.h \
-    polygontool.h
+    polygontool.h \
+    filltool.h \
+    fill.h
 
 FORMS    += mainwindow.ui \
     griddialog.ui \

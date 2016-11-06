@@ -48,6 +48,16 @@ public:
         return _pixels[w*y + x];
     }
 
+    bool get(int x, int y, quint32 &color)
+    {
+        if (0 <= x && x < w && 0 <= y && y < h) {
+            color = _pixels[w*y + x];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     void put(int x, int y, quint32 color)
     {
         if (0 <= x && x < w && 0 <= y && y < h)

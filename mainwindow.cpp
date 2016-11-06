@@ -7,6 +7,7 @@
 #include "circletool.h"
 #include "smoothcircletool.h"
 #include "polygontool.h"
+#include "filltool.h"
 #include <QDebug>
 #include <QColorDialog>
 #include <QListWidgetItem>
@@ -144,7 +145,7 @@ void MainWindow::setTool()
         return;
     }
     if (action == ui->actionFill) {
-        ui->scene->setTool(NULL);
+        ui->scene->setTool(new FillTool(*ui->scene));
         return;
     }
 }
