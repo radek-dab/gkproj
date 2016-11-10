@@ -1,6 +1,5 @@
 #include "line.h"
 #include "dist.h"
-#include <QDebug>
 
 int Line::counter = 0;
 
@@ -77,7 +76,8 @@ bool Line::hit(const QPoint &p)
         d2 = dist2(proj, p);
     }
 
-    return d2 < HIT_AREA*HIT_AREA;
+    int hitArea = qMax(int(HIT_AREA), _thickness>>1);
+    return d2 < hitArea*hitArea;
 }
 
 void Line::move(const QPoint &p)
