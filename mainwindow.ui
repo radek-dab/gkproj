@@ -43,6 +43,7 @@
     <addaction name="actionBackgroundColor"/>
     <addaction name="actionGrid"/>
     <addaction name="actionConfigureGrid"/>
+    <addaction name="actionClipping"/>
     <addaction name="separator"/>
     <addaction name="actionMove"/>
     <addaction name="actionPoint"/>
@@ -130,6 +131,7 @@
    <addaction name="actionForegroundColor"/>
    <addaction name="actionBackgroundColor"/>
    <addaction name="actionGrid"/>
+   <addaction name="actionClipping"/>
    <addaction name="separator"/>
    <addaction name="actionMove"/>
    <addaction name="actionPoint"/>
@@ -392,6 +394,20 @@
     <string>Ctrl+I</string>
    </property>
   </action>
+  <action name="actionClipping">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="path-clip-edit"/>
+   </property>
+   <property name="text">
+    <string>Clipping</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -421,6 +437,7 @@
     <slot>moveToBack()</slot>
     <slot>renameObject(QString)</slot>
     <slot>setObjectColor(QColor)</slot>
+    <slot>toggleClipWindow(bool)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -807,6 +824,22 @@
     <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionClipping</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>scene</receiver>
+   <slot>toggleClipWindow(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>263</x>
+     <y>322</y>
     </hint>
    </hints>
   </connection>

@@ -10,10 +10,12 @@
 Scene::Scene(QWidget *parent) :
     QOpenGLWidget(parent),
     rst(NULL),
-    forecol(Raster::RED),
+    forecol(Raster::BLUE),
     backcol(Raster::BLACK),
     _gridVisible(false),
     _grid(50, Raster::GREY),
+    _clipWindowVisible(false),
+    _clipWindow(QRect(50, 50, 300, 200), Raster::RED),
     _tool(NULL),
     _selection(-1)
 {}
@@ -46,6 +48,12 @@ void Scene::addObject(Drawable *obj)
 void Scene::toggleGrid(bool visible)
 {
     _gridVisible = visible;
+    update();
+}
+
+void Scene::toggleClipWindow(bool visible)
+{
+    _clipWindowVisible = visible;
     update();
 }
 
@@ -131,6 +139,8 @@ void Scene::paintGL()
         _grid.draw(*rst);
     foreach (Drawable *obj, _objects)
         obj->draw(*rst);
+    if (_clipWindowVisible)
+        _clipWindow.draw(*rst);
 
     quint64 drawing = timer.nsecsElapsed();
     timer.start();

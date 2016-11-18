@@ -3,6 +3,7 @@
 
 #include "raster.h"
 #include "grid.h"
+#include "clipwindow.h"
 #include "tool.h"
 #include "drawable.h"
 #include <QOpenGLWidget>
@@ -39,6 +40,13 @@ public:
     void setGrid(const Grid &grid)
         { _grid = grid; update(); }
 
+    bool isClipWindowVisible() const
+        { return _clipWindowVisible; }
+    ClipWindow clipWindow() const
+        { return _clipWindow; }
+    void setClipWindow(const ClipWindow &clipWindow)
+        { _clipWindow = clipWindow; }
+
     Tool * tool() const
         { return _tool; }
     void setTool(Tool *tool);
@@ -51,6 +59,7 @@ public:
 
 public slots:
     void toggleGrid(bool visible);
+    void toggleClipWindow(bool visible);
     void selectObject(int idx);
     void reorderObject(int idx);
     void moveToFront();
@@ -80,6 +89,8 @@ private:
     quint32 backcol;
     bool _gridVisible;
     Grid _grid;
+    bool _clipWindowVisible;
+    ClipWindow _clipWindow;
     Tool *_tool;
     QList<Drawable *> _objects;
     int _selection;

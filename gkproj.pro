@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     polygon.cpp \
     polygontool.cpp \
     filltool.cpp \
-    fill.cpp
+    fill.cpp \
+    clipwindow.cpp
 
 HEADERS  += mainwindow.h \
     raster.h \
@@ -53,7 +54,8 @@ HEADERS  += mainwindow.h \
     polygon.h \
     polygontool.h \
     filltool.h \
-    fill.h
+    fill.h \
+    clipwindow.h
 
 FORMS    += mainwindow.ui \
     griddialog.ui \
