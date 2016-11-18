@@ -12,6 +12,7 @@
 #include <QList>
 
 class Tool;
+class Drawable;
 
 class Scene : public QOpenGLWidget, protected QOpenGLFunctions
 {

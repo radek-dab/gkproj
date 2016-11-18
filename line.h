@@ -6,14 +6,16 @@
 class Line : public Drawable
 {
 public:
-    Line(QPoint start, QPoint end, int thickness, quint32 color)
-        : Drawable(QString("Line %1").arg(++counter), color),
+    Line(Scene &scene, const QPoint &start, const QPoint &end,
+         int thickness, quint32 color)
+        : Drawable(scene, QString("Line %1").arg(++counter), color),
           _start(start),
           _end(end),
           _thickness(thickness)
         { Q_ASSERT(thickness > 0); }
-    Line(QPoint start, QPoint end, quint32 color)
-        : Line(start, end, 1, color) {}
+
+    Line(Scene &scene, const QPoint &start, const QPoint &end, quint32 color)
+        : Line(scene, start, end, 1, color) {}
 
     QPoint start() const
         { return _start; }

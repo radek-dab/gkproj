@@ -7,9 +7,9 @@
 class Polygon : public Drawable
 {
 public:
-    Polygon(const QList<QPoint> &vertices, quint32 color,
-            const QString name = QString("Polygon %1").arg(++counter))
-        : Drawable(name, color), _vertices(vertices) { updateEdges(); }
+    Polygon(Scene &scene, const QList<QPoint> &vertices, quint32 color,
+            const QString &name = QString("Polygon %1").arg(++counter))
+        : Drawable(scene, name, color), _vertices(vertices) { updateEdges(); }
 
     void addVertex(const QPoint &p)
         { _vertices.push_back(p);  updateEdges(); }

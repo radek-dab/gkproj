@@ -6,9 +6,9 @@
 class Circle : public Drawable
 {
 public:
-    Circle(const QPoint &center, int radius, quint32 color,
-           const QString name = QString("Circle %1").arg(++counter))
-        : Drawable(name, color), c(center), r(radius)
+    Circle(Scene &scene, const QPoint &center, int radius, quint32 color,
+           const QString &name = QString("Circle %1").arg(++counter))
+        : Drawable(scene, name, color), c(center), r(radius)
         { Q_ASSERT(radius >= 0); }
 
     QPoint center() const

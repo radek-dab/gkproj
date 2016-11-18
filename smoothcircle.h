@@ -6,10 +6,10 @@
 class SmoothCircle : public Circle
 {
 public:
-    SmoothCircle(const QPoint &center, int radius, quint32 color,
+    SmoothCircle(Scene &scene, const QPoint &center, int radius, quint32 color,
                  const QString name
                     = QString("Smooth circle %1").arg(++counter))
-        : Circle(center, radius, color, name) {}
+        : Circle(scene, center, radius, color, name) {}
 
     void draw(Raster &rst);
 

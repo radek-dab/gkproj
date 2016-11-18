@@ -6,7 +6,7 @@ void PolygonTool::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
         if (!polygon) {
-            polygon = new Polygon({event->pos(), event->pos()},
+            polygon = new Polygon(scene, {event->pos(), event->pos()},
                                   scene.foregroundColor());
             scene.addObject(polygon);
             scene.setMouseTracking(true);

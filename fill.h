@@ -6,8 +6,8 @@
 class Fill : public Drawable
 {
 public:
-    Fill(const QPoint pos, quint32 color)
-        : Drawable(QString("Fill %1").arg(++counter), color),
+    Fill(Scene &scene, const QPoint pos, quint32 color)
+        : Drawable(scene, QString("Fill %1").arg(++counter), color),
           _pos(pos) {}
 
     QPoint pos() const

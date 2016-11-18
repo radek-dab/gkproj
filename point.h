@@ -6,8 +6,8 @@
 class Point : public Drawable
 {
 public:
-    Point(const QPoint &pos, quint32 color)
-        : Drawable(QString("Point %1").arg(++counter), color),
+    Point(Scene &scene, const QPoint &pos, quint32 color)
+        : Drawable(scene, QString("Point %1").arg(++counter), color),
           _pos(pos) {}
 
     QPoint pos() const

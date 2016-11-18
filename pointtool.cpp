@@ -2,7 +2,7 @@
 
 void PointTool::mousePressEvent(QMouseEvent *event)
 {
-    Point *p = new Point(event->pos(), scene.foregroundColor());
+    Point *p = new Point(scene, event->pos(), scene.foregroundColor());
     scene.addObject(p);
 }
 

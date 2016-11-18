@@ -3,7 +3,7 @@
 
 void CircleTool::mousePressEvent(QMouseEvent *event)
 {
-    circle = new Circle(event->pos(), 0, scene.foregroundColor());
+    circle = new Circle(scene, event->pos(), 0, scene.foregroundColor());
     scene.addObject(circle);
 }
 

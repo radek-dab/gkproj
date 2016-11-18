@@ -52,10 +52,10 @@ bool Polygon::hit(const QPoint &p)
     Q_ASSERT(!_vertices.isEmpty());
 
     for (int i = 1; i < _vertices.count(); i++)
-        if (Line(_vertices[i-1], _vertices[i], color()).hit(p))
+        if (Line(scene, _vertices[i-1], _vertices[i], color()).hit(p))
             return true;
 
-    return Line(_vertices.first(), _vertices.last(), color()).hit(p);
+    return Line(scene, _vertices.first(), _vertices.last(), color()).hit(p);
 }
 
 void Polygon::move(const QPoint &p)
