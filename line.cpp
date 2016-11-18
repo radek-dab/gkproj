@@ -5,26 +5,35 @@ int Line::counter = 0;
 
 void Line::draw(Raster &rst)
 {
+    QLine line(_start, _end);
+    if (scene.isClipWindowVisible()) {
+        line = scene.clipWindow().clip(QLine(_start, _end));
+        if (line.isNull())
+            return;
+    }
+
+    int x1 = line.x1(), y1 = line.y1();
+    int x2 = line.x2(), y2 = line.y2();
     int dx, dy;
     int xi, yi;
 
-    if (_start.x() < _end.x()) {
-        dx = _end.x() - _start.x();
+    if (x1 < x2) {
+        dx = x2 - x1;
         xi = 1;
     } else {
-        dx = _start.x() - _end.x();
+        dx = x1 - x2;
         xi = -1;
     }
 
-    if (_start.y() < _end.y()) {
-        dy = _end.y() - _start.y();
+    if (y1 < y2) {
+        dy = y2 - y1;
         yi = 1;
     } else {
-        dy = _start.y() - _end.y();
+        dy = y1 - y2;
         yi = -1;
     }
 
-    int x = _start.x(), y = _start.y();
+    int x = x1, y = y1;
     put(rst, x, y);
 
     if (dx > dy) {
@@ -32,7 +41,7 @@ void Line::draw(Raster &rst)
         int bi = dy << 1;
         int d = bi - dx;
 
-        while (x != _end.x()) {
+        while (x != x2) {
             if (d >= 0) {
                 x += xi;
                 y += yi;
@@ -48,7 +57,7 @@ void Line::draw(Raster &rst)
         int bi = dx << 1;
         int d = bi - dy;
 
-        while (y != _end.y()) {
+        while (y != y2) {
             if (d >= 0) {
                 x += xi;
                 y += yi;

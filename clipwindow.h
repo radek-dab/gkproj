@@ -3,6 +3,7 @@
 
 #include "raster.h"
 #include <QRect>
+#include <QLine>
 
 class ClipWindow
 {
@@ -20,6 +21,7 @@ public:
         { _color = color; }
 
     void draw(Raster &rst);
+    QLine clip(const QLine &line);
 
 private:
     QRect _rect;
