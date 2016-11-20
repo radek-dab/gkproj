@@ -30,7 +30,7 @@ void Polygon::draw(Raster &rst)
         // Draw lines
         for (int i = 1; i < activeEdges.count(); i += 2)
             for (int x = activeEdges[i-1].x; x <= activeEdges[i].x; x++)
-                rst.put(x, scanline, color()); // TODO: Direct assignment
+                put(rst, x, scanline);
 
         // Go to next scanline
         scanline++;

@@ -62,6 +62,16 @@ private:
 
     void addEdge(const QPoint &a, const QPoint &b);
     void updateEdges();
+    void put(Raster &rst, int x, int y);
 };
+
+inline void Polygon::put(Raster &rst, int x, int y)
+{
+    if (_fill == FILL_SOLID)
+        rst.put(x, y, color());
+    if (_fill == FILL_PATTERN && _pattern != NULL)
+        rst.put(x, y, _pattern->getm(x - _vertices.first().x(),
+                                     y - _vertices.first().y()));
+}
 
 #endif // POLYGON_H

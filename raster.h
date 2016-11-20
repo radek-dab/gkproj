@@ -70,6 +70,19 @@ public:
         }
     }
 
+    quint32 getm(int x, int y) const
+    {
+        x %= w;
+        if (x < 0)
+            x += w;
+
+        y %= h;
+        if (y < 0)
+            y += h;
+
+        return _pixels[w*y + x];
+    }
+
     void put(int x, int y, quint32 color)
     {
         if (0 <= x && x < w && 0 <= y && y < h)
