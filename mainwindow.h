@@ -35,6 +35,7 @@ private slots:
     void on_scene_resized();
 
     void setTool();
+    void setFill();
 
 private:
     Ui::MainWindow *ui;

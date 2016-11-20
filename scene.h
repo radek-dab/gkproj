@@ -56,6 +56,8 @@ public:
         { return _objects; }
     int selection() const
         { return _selection; }
+    Drawable * selectedObject() const
+        { return _selection >= 0 ? _objects[_selection] : NULL; }
     void addObject(Drawable *obj);
 
 public slots:

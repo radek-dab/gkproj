@@ -37,10 +37,10 @@ public:
     ~Raster()
         { delete[] _pixels; }
 
-    const quint32* pixels()
+    const quint32 * pixels() const
         { return _pixels; }
 
-    quint32& operator ()(int x, int y)
+    quint32 & operator ()(int x, int y)
     {
         Q_ASSERT(0 <= x && x < w);
         Q_ASSERT(0 <= y && y < h);

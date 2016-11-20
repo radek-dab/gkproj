@@ -90,6 +90,9 @@
    </widget>
   </widget>
   <widget class="QDockWidget" name="propertiesDock">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="windowTitle">
     <string>P&amp;roperties</string>
    </property>
@@ -965,6 +968,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>fillNoneRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setFill()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>567</x>
+     <y>454</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fillSolidRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setFill()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>565</x>
+     <y>487</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fillPatternRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setFill()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>578</x>
+     <y>527</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>setTool()</slot>
@@ -973,5 +1024,6 @@
   <slot>deleteObject(int)</slot>
   <slot>reorderObject(int,int)</slot>
   <slot>renameObject(int,QString)</slot>
+  <slot>setFill()</slot>
  </slots>
 </ui>

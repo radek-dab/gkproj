@@ -12,6 +12,9 @@
 #include <QColorDialog>
 #include <QListWidgetItem>
 #include <QInputDialog>
+#include <QRadioButton>
+
+#define UNREACHED() Q_ASSERT_X(0, __FUNCTION__, "should not be reached")
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -52,11 +55,23 @@ void MainWindow::selectObject(int idx)
 
     if (idx != -1) {
         Drawable *obj = ui->scene->objects()[idx];
+        ui->propertiesDock->setEnabled(true);
         ui->nameEdit->setText(obj->name());
         ui->colorEdit->setColor(obj->color());
+
+        if (Polygon *pol = dynamic_cast<Polygon *>(obj)) {
+            ui->polygonGroupBox->setEnabled(true);
+            ui->fillNoneRadioButton->setChecked(
+                        pol->fill() == Polygon::FILL_NONE);
+            ui->fillSolidRadioButton->setChecked(
+                        pol->fill() == Polygon::FILL_SOLID);
+            ui->fillNoneRadioButton->setChecked(
+                        pol->fill() == Polygon::FILL_PATTERN);
+        } else {
+            ui->polygonGroupBox->setEnabled(false);
+        }
     } else {
-        ui->nameEdit->setText("");
-        ui->colorEdit->setColor(Qt::white);
+        ui->propertiesDock->setEnabled(false);
     }
 }
 
@@ -117,6 +132,7 @@ void MainWindow::on_scene_resized()
 void MainWindow::setTool()
 {
     QAction *action = qobject_cast<QAction*>(sender());
+    Q_CHECK_PTR(action);
 
     if (action == ui->actionMove) {
         ui->scene->setTool(new MoveTool(*ui->scene));
@@ -148,4 +164,32 @@ void MainWindow::setTool()
         ui->scene->setTool(new FillTool(*ui->scene));
         return;
     }
+
+    UNREACHED();
+}
+
+void MainWindow::setFill()
+{
+    QRadioButton *radioButton = qobject_cast<QRadioButton *>(sender());
+    Q_CHECK_PTR(radioButton);
+    Polygon *pol = dynamic_cast<Polygon *>(ui->scene->selectedObject());
+    Q_CHECK_PTR(pol);
+
+    if (radioButton == ui->fillNoneRadioButton) {
+        pol->setFill(Polygon::FILL_NONE);
+        ui->scene->update();
+        return;
+    }
+    if (radioButton == ui->fillSolidRadioButton) {
+        pol->setFill(Polygon::FILL_SOLID);
+        ui->scene->update();
+        return;
+    }
+    if (radioButton == ui->fillPatternRadioButton) {
+        pol->setFill(Polygon::FILL_PATTERN);
+        ui->scene->update();
+        return;
+    }
+
+    UNREACHED();
 }
