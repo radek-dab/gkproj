@@ -97,26 +97,115 @@
     <number>2</number>
    </attribute>
    <widget class="QWidget" name="propetriesDockContents">
-    <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="nameLabel">
-       <property name="text">
-        <string>Name:</string>
+    <layout class="QVBoxLayout" name="propertiesVerticalLayout">
+     <item>
+      <widget class="QGroupBox" name="drawableGroupBox">
+       <property name="title">
+        <string>Drawable</string>
        </property>
+       <layout class="QFormLayout" name="drawableFormLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="nameLabel">
+          <property name="text">
+           <string>Name:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="nameEdit"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="colorLabel">
+          <property name="text">
+           <string>Color:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="ColorEdit" name="colorEdit" native="true"/>
+        </item>
+       </layout>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="nameEdit"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="colorLabel">
-       <property name="text">
-        <string>Color:</string>
+     <item>
+      <widget class="QGroupBox" name="polygonGroupBox">
+       <property name="title">
+        <string>Polygon</string>
        </property>
+       <layout class="QFormLayout" name="polygonFormLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="fillLabel">
+          <property name="text">
+           <string>Fill:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QRadioButton" name="fillNoneRadioButton">
+          <property name="text">
+           <string>&amp;None</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QRadioButton" name="fillSolidRadioButton">
+          <property name="text">
+           <string>Solid</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <layout class="QHBoxLayout" name="fillPatternHorizontalLayout">
+          <item>
+           <widget class="QRadioButton" name="fillPatternRadioButton">
+            <property name="text">
+             <string>Pattern:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="fillPatternToolButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="fillPatternSpinBox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="ColorEdit" name="colorEdit" native="true"/>
+     <item>
+      <spacer name="propertiesVerticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </widget>
@@ -399,10 +488,11 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="path-clip-edit"/>
+    <iconset theme="path-clip-edit">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Clipping</string>
+    <string>Clippi&amp;ng</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+K</string>
@@ -674,8 +764,8 @@
    <slot>selectObject(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>663</x>
-     <y>256</y>
+     <x>791</x>
+     <y>190</y>
     </hint>
     <hint type="destinationlabel">
      <x>263</x>
@@ -738,8 +828,8 @@
    <slot>renameObject(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>693</x>
-     <y>467</y>
+     <x>783</x>
+     <y>358</y>
     </hint>
     <hint type="destinationlabel">
      <x>263</x>
@@ -770,8 +860,8 @@
    <slot>setObjectColor(QColor)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>594</x>
-     <y>503</y>
+     <x>501</x>
+     <y>405</y>
     </hint>
     <hint type="destinationlabel">
      <x>263</x>
@@ -840,6 +930,38 @@
     <hint type="destinationlabel">
      <x>263</x>
      <y>322</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fillPatternRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>fillPatternToolButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>530</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>637</x>
+     <y>522</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fillPatternRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>fillPatternSpinBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>617</x>
+     <y>538</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>724</x>
+     <y>538</y>
     </hint>
    </hints>
   </connection>
