@@ -1,7 +1,7 @@
 #ifndef RASTER_H
 #define RASTER_H
 
-#include <QtGlobal>
+#include <QImage>
 
 class Raster
 {
@@ -33,6 +33,18 @@ public:
 
     Raster(int w, int h, quint32 color) :
         Raster(w, h) { clear(color); }
+
+    Raster(const QImage &img) :
+        w(img.width()), h(img.height()),
+        _pixels(new quint32[img.width() * img.height()])
+    {
+        quint32 *dest = _pixels;
+        for (int y = 0; y < h; y++) {
+            quint32 *src = (quint32 *)img.constScanLine(y);
+            for (int x = 0; x < w; x++)
+                *dest++ = *src++;
+        }
+    }
 
     ~Raster()
         { delete[] _pixels; }

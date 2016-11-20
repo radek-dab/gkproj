@@ -33,9 +33,9 @@ private slots:
     void on_actionBackgroundColor_triggered();
     void on_actionConfigureGrid_triggered();
     void on_scene_resized();
-
     void setTool();
     void setFill();
+    void on_fillPatternToolButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -9,10 +9,12 @@
 #include "polygontool.h"
 #include "filltool.h"
 #include <QDebug>
-#include <QColorDialog>
-#include <QListWidgetItem>
-#include <QInputDialog>
 #include <QRadioButton>
+#include <QListWidgetItem>
+#include <QColorDialog>
+#include <QInputDialog>
+#include <QFileDialog>
+#include <QStandardPaths>
 
 #define UNREACHED() Q_ASSERT_X(0, __FUNCTION__, "should not be reached")
 
@@ -192,4 +194,20 @@ void MainWindow::setFill()
     }
 
     UNREACHED();
+}
+
+void MainWindow::on_fillPatternToolButton_clicked()
+{
+    QString dir = QStandardPaths::standardLocations(
+                QStandardPaths::PicturesLocation).first();
+    QString path = QFileDialog::getOpenFileName(
+                this, "Choose pattern", dir,
+                "Images files (*.png *.jpg *.gif *.bmp)");
+    qDebug() << "Chosen pattern:" << path;
+    Raster *pattern = new Raster(QImage(path));
+    qDebug("Pattern size: %dx%d", pattern->w, pattern->h);
+
+    Polygon *pol = dynamic_cast<Polygon *>(ui->scene->selectedObject());
+    Q_CHECK_PTR(pol);
+    pol->setPattern(pattern);
 }

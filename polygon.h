@@ -22,6 +22,9 @@ public:
           _pattern(NULL)
         { updateEdges(); }
 
+    ~Polygon()
+        { if (_pattern) delete _pattern; }
+
     void addVertex(const QPoint &p)
         { _vertices.push_back(p);  updateEdges(); }
     void setVertex(const QPoint &p)
@@ -36,7 +39,7 @@ public:
     const Raster * pattern() const
         { return _pattern; }
     void setPattern(Raster *pattern)
-        { _pattern = pattern; }
+        { if (_pattern) delete _pattern; _pattern = pattern; }
 
     void draw(Raster &rst);
     bool hit(const QPoint &p);
