@@ -67,7 +67,7 @@ void MainWindow::selectObject(int idx)
                         pol->fill() == Polygon::FILL_NONE);
             ui->fillSolidRadioButton->setChecked(
                         pol->fill() == Polygon::FILL_SOLID);
-            ui->fillNoneRadioButton->setChecked(
+            ui->fillPatternRadioButton->setChecked(
                         pol->fill() == Polygon::FILL_PATTERN);
         } else {
             ui->polygonGroupBox->setEnabled(false);
