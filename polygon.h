@@ -63,6 +63,7 @@ private:
     void addEdge(const QPoint &a, const QPoint &b);
     void updateEdges();
     void put(Raster &rst, int x, int y);
+    void fillScanline(Raster &rst, int y, int x1, int x2);
 };
 
 inline void Polygon::put(Raster &rst, int x, int y)

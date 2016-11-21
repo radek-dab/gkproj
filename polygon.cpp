@@ -29,8 +29,9 @@ void Polygon::draw(Raster &rst)
 
         // Draw lines
         for (int i = 1; i < activeEdges.count(); i += 2)
-            for (int x = activeEdges[i-1].x; x <= activeEdges[i].x; x++)
-                put(rst, x, scanline);
+//            for (int x = activeEdges[i-1].x; x <= activeEdges[i].x; x++)
+//                put(rst, x, scanline);
+            fillScanline(rst, scanline, activeEdges[i-1].x, activeEdges[i].x);
 
         // Go to next scanline
         scanline++;
@@ -95,4 +96,34 @@ void Polygon::updateEdges()
     qDebug() << "Edge table:";
     foreach (Edge e, _edges)
         qDebug() << " " << e.ymin << e.ymax << e.x << e.slope;
+}
+
+void Polygon::fillScanline(Raster &rst, int y, int x1, int x2)
+{
+    if (y < 0 || y >= rst.h)
+        return;
+    Q_ASSERT(x1 <= x2);
+    x1 = qMax(x1, 0);
+    x2 = qMin(x2, rst.w-1);
+
+    if (_fill == FILL_SOLID) {
+        for (int x = x1; x <= x2; x++)
+            rst(x, y) = color();
+        return;
+    }
+    if (_fill == FILL_PATTERN && _pattern != NULL) {
+        int xsrc = (x1 - _vertices.first().x()) % _pattern->w;
+        if (xsrc < 0)
+            xsrc += _pattern->w;
+        int ysrc = (y - _vertices.last().y()) % _pattern->h;
+        if (ysrc < 0)
+            ysrc += _pattern->h;
+
+        for (int x = x1; x <= x2; x++) {
+            rst(x, y) = (*_pattern)(xsrc, ysrc);
+            if (++xsrc == _pattern->w)
+                xsrc = 0;
+        }
+        return;
+    }
 }
