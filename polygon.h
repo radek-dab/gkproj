@@ -38,8 +38,7 @@ public:
         { _fill = fill; }
     const Raster * pattern() const
         { return _pattern; }
-    void setPattern(Raster *pattern)
-        { if (_pattern) delete _pattern; _pattern = pattern; }
+    void setPattern(Raster *pattern);
 
     void draw(Raster &rst);
     bool hit(const QPoint &p);

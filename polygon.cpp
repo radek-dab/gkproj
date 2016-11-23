@@ -1,6 +1,17 @@
 #include "polygon.h"
 #include "line.h"
+#include "octree.h"
 #include <QDebug>
+
+void Polygon::setPattern(Raster *pattern)
+{
+    if (_pattern)
+        delete _pattern;
+    _pattern = pattern;
+
+    Octree octree;
+    octree.build(*pattern);
+}
 
 void Polygon::draw(Raster &rst)
 {
