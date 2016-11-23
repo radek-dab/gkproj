@@ -179,16 +179,52 @@
             </property>
            </widget>
           </item>
+         </layout>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="reduceLabel">
+          <property name="text">
+           <string>Reduce:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <layout class="QHBoxLayout" name="reduceHorizontalLayout">
           <item>
-           <widget class="QSpinBox" name="fillPatternSpinBox">
+           <widget class="QSlider" name="reduceSlider">
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="maximum">
+             <number>256</number>
+            </property>
+            <property name="pageStep">
+             <number>16</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="reduceValueLabel">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>32</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
@@ -953,22 +989,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>fillPatternRadioButton</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>fillPatternSpinBox</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>617</x>
-     <y>538</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>724</x>
-     <y>538</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>fillNoneRadioButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
@@ -1013,6 +1033,38 @@
     <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reduceSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>reduceValueLabel</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>690</x>
+     <y>512</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>777</x>
+     <y>513</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fillPatternRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>reduceSlider</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>660</x>
+     <y>474</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>679</x>
+     <y>512</y>
     </hint>
    </hints>
   </connection>
