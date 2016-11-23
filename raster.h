@@ -52,6 +52,9 @@ public:
     const quint32 * pixels() const
         { return _pixels; }
 
+    quint32 * pixels()
+        { return _pixels; }
+
     quint32 & operator ()(int x, int y)
     {
         Q_ASSERT(0 <= x && x < w);

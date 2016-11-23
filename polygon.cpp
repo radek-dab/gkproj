@@ -9,8 +9,8 @@ void Polygon::setPattern(Raster *pattern)
         delete _pattern;
     _pattern = pattern;
 
-    Octree octree;
-    octree.build(*pattern);
+    Octree octree(*pattern, 256);
+    octree.map(*pattern);
 }
 
 void Polygon::draw(Raster &rst)
