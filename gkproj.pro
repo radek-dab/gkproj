@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     filltool.cpp \
     fill.cpp \
     clipwindow.cpp \
-    octree.cpp
+    octree.cpp \
+    filldialog.cpp
 
 HEADERS  += mainwindow.h \
     raster.h \
@@ -57,8 +58,10 @@ HEADERS  += mainwindow.h \
     filltool.h \
     fill.h \
     clipwindow.h \
-    octree.h
+    octree.h \
+    filldialog.h
 
 FORMS    += mainwindow.ui \
     griddialog.ui \
-    coloredit.ui
+    coloredit.ui \
+    filldialog.ui

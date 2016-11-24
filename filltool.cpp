@@ -2,7 +2,8 @@
 
 void FillTool::mousePressEvent(QMouseEvent *event)
 {
-    Fill *fill = new Fill(scene, event->pos(), scene.foregroundColor());
+    Fill *fill = new Fill(scene, event->pos(), scene.foregroundColor(),
+                          _method, _boundary, _neighborhood);
     scene.addObject(fill);
 }
 

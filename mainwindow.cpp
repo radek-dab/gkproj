@@ -7,7 +7,7 @@
 #include "circletool.h"
 #include "smoothcircletool.h"
 #include "polygontool.h"
-#include "filltool.h"
+#include "filldialog.h"
 #include <QDebug>
 #include <QRadioButton>
 #include <QListWidgetItem>
@@ -163,7 +163,9 @@ void MainWindow::setTool()
         return;
     }
     if (action == ui->actionFill) {
-        ui->scene->setTool(new FillTool(*ui->scene));
+        FillDialog fillDialog(this);
+        fillDialog.exec();
+        ui->scene->setTool(fillDialog.getTool(*ui->scene));
         return;
     }
 
