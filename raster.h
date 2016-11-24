@@ -34,6 +34,14 @@ public:
     Raster(int w, int h, quint32 color) :
         Raster(w, h) { clear(color); }
 
+    Raster(const Raster &rst) :
+        Raster(rst.w, rst.h)
+    {
+        int n = w * h;
+        for (int i = 0; i < n; i++)
+            _pixels[i] = rst._pixels[i];
+    }
+
     Raster(const QImage &img) :
         w(img.width()), h(img.height()),
         _pixels(new quint32[img.width() * img.height()])

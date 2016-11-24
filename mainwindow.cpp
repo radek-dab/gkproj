@@ -211,3 +211,10 @@ void MainWindow::on_fillPatternToolButton_clicked()
     Q_CHECK_PTR(pol);
     pol->setPattern(pattern);
 }
+
+void MainWindow::on_reduceSlider_valueChanged(int value)
+{
+    Polygon *pol = dynamic_cast<Polygon *>(ui->scene->selectedObject());
+    Q_CHECK_PTR(pol);
+    pol->setReduction(value);
+}

@@ -36,6 +36,7 @@ private slots:
     void setTool();
     void setFill();
     void on_fillPatternToolButton_clicked();
+    void on_reduceSlider_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;

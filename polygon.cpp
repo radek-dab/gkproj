@@ -3,16 +3,6 @@
 #include "octree.h"
 #include <QDebug>
 
-void Polygon::setPattern(Raster *pattern)
-{
-    if (_pattern)
-        delete _pattern;
-    _pattern = pattern;
-
-    Octree octree(*pattern, 256);
-    octree.map(*pattern);
-}
-
 void Polygon::draw(Raster &rst)
 {
     Q_ASSERT(!_vertices.isEmpty());
@@ -131,10 +121,27 @@ void Polygon::fillScanline(Raster &rst, int y, int x1, int x2)
             ysrc += _pattern->h;
 
         for (int x = x1; x <= x2; x++) {
-            rst(x, y) = (*_pattern)(xsrc, ysrc);
+            rst(x, y) = (*_reducedPattern)(xsrc, ysrc);
             if (++xsrc == _pattern->w)
                 xsrc = 0;
         }
         return;
     }
+}
+
+void Polygon::reduce()
+{
+    if (!_pattern)
+        return;
+
+    if (_reducedPattern)
+        delete _reducedPattern;
+    _reducedPattern = new Raster(*_pattern);
+
+    if (_reduction > 0) {
+        Octree octree(*_pattern, _reduction);
+        octree.map(*_reducedPattern);
+    }
+
+    scene.update();
 }

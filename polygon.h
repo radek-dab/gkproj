@@ -19,11 +19,14 @@ public:
         : Drawable(scene, name, color),
           _vertices(vertices),
           _fill(FILL_NONE),
-          _pattern(NULL)
+          _pattern(NULL),
+          _reduction(0),
+          _reducedPattern(NULL)
         { updateEdges(); }
 
     ~Polygon()
-        { if (_pattern) delete _pattern; }
+        { if (_pattern) delete _pattern;
+          if (_reducedPattern) delete _reducedPattern; }
 
     void addVertex(const QPoint &p)
         { _vertices.push_back(p);  updateEdges(); }
@@ -38,7 +41,13 @@ public:
         { _fill = fill; }
     const Raster * pattern() const
         { return _pattern; }
-    void setPattern(Raster *pattern);
+    void setPattern(Raster *pattern)
+        { if (_pattern) delete _pattern;
+          _pattern = pattern; reduce(); }
+    int reduction() const
+        { return _reduction; }
+    void setReduction(int value)
+        { _reduction = value; reduce(); }
 
     void draw(Raster &rst);
     bool hit(const QPoint &p);
@@ -58,11 +67,14 @@ private:
     QList<Edge> _edges;
     FillType _fill;
     Raster *_pattern;
+    int _reduction;
+    Raster *_reducedPattern;
 
     void addEdge(const QPoint &a, const QPoint &b);
     void updateEdges();
     void put(Raster &rst, int x, int y);
     void fillScanline(Raster &rst, int y, int x1, int x2);
+    void reduce();
 };
 
 inline void Polygon::put(Raster &rst, int x, int y)
@@ -70,8 +82,8 @@ inline void Polygon::put(Raster &rst, int x, int y)
     if (_fill == FILL_SOLID)
         rst.put(x, y, color());
     if (_fill == FILL_PATTERN && _pattern != NULL)
-        rst.put(x, y, _pattern->getm(x - _vertices.first().x(),
-                                     y - _vertices.first().y()));
+        rst.put(x, y, _reducedPattern->getm(x - _vertices.first().x(),
+                                            y - _vertices.first().y()));
 }
 
 #endif // POLYGON_H
