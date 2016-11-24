@@ -41,7 +41,7 @@ private:
     struct Comparator
     {
         bool operator ()(const Node *p, const Node *q)
-            { return p->nPixs < q->nPixs; }
+            { return p->nPixs > q->nPixs; }
     };
 
     Node *root;
