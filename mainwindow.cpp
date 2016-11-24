@@ -203,6 +203,7 @@ void MainWindow::on_fillPatternToolButton_clicked()
     QString path = QFileDialog::getOpenFileName(
                 this, "Choose pattern", dir,
                 "Images files (*.png *.jpg *.gif *.bmp)");
+    if (path.isNull()) return;
     qDebug() << "Chosen pattern:" << path;
     Raster *pattern = new Raster(QImage(path));
     qDebug("Pattern size: %dx%d", pattern->w, pattern->h);
