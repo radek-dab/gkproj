@@ -221,3 +221,22 @@ void MainWindow::on_reduceSlider_valueChanged(int value)
     Q_CHECK_PTR(pol);
     pol->setReduction(value);
 }
+
+void MainWindow::on_actionComb_triggered()
+{
+    Polygon *comb = new Polygon(*ui->scene, {}, ui->scene->foregroundColor());
+    ui->scene->addObject(comb);
+
+    QPoint p(50, 50);
+    int width = 200, height = 80;
+    int nTooth = 40, hTooth = 60;
+    int d = width/nTooth;
+
+    comb->addVertex(p);
+    for (int i = 1; i <= nTooth; i++) {
+        comb->addVertex(p + QPoint(i*d - d/2, hTooth));
+        comb->addVertex(p + QPoint(i*d, 0));
+    }
+    comb->addVertex(p + QPoint(width, height));
+    comb->addVertex(p + QPoint(0, height));
+}
