@@ -182,3 +182,46 @@ void Scene::mouseReleaseEvent(QMouseEvent *event)
 {
     _tool->mouseReleaseEvent(event);
 }
+
+void Scene::enterEvent(QEvent *event)
+{
+    Q_UNUSED(event);
+    setFocus();
+}
+
+void Scene::leaveEvent(QEvent *event)
+{
+    Q_UNUSED(event);
+    clearFocus();
+}
+
+void Scene::keyPressEvent(QKeyEvent *event)
+{
+    if (!_clipWindowVisible)
+        return;
+
+    static const int STEP = 10;
+
+    QRect rect = _clipWindow.rect();
+    QSize size = rect.size();
+    QPoint center = rect.center();
+
+    switch (event->key()) {
+    case Qt::Key_Left:
+        size.rwidth() -= STEP;
+        break;
+    case Qt::Key_Right:
+        size.rwidth() += STEP;
+        break;
+    case Qt::Key_Down:
+        size.rheight() -= STEP;
+        break;
+    case Qt::Key_Up:
+        size.rheight() += STEP;
+    }
+
+    rect.setSize(size);
+    rect.moveCenter(center);
+    _clipWindow.setRect(rect);
+    update();
+}
