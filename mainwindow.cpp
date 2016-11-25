@@ -240,3 +240,28 @@ void MainWindow::on_actionComb_triggered()
     comb->addVertex(p + QPoint(width, height));
     comb->addVertex(p + QPoint(0, height));
 }
+
+void MainWindow::setChannel()
+{
+    Polygon *pol = dynamic_cast<Polygon *>(ui->scene->selectedObject());
+    Q_CHECK_PTR(pol);
+
+    if (ui->rgbRadioButton->isChecked()) {
+        pol->setChannel(Polygon::RGB);
+        return;
+    }
+    if (ui->yRadioButton->isChecked()) {
+        pol->setChannel(Polygon::Y);
+        return;
+    }
+    if (ui->uRadioButton->isChecked()) {
+        pol->setChannel(Polygon::U);
+        return;
+    }
+    if (ui->vRadioButton->isChecked()) {
+        pol->setChannel(Polygon::V);
+        return;
+    }
+
+    UNREACHED();
+}

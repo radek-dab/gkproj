@@ -14,6 +14,8 @@ public:
         FILL_PATTERN
     };
 
+    enum Channel { RGB, Y, U, V };
+
     Polygon(Scene &scene, const QList<QPoint> &vertices, quint32 color,
             const QString &name = QString("Polygon %1").arg(++counter))
         : Drawable(scene, name, color),
@@ -21,7 +23,8 @@ public:
           _fill(FILL_NONE),
           _pattern(NULL),
           _reduction(0),
-          _reducedPattern(NULL)
+          _reducedPattern(NULL),
+          _channel(RGB)
         { updateEdges(); }
 
     ~Polygon()
@@ -48,6 +51,10 @@ public:
         { return _reduction; }
     void setReduction(int value)
         { _reduction = value; reduce(); }
+    Channel channel() const
+        { return _channel; }
+    void setChannel(Channel channel)
+        { _channel = channel; reduce(); }
 
     void draw(Raster &rst);
     bool hit(const QPoint &p);
@@ -69,6 +76,7 @@ private:
     Raster *_pattern;
     int _reduction;
     Raster *_reducedPattern;
+    Channel _channel;
 
     void addEdge(const QPoint &a, const QPoint &b);
     void updateEdges();

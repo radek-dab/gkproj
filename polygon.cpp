@@ -145,5 +145,34 @@ void Polygon::reduce()
         octree.map(*_reducedPattern);
     }
 
+    if (_channel != RGB) {
+        Raster &rst = *_reducedPattern;
+        quint32 *end = rst.pixels() + rst.w*rst.h;
+        for (quint32 *pix = rst.pixels(); pix != end; pix++) {
+            int r = Raster::red(*pix);
+            int g = Raster::green(*pix);
+            int b = Raster::blue(*pix);
+
+            int y = 0.299 * r + 0.587 * g  + 0.114 * b;
+            int u = 0.492 * (b - y);
+            int v = 0.877 * (r - y);
+
+            y = qBound(0, y, 255);
+            u = qBound(0, u, 255);
+            v = qBound(0, v, 255);
+
+            switch (_channel) {
+            case Y:
+                *pix = Raster::makeColor(y, y, y);
+                break;
+            case U:
+                *pix = Raster::makeColor(u, u, u);
+                break;
+            case V:
+                *pix = Raster::makeColor(v, v, v);
+            }
+        }
+    }
+
     scene.update();
 }

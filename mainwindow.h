@@ -38,6 +38,7 @@ private slots:
     void on_fillPatternToolButton_clicked();
     void on_reduceSlider_valueChanged(int value);
     void on_actionComb_triggered();
+    void setChannel();
 
 private:
     Ui::MainWindow *ui;

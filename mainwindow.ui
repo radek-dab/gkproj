@@ -237,6 +237,68 @@
           </item>
          </layout>
         </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="labelChannel">
+          <property name="text">
+           <string>Channel:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QGroupBox" name="channelGroupBox">
+          <property name="title">
+           <string/>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QRadioButton" name="rgbRadioButton">
+             <property name="text">
+              <string>R&amp;GB</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="yRadioButton">
+             <property name="text">
+              <string>Y</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="uRadioButton">
+             <property name="text">
+              <string>U</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="vRadioButton">
+             <property name="text">
+              <string>V</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
        </layout>
       </widget>
      </item>
@@ -815,8 +877,8 @@
    <slot>selectObject(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>791</x>
-     <y>190</y>
+     <x>751</x>
+     <y>184</y>
     </hint>
     <hint type="destinationlabel">
      <x>263</x>
@@ -879,8 +941,8 @@
    <slot>renameObject(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>783</x>
-     <y>358</y>
+     <x>743</x>
+     <y>305</y>
     </hint>
     <hint type="destinationlabel">
      <x>263</x>
@@ -911,8 +973,8 @@
    <slot>setObjectColor(QColor)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>501</x>
-     <y>405</y>
+     <x>563</x>
+     <y>334</y>
     </hint>
     <hint type="destinationlabel">
      <x>263</x>
@@ -991,12 +1053,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>590</x>
-     <y>530</y>
+     <x>673</x>
+     <y>487</y>
     </hint>
     <hint type="destinationlabel">
-     <x>637</x>
-     <y>522</y>
+     <x>717</x>
+     <y>493</y>
     </hint>
    </hints>
   </connection>
@@ -1007,8 +1069,8 @@
    <slot>setFill()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>567</x>
-     <y>454</y>
+     <x>652</x>
+     <y>414</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1023,8 +1085,8 @@
    <slot>setFill()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>565</x>
-     <y>487</y>
+     <x>647</x>
+     <y>447</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1039,8 +1101,8 @@
    <slot>setFill()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>578</x>
-     <y>527</y>
+     <x>673</x>
+     <y>487</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1055,12 +1117,12 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>690</x>
-     <y>512</y>
+     <x>711</x>
+     <y>522</y>
     </hint>
     <hint type="destinationlabel">
-     <x>777</x>
-     <y>513</y>
+     <x>782</x>
+     <y>524</y>
     </hint>
    </hints>
   </connection>
@@ -1071,12 +1133,76 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>660</x>
-     <y>474</y>
+     <x>673</x>
+     <y>487</y>
     </hint>
     <hint type="destinationlabel">
-     <x>679</x>
-     <y>512</y>
+     <x>711</x>
+     <y>522</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rgbRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setChannel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>613</x>
+     <y>547</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>yRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setChannel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>669</x>
+     <y>547</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>uRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setChannel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>715</x>
+     <y>547</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>vRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setChannel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>761</x>
+     <y>547</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
     </hint>
    </hints>
   </connection>
@@ -1089,5 +1215,6 @@
   <slot>reorderObject(int,int)</slot>
   <slot>renameObject(int,QString)</slot>
   <slot>setFill()</slot>
+  <slot>setChannel()</slot>
  </slots>
 </ui>
