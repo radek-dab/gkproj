@@ -7,9 +7,11 @@ void Polygon::draw(Raster &rst)
 {
     Q_ASSERT(!_vertices.isEmpty());
 
-    for (int i = 1; i < _vertices.count(); i++)
-        Line(scene, _vertices[i-1], _vertices[i], color()).draw(rst);
-    Line(scene, _vertices.first(), _vertices.last(), color()).draw(rst);
+    if (_fill != FILL_PATTERN || !_pattern) {
+        for (int i = 1; i < _vertices.count(); i++)
+            Line(scene, _vertices[i-1], _vertices[i], color()).draw(rst);
+        Line(scene, _vertices.first(), _vertices.last(), color()).draw(rst);
+    }
 
     if (_fill == FILL_NONE)
         return;
