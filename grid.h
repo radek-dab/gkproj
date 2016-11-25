@@ -18,7 +18,7 @@ public:
     void setColor(quint32 color)
         { _color = color; }
 
-    void draw(Raster &rst);
+    void draw(Raster &rst, QRect clipping = QRect());
 
 private:
     int _size;

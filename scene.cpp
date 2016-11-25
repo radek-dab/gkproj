@@ -136,7 +136,7 @@ void Scene::paintGL()
 
     rst->clear(backcol);
     if (_gridVisible)
-        _grid.draw(*rst);
+        _grid.draw(*rst, _clipWindowVisible ? _clipWindow.rect() : QRect());
     foreach (Drawable *obj, _objects)
         obj->draw(*rst);
     if (_clipWindowVisible)
