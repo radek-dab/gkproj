@@ -13,7 +13,7 @@ public:
 
     QRect rect() const
         { return _rect; }
-    void serRect(const QRect &rect)
+    void setRect(const QRect &rect)
         { _rect = rect; }
     quint32 color() const
         { return _color; }

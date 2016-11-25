@@ -18,7 +18,9 @@ Scene::Scene(QWidget *parent) :
     _clipWindow(QRect(50, 50, 300, 200), Raster::RED),
     _tool(NULL),
     _selection(-1)
-{}
+{
+    setMouseTracking(true);
+}
 
 Scene::~Scene()
 {
@@ -165,6 +167,14 @@ void Scene::mousePressEvent(QMouseEvent *event)
 void Scene::mouseMoveEvent(QMouseEvent *event)
 {
     qDebug() << "Mouse move at" << event->pos();
+
+    if (_clipWindowVisible) {
+        QRect rect = _clipWindow.rect();
+        rect.moveCenter(event->pos());
+        qDebug() << "Clip window:" << rect;
+        _clipWindow.setRect(rect);
+        update();
+    }
     _tool->mouseMoveEvent(event);
 }
 
