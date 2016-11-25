@@ -25,7 +25,7 @@ public:
           _reduction(0),
           _reducedPattern(NULL),
           _channel(RGB)
-        { updateEdges(); }
+        { if (!_vertices.isEmpty()) updateEdges(); }
 
     ~Polygon()
         { if (_pattern) delete _pattern;
