@@ -6,14 +6,15 @@
 class Pointer : public Tool
 {
 public:
-    Pointer(Scene &scene) : Tool(scene), movingObj(NULL) {}
+    Pointer(Scene &scene)
+        : Tool(scene), pointingIdx(-1) {}
 
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
 private:
-    Drawable *movingObj;
+    int pointingIdx;
     QPoint lastPos;
 };
 
