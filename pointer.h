@@ -7,14 +7,15 @@ class Pointer : public Tool
 {
 public:
     Pointer(Scene &scene)
-        : Tool(scene), pointingIdx(-1) {}
+        : Tool(scene), action(Window::NoAction), object(-1) {}
 
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
 private:
-    int pointingIdx;
+    Window::Action action;
+    int object;
     QPoint lastPos;
 };
 

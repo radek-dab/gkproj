@@ -2,25 +2,33 @@
 
 void Pointer::mousePressEvent(QMouseEvent *event)
 {
-    scene.selectObject(pointingIdx);
+    scene.selectObject(object);
     lastPos = event->pos();
 }
 
 void Pointer::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton) {
-        scene.selectedObject()->move(event->pos() - lastPos);
+        if (action != Window::NoAction)
+            scene.clipWindow().act(action, event->pos() - lastPos);
+        if (object != -1)
+            scene.selectedObject()->move(event->pos() - lastPos);
         lastPos = event->pos();
         scene.update();
     } else {
-        for (int i = scene.objects().count()-1; i >= 0; i--) {
-            if (scene.objects()[i]->hit(event->pos())) {
-                pointingIdx = i;
+        if (scene.isClipWindowVisible()) {
+            action = scene.clipWindow().hit(event->pos());
+            if (action != Window::NoAction) {
+                scene.setCursor(Window::cursor(action));
+                return;
+            }
+        }
+        for (object = scene.objects().count()-1; object >= 0; object--) {
+            if (scene.objects()[object]->hit(event->pos())) {
                 scene.setCursor(Qt::SizeAllCursor);
                 return;
             }
         }
-        pointingIdx = -1;
         scene.setCursor(Qt::ArrowCursor);
     }
 }

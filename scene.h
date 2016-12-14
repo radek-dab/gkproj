@@ -43,7 +43,7 @@ public:
 
     bool isClipWindowVisible() const
         { return _clipWindowVisible; }
-    ClipWindow clipWindow() const
+    ClipWindow & clipWindow()
         { return _clipWindow; }
     void setClipWindow(const ClipWindow &clipWindow)
         { _clipWindow = clipWindow; }
@@ -85,9 +85,6 @@ protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
-    void enterEvent(QEvent *event);
-    void leaveEvent(QEvent *event);
-    void keyPressEvent(QKeyEvent *event);
 
 private:
     Raster *rst;
