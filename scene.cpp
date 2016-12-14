@@ -10,12 +10,14 @@
 Scene::Scene(QWidget *parent) :
     QOpenGLWidget(parent),
     rst(NULL),
-    forecol(Raster::BLUE),
+    forecol(Raster::WHITE),
     backcol(Raster::BLACK),
     _gridVisible(false),
     _grid(50, Raster::GREY),
     _clipWindowVisible(false),
     _clipWindow(QRect(50, 50, 300, 200), Raster::RED),
+    _filterWindowVisible(false),
+    _filterWindow(QRect(60, 60, 300, 200), Raster::BLUE),
     _tool(NULL),
     _selection(-1)
 {
@@ -56,6 +58,12 @@ void Scene::toggleGrid(bool visible)
 void Scene::toggleClipWindow(bool visible)
 {
     _clipWindowVisible = visible;
+    update();
+}
+
+void Scene::toggleFilterWindow(bool visible)
+{
+    _filterWindowVisible = visible;
     update();
 }
 
@@ -143,6 +151,8 @@ void Scene::paintGL()
         obj->draw(*rst);
     if (_clipWindowVisible)
         _clipWindow.draw(*rst);
+    if (_filterWindowVisible)
+        _filterWindow.draw(*rst);
 
     quint64 drawing = timer.nsecsElapsed();
     timer.start();

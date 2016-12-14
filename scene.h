@@ -48,6 +48,13 @@ public:
     void setClipWindow(const ClipWindow &clipWindow)
         { _clipWindow = clipWindow; }
 
+    bool isFilterWindowVisible() const
+        { return _filterWindowVisible; }
+    Window & filterWindow()
+        { return _filterWindow; }
+    void setFilterWindow(const Window &filterWindow)
+        { _filterWindow = filterWindow; }
+
     Tool * tool() const
         { return _tool; }
     void setTool(Tool *tool);
@@ -63,6 +70,7 @@ public:
 public slots:
     void toggleGrid(bool visible);
     void toggleClipWindow(bool visible);
+    void toggleFilterWindow(bool visible);
     void selectObject(int idx);
     void reorderObject(int idx);
     void moveToFront();
@@ -94,6 +102,8 @@ private:
     Grid _grid;
     bool _clipWindowVisible;
     ClipWindow _clipWindow;
+    bool _filterWindowVisible;
+    Window _filterWindow;
     Tool *_tool;
     QList<Drawable *> _objects;
     int _selection;

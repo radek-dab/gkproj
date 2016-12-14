@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>615</height>
+    <height>666</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -59,6 +59,7 @@
     </property>
     <addaction name="actionOutline"/>
     <addaction name="actionProperties"/>
+    <addaction name="actionHistogram"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -344,6 +345,15 @@
    <addaction name="actionBack"/>
    <addaction name="actionDelete"/>
   </widget>
+  <widget class="QDockWidget" name="histogramDock">
+   <property name="windowTitle">
+    <string>Histo&amp;gram</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="histogramDockContents"/>
+  </widget>
   <action name="actionQuit">
    <property name="icon">
     <iconset theme="application-exit">
@@ -497,7 +507,7 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Pointer</string>
+    <string>Point&amp;er</string>
    </property>
    <property name="toolTip">
     <string>Pointer</string>
@@ -614,6 +624,21 @@
     <string>&amp;Comb</string>
    </property>
   </action>
+  <action name="actionHistogram">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="view-object-histogram-linear">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Histogram</string>
+   </property>
+   <property name="toolTip">
+    <string>Toggle histogram dock</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -644,6 +669,7 @@
     <slot>renameObject(QString)</slot>
     <slot>setObjectColor(QColor)</slot>
     <slot>toggleClipWindow(bool)</slot>
+    <slot>toggleFilterWindow(bool)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -1222,6 +1248,54 @@
     <hint type="destinationlabel">
      <x>682</x>
      <y>547</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>histogramDock</sender>
+   <signal>visibilityChanged(bool)</signal>
+   <receiver>scene</receiver>
+   <slot>toggleFilterWindow(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>643</x>
+     <y>612</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>243</x>
+     <y>355</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionHistogram</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>histogramDock</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>643</x>
+     <y>612</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>histogramDock</sender>
+   <signal>visibilityChanged(bool)</signal>
+   <receiver>actionHistogram</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>643</x>
+     <y>612</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
     </hint>
    </hints>
   </connection>

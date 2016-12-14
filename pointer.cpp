@@ -10,14 +10,23 @@ void Pointer::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton) {
         if (action != Window::NoAction)
-            scene.clipWindow().act(action, event->pos() - lastPos);
+            window->act(action, event->pos() - lastPos);
         if (object != -1)
             scene.selectedObject()->move(event->pos() - lastPos);
         lastPos = event->pos();
         scene.update();
     } else {
+        if (scene.isFilterWindowVisible()) {
+            window = &scene.filterWindow();
+            action = window->hit(event->pos());
+            if (action != Window::NoAction) {
+                scene.setCursor(Window::cursor(action));
+                return;
+            }
+        }
         if (scene.isClipWindowVisible()) {
-            action = scene.clipWindow().hit(event->pos());
+            window = &scene.clipWindow();
+            action = window->hit(event->pos());
             if (action != Window::NoAction) {
                 scene.setCursor(Window::cursor(action));
                 return;

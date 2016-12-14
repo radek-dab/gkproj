@@ -36,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->scene->setTool(new Pointer(*ui->scene));
     ui->actionPointer->setChecked(true);
 
+    ui->histogramDock->setVisible(false);
+
     ui->statusBar->addWidget(sizeLabel);
 }
 

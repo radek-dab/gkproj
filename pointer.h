@@ -14,6 +14,7 @@ public:
     void mouseReleaseEvent(QMouseEvent *event);
 
 private:
+    Window *window;
     Window::Action action;
     int object;
     QPoint lastPos;
