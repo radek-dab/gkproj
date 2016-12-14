@@ -61,7 +61,8 @@ HEADERS  += mainwindow.h \
     octree.h \
     filldialog.h \
     window.h \
-    pointer.h
+    pointer.h \
+    assert.h
 
 FORMS    += mainwindow.ui \
     griddialog.ui \

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "assert.h"
 #include "griddialog.h"
 #include "pointer.h"
 #include "pointtool.h"
@@ -15,8 +16,6 @@
 #include <QInputDialog>
 #include <QFileDialog>
 #include <QStandardPaths>
-
-#define UNREACHED() Q_ASSERT_X(0, __FUNCTION__, "should not be reached")
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
