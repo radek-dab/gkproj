@@ -1,26 +1,11 @@
 #include "clipwindow.h"
 
-void ClipWindow::draw(Raster &rst)
-{
-    // Draw horizontal lines
-    for (int x = _rect.left(); x <= _rect.right(); x++) {
-        rst.put(x, _rect.top(), _color);
-        rst.put(x, _rect.bottom(), _color);
-    }
-
-    // Draw vertical lines
-    for (int y = _rect.top(); y <= _rect.bottom(); y++) {
-        rst.put(_rect.left(), y, _color);
-        rst.put(_rect.right(), y, _color);
-    }
-}
-
 QLine ClipWindow::clip(const QLine &line)
 {
     int x1 = line.x1(), dx = line.dx();
     int y1 = line.y1(), dy = line.dy();
-    int xmin = _rect.left(), xmax = _rect.right();
-    int ymin = _rect.top(), ymax = _rect.bottom();
+    int xmin = rect().left(), xmax = rect().right();
+    int ymin = rect().top(), ymax = rect().bottom();
 
     int p[4] = {-dx, dx, -dy, dy};
     int q[4] = {x1-xmin, xmax-x1, y1-ymin, ymax-y1};
