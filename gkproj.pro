@@ -23,7 +23,6 @@ SOURCES += main.cpp\
     point.cpp \
     pointtool.cpp \
     linetool.cpp \
-    movetool.cpp \
     coloredit.cpp \
     smoothcircle.cpp \
     smoothcircletool.cpp \
@@ -34,7 +33,8 @@ SOURCES += main.cpp\
     clipwindow.cpp \
     octree.cpp \
     filldialog.cpp \
-    window.cpp
+    window.cpp \
+    pointer.cpp
 
 HEADERS  += mainwindow.h \
     raster.h \
@@ -50,7 +50,6 @@ HEADERS  += mainwindow.h \
     point.h \
     pointtool.h \
     linetool.h \
-    movetool.h \
     coloredit.h \
     smoothcircle.h \
     smoothcircletool.h \
@@ -61,7 +60,8 @@ HEADERS  += mainwindow.h \
     clipwindow.h \
     octree.h \
     filldialog.h \
-    window.h
+    window.h \
+    pointer.h
 
 FORMS    += mainwindow.ui \
     griddialog.ui \

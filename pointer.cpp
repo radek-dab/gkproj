@@ -1,6 +1,6 @@
-#include "movetool.h"
+#include "pointer.h"
 
-void MoveTool::mousePressEvent(QMouseEvent *event)
+void Pointer::mousePressEvent(QMouseEvent *event)
 {
     for (int i = scene.objects().count()-1; i >= 0; i--) {
         Drawable *obj = scene.objects()[i];
@@ -13,7 +13,7 @@ void MoveTool::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void MoveTool::mouseMoveEvent(QMouseEvent *event)
+void Pointer::mouseMoveEvent(QMouseEvent *event)
 {
     if (movingObj) {
         movingObj->move(event->pos() - lastPos);
@@ -22,7 +22,7 @@ void MoveTool::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void MoveTool::mouseReleaseEvent(QMouseEvent *event)
+void Pointer::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
     movingObj = NULL;

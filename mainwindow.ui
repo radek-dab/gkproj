@@ -45,7 +45,7 @@
     <addaction name="actionConfigureGrid"/>
     <addaction name="actionClipping"/>
     <addaction name="separator"/>
-    <addaction name="actionMove"/>
+    <addaction name="actionPointer"/>
     <addaction name="actionPoint"/>
     <addaction name="actionLine"/>
     <addaction name="actionCircle"/>
@@ -333,7 +333,7 @@
    <addaction name="actionGrid"/>
    <addaction name="actionClipping"/>
    <addaction name="separator"/>
-   <addaction name="actionMove"/>
+   <addaction name="actionPointer"/>
    <addaction name="actionPoint"/>
    <addaction name="actionLine"/>
    <addaction name="actionCircle"/>
@@ -488,19 +488,19 @@
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="actionMove">
+  <action name="actionPointer">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="transform-move">
+    <iconset theme="tool-pointer">
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>&amp;Move</string>
+    <string>Pointer</string>
    </property>
    <property name="toolTip">
-    <string>Move objects</string>
+    <string>Pointer</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
@@ -810,7 +810,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionMove</sender>
+   <sender>actionPointer</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>setTool()</slot>

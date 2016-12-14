@@ -1,12 +1,12 @@
-#ifndef MOVETOOL_H
-#define MOVETOOL_H
+#ifndef POINTER_H
+#define POINTER_H
 
 #include "tool.h"
 
-class MoveTool : public Tool
+class Pointer : public Tool
 {
 public:
-    MoveTool(Scene &scene) : Tool(scene), movingObj(NULL) {}
+    Pointer(Scene &scene) : Tool(scene), movingObj(NULL) {}
 
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
@@ -17,4 +17,4 @@ private:
     QPoint lastPos;
 };
 
-#endif // MOVETOOL_H
+#endif // POINTER_H
