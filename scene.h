@@ -21,6 +21,7 @@ class Scene : public QOpenGLWidget, protected QOpenGLFunctions
 public:
     Scene(QWidget *parent = nullptr);
     ~Scene();
+
     Raster& raster()
         { return *rst; }
 
@@ -85,6 +86,7 @@ signals:
     void objectReordered(int from, int to);
     void objectDeleted(int idx);
     void objectRenamed(int idx, const QString &name);
+    void painted(Scene *scene);
 
 protected:
     void initializeGL();

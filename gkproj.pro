@@ -34,7 +34,9 @@ SOURCES += main.cpp\
     octree.cpp \
     filldialog.cpp \
     window.cpp \
-    pointer.cpp
+    pointer.cpp \
+    histogramwidget.cpp \
+    histogramchannelwidget.cpp
 
 HEADERS  += mainwindow.h \
     raster.h \
@@ -62,7 +64,9 @@ HEADERS  += mainwindow.h \
     filldialog.h \
     window.h \
     pointer.h \
-    assert.h
+    assert.h \
+    histogramwidget.h \
+    histogramchannelwidget.h
 
 FORMS    += mainwindow.ui \
     griddialog.ui \

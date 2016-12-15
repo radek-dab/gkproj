@@ -166,6 +166,8 @@ void Scene::paintGL()
              << "drawing" << drawing/1e6 << "ms +"
              << "copying" << copying/1e6 << "ms ="
              << (drawing+copying)/1e6 << "ms";
+
+    emit painted(this);
 }
 
 void Scene::mousePressEvent(QMouseEvent *event)

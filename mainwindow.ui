@@ -352,7 +352,28 @@
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
-   <widget class="QWidget" name="histogramDockContents"/>
+   <widget class="QWidget" name="histogramDockContents">
+    <layout class="QVBoxLayout" name="histogramVerticalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="HistogramWidget" name="histogramWidget" native="true"/>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <action name="actionQuit">
    <property name="icon">
@@ -661,6 +682,7 @@
     <signal>objectDeleted(int)</signal>
     <signal>objectReordered(int,int)</signal>
     <signal>objectRenamed(int,QString)</signal>
+    <signal>painted(Scene*)</signal>
     <slot>toggleGrid(bool)</slot>
     <slot>deleteObject()</slot>
     <slot>selectObject(int)</slot>
@@ -670,6 +692,15 @@
     <slot>setObjectColor(QColor)</slot>
     <slot>toggleClipWindow(bool)</slot>
     <slot>toggleFilterWindow(bool)</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>HistogramWidget</class>
+   <extends>QWidget</extends>
+   <header>histogramwidget.h</header>
+   <container>1</container>
+   <slots>
+    <slot>analyze(Scene*)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -1296,6 +1327,22 @@
     <hint type="destinationlabel">
      <x>-1</x>
      <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scene</sender>
+   <signal>painted(Scene*)</signal>
+   <receiver>histogramWidget</receiver>
+   <slot>analyze(Scene*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>358</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>643</x>
+     <y>629</y>
     </hint>
    </hints>
   </connection>
