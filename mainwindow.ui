@@ -74,6 +74,7 @@
      <string>Test</string>
     </property>
     <addaction name="actionComb"/>
+    <addaction name="actionLenna"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
@@ -658,6 +659,11 @@
    </property>
    <property name="toolTip">
     <string>Toggle histogram dock</string>
+   </property>
+  </action>
+  <action name="actionLenna">
+   <property name="text">
+    <string>Lenna</string>
    </property>
   </action>
  </widget>

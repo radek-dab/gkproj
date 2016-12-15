@@ -16,6 +16,7 @@
 #include <QInputDialog>
 #include <QFileDialog>
 #include <QStandardPaths>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -223,25 +224,6 @@ void MainWindow::on_reduceSlider_valueChanged(int value)
     pol->setReduction(value);
 }
 
-void MainWindow::on_actionComb_triggered()
-{
-    Polygon *comb = new Polygon(*ui->scene, {}, ui->scene->foregroundColor());
-    ui->scene->addObject(comb);
-
-    QPoint p(50, 50);
-    int width = 200, height = 80;
-    int nTooth = 40, hTooth = 60;
-    int d = width/nTooth;
-
-    comb->addVertex(p);
-    for (int i = 1; i <= nTooth; i++) {
-        comb->addVertex(p + QPoint(i*d - d/2, hTooth));
-        comb->addVertex(p + QPoint(i*d, 0));
-    }
-    comb->addVertex(p + QPoint(width, height));
-    comb->addVertex(p + QPoint(0, height));
-}
-
 void MainWindow::setChannel()
 {
     Polygon *pol = dynamic_cast<Polygon *>(ui->scene->selectedObject());
@@ -265,4 +247,56 @@ void MainWindow::setChannel()
     }
 
     UNREACHED();
+}
+
+void MainWindow::on_actionComb_triggered()
+{
+    Polygon *comb = new Polygon(*ui->scene, {}, ui->scene->foregroundColor());
+    ui->scene->addObject(comb);
+
+    QPoint p(50, 50);
+    int width = 200, height = 80;
+    int nTooth = 40, hTooth = 60;
+    int d = width/nTooth;
+
+    comb->addVertex(p);
+    for (int i = 1; i <= nTooth; i++) {
+        comb->addVertex(p + QPoint(i*d - d/2, hTooth));
+        comb->addVertex(p + QPoint(i*d, 0));
+    }
+    comb->addVertex(p + QPoint(width, height));
+    comb->addVertex(p + QPoint(0, height));
+}
+
+void MainWindow::on_actionLenna_triggered()
+{
+    static int counter = 0;
+
+    const QString path =
+            QStandardPaths::standardLocations(
+                QStandardPaths::PicturesLocation).first()
+            + "/Lenna.png";
+    const QPoint pos(50, 50);
+
+    qDebug() << "Loading test image" << path;
+
+    QImage img(path);
+    if (img.isNull()) {
+        QMessageBox(QMessageBox::Critical, "Error",
+                    "Error occured during loading image.",
+                    QMessageBox::Ok, this).exec();
+        return;
+    }
+
+    Polygon *pol = new Polygon(*ui->scene, {}, ui->scene->foregroundColor(),
+                               QString("Lenna %1").arg(++counter));
+    ui->scene->addObject(pol);
+
+    pol->addVertex(pos);
+    pol->addVertex(pos + QPoint(img.width()-1, 0));
+    pol->addVertex(pos + QPoint(img.width()-1, img.height()-1));
+    pol->addVertex(pos + QPoint(0, img.height()-1));
+
+    pol->setFill(Polygon::FILL_PATTERN);
+    pol->setPattern(new Raster(img));
 }
