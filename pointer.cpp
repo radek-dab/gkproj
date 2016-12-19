@@ -16,6 +16,7 @@ void Pointer::mouseMoveEvent(QMouseEvent *event)
         lastPos = event->pos();
         scene.update();
     } else {
+        object = -1;
         if (scene.isFilterWindowVisible()) {
             window = &scene.filterWindow();
             action = window->hit(event->pos());
