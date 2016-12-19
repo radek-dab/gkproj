@@ -99,16 +99,16 @@
    </widget>
   </widget>
   <widget class="QDockWidget" name="propertiesDock">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="windowTitle">
     <string>P&amp;roperties</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
-   <widget class="QWidget" name="propetriesDockContents">
+   <widget class="QWidget" name="propertiesDockContents">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <layout class="QVBoxLayout" name="propertiesVerticalLayout">
      <item>
       <widget class="QGroupBox" name="drawableGroupBox">
@@ -663,7 +663,7 @@
   </action>
   <action name="actionLenna">
    <property name="text">
-    <string>Lenna</string>
+    <string>&amp;Lenna</string>
    </property>
   </action>
  </widget>

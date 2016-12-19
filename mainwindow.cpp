@@ -59,7 +59,7 @@ void MainWindow::selectObject(int idx)
 
     if (idx != -1) {
         Drawable *obj = ui->scene->objects()[idx];
-        ui->propertiesDock->setEnabled(true);
+        ui->propertiesDockContents->setEnabled(true);
         ui->nameEdit->setText(obj->name());
         ui->colorEdit->setColor(obj->color());
 
@@ -75,7 +75,7 @@ void MainWindow::selectObject(int idx)
             ui->polygonGroupBox->setEnabled(false);
         }
     } else {
-        ui->propertiesDock->setEnabled(false);
+        ui->propertiesDockContents->setEnabled(false);
     }
 }
 
