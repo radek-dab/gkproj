@@ -11,7 +11,8 @@ class HistogramChannelWidget : public QWidget
 
 public:
     explicit HistogramChannelWidget(QWidget *parent = 0)
-        : QWidget(parent), _color(Qt::white), _data(256), _scale(-1) {}
+        : QWidget(parent), _color(Qt::white), _data(256), _scale(-1)
+        { setMinimumHeight(50); }
 
     QColor color() const
         { return _color; }
