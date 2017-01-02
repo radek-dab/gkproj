@@ -34,6 +34,7 @@ private slots:
     void on_actionConfigureGrid_triggered();
     void on_scene_resized();
     void setTool();
+    void on_actionObject3D_triggered();
     void setFill();
     void on_fillPatternToolButton_clicked();
     void on_reduceSlider_valueChanged(int value);

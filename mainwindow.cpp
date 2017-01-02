@@ -9,6 +9,7 @@
 #include "smoothcircletool.h"
 #include "polygontool.h"
 #include "filldialog.h"
+#include "object3d.h"
 #include <QDebug>
 #include <QRadioButton>
 #include <QListWidgetItem>
@@ -172,6 +173,27 @@ void MainWindow::setTool()
     }
 
     UNREACHED();
+}
+
+void MainWindow::on_actionObject3D_triggered()
+{
+    QString dir = QStandardPaths::standardLocations(
+                QStandardPaths::HomeLocation).first();
+    QString path = QFileDialog::getOpenFileName(
+                this, "Choose object 3D", dir, "3D object files (*.off)");
+    if (path.isNull())
+        return;
+
+    Object3D *obj = new Object3D(*ui->scene, ui->scene->foregroundColor());
+    ui->scene->addObject(obj);
+
+    try {
+        obj->load(path);
+    } catch (QString ex) {
+        QMessageBox(QMessageBox::Critical, "Error", ex,
+                    QMessageBox::Ok, this).exec();
+        ui->scene->deleteObject();
+    }
 }
 
 void MainWindow::setFill()

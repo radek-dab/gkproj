@@ -52,6 +52,7 @@
     <addaction name="actionSmoothCircle"/>
     <addaction name="actionPolygon"/>
     <addaction name="actionFill"/>
+    <addaction name="actionObject3D"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -341,6 +342,7 @@
    <addaction name="actionCircle"/>
    <addaction name="actionPolygon"/>
    <addaction name="actionFill"/>
+   <addaction name="actionObject3D"/>
    <addaction name="separator"/>
    <addaction name="actionFront"/>
    <addaction name="actionBack"/>
@@ -664,6 +666,20 @@
   <action name="actionLenna">
    <property name="text">
     <string>&amp;Lenna</string>
+   </property>
+  </action>
+  <action name="actionObject3D">
+   <property name="icon">
+    <iconset theme="draw-cuboid"/>
+   </property>
+   <property name="text">
+    <string>Object 3D</string>
+   </property>
+   <property name="toolTip">
+    <string>Add a 3D object</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
    </property>
   </action>
  </widget>
@@ -1039,7 +1055,7 @@
    <slot>setObjectColor(QColor)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>563</x>
+     <x>562</x>
      <y>334</y>
     </hint>
     <hint type="destinationlabel">
