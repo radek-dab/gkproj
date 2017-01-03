@@ -1,4 +1,5 @@
 #include "object3d.h"
+#include "line.h"
 #include <QFileInfo>
 #include <QFile>
 #include <QTextStream>
@@ -57,7 +58,19 @@ void Object3D::load(const QString &filename)
 
 void Object3D::draw(Raster &rst)
 {
-    Q_UNUSED(rst);
+    const QVector3D pos(300, 300, 0);
+    const int scale = 200;
+
+    foreach (const QVector<int> &face, _faces) {
+        for (int i = 1; i < face.count(); i++) {
+            QPoint a = (_vertices[face[i-1]] * scale + pos).toPoint(),
+                   b = (_vertices[face[i]] * scale + pos).toPoint();
+            Line(scene, a, b, color()).draw(rst);
+        }
+        QPoint a = (_vertices[face.first()] * scale + pos).toPoint(),
+               b = (_vertices[face.last()] * scale + pos).toPoint();
+        Line(scene, a, b, color()).draw(rst);
+    }
 }
 
 bool Object3D::hit(const QPoint &p)
