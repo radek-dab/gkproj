@@ -4,6 +4,7 @@
 #include "drawable.h"
 #include <QVector>
 #include <QVector3D>
+#include <QMatrix4x4>
 
 class Object3D : public Drawable
 {

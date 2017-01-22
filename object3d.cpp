@@ -58,17 +58,18 @@ void Object3D::load(const QString &filename)
 
 void Object3D::draw(Raster &rst)
 {
-    const QVector3D pos(300, 300, 0);
-    const int scale = 200;
+    QMatrix4x4 viewport;
+    viewport.scale(rst.w/2, -rst.h/2, 1);
+    viewport.translate(1, -1, 0);
 
     foreach (const QVector<int> &face, _faces) {
         for (int i = 1; i < face.count(); i++) {
-            QPoint a = (_vertices[face[i-1]] * scale + pos).toPoint(),
-                   b = (_vertices[face[i]] * scale + pos).toPoint();
+            QPoint a = viewport.map(_vertices[face[i-1]]).toPoint(),
+                   b = viewport.map(_vertices[face[i]]).toPoint();
             Line(scene, a, b, color()).draw(rst);
         }
-        QPoint a = (_vertices[face.first()] * scale + pos).toPoint(),
-               b = (_vertices[face.last()] * scale + pos).toPoint();
+        QPoint a = viewport.map(_vertices[face.first()]).toPoint(),
+               b = viewport.map(_vertices[face.last()]).toPoint();
         Line(scene, a, b, color()).draw(rst);
     }
 }
