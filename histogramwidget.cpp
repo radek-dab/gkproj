@@ -20,10 +20,13 @@ HistogramWidget::HistogramWidget(QWidget *parent)
 
 void HistogramWidget::analyze(Scene *scene)
 {
-    QElapsedTimer timer;
-    timer.start();
+    if (!scene->isFilterWindowVisible())
+        return;
 
     QRect win = scene->filterWindow().rect();
+
+    QElapsedTimer timer;
+    timer.start();
 
     red->clear();
     green->clear();
