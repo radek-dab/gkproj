@@ -62,6 +62,9 @@ void Object3D::draw(Raster &rst)
     viewport.scale(rst.w/2, -rst.h/2, 1);
     viewport.translate(1, -1, 0);
 
+    viewport *= perspective((float)rst.h/rst.w);
+    viewport.translate(origin);
+
     foreach (const QVector<int> &face, _faces) {
         for (int i = 1; i < face.count(); i++) {
             QPoint a = viewport.map(_vertices[face[i-1]]).toPoint(),
