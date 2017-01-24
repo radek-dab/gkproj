@@ -170,6 +170,9 @@ void Polygon::reduce()
                 break;
             case V:
                 *pix = Raster::makeColor(v, v, v);
+                break;
+            default:
+                UNREACHED();
             }
         }
     }
