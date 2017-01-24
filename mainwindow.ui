@@ -53,6 +53,7 @@
     <addaction name="actionPolygon"/>
     <addaction name="actionFill"/>
     <addaction name="actionObject3D"/>
+    <addaction name="actionManipulate"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -343,6 +344,7 @@
    <addaction name="actionPolygon"/>
    <addaction name="actionFill"/>
    <addaction name="actionObject3D"/>
+   <addaction name="actionManipulate"/>
    <addaction name="separator"/>
    <addaction name="actionFront"/>
    <addaction name="actionBack"/>
@@ -670,16 +672,34 @@
   </action>
   <action name="actionObject3D">
    <property name="icon">
-    <iconset theme="draw-cuboid"/>
+    <iconset theme="draw-cuboid">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Object 3D</string>
+    <string>Object &amp;3D</string>
    </property>
    <property name="toolTip">
     <string>Add a 3D object</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+J</string>
+   </property>
+  </action>
+  <action name="actionManipulate">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="transform-browse"/>
+   </property>
+   <property name="text">
+    <string>Manipulate</string>
+   </property>
+   <property name="toolTip">
+    <string>Manipulate 3D object</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>
@@ -1365,6 +1385,22 @@
     <hint type="destinationlabel">
      <x>643</x>
      <y>629</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionManipulate</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setTool()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>332</y>
     </hint>
    </hints>
   </connection>

@@ -20,6 +20,9 @@ public:
     bool hit(const QPoint &p);
     void move(const QPoint &p);
 
+    void rotateX(float angle) { rotx += angle; }
+    void rotateY(float angle) { roty += angle; }
+
 private:
     static int counter;
 
@@ -28,8 +31,9 @@ private:
     int _edges;
 
     float near, far;
-    float fov; // Field of view
+    float fov;          // Field of view
     QVector3D origin;
+    float rotx, roty;   // Rotation
 
     QMatrix4x4 perspective(float ratio);
 };

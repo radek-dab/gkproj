@@ -37,7 +37,8 @@ SOURCES += main.cpp\
     pointer.cpp \
     histogramwidget.cpp \
     histogramchannelwidget.cpp \
-    object3d.cpp
+    object3d.cpp \
+    manipulatetool.cpp
 
 HEADERS  += mainwindow.h \
     raster.h \
@@ -68,7 +69,8 @@ HEADERS  += mainwindow.h \
     assert.h \
     histogramwidget.h \
     histogramchannelwidget.h \
-    object3d.h
+    object3d.h \
+    manipulatetool.h
 
 FORMS    += mainwindow.ui \
     griddialog.ui \

@@ -10,6 +10,7 @@
 #include "polygontool.h"
 #include "filldialog.h"
 #include "object3d.h"
+#include "manipulatetool.h"
 #include <QDebug>
 #include <QRadioButton>
 #include <QListWidgetItem>
@@ -34,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionSmoothCircle->setActionGroup(toolGroup);
     ui->actionPolygon->setActionGroup(toolGroup);
     ui->actionFill->setActionGroup(toolGroup);
+    ui->actionManipulate->setActionGroup(toolGroup);
 
     ui->scene->setTool(new Pointer(*ui->scene));
     ui->actionPointer->setChecked(true);
@@ -169,6 +171,10 @@ void MainWindow::setTool()
         FillDialog fillDialog(this);
         fillDialog.exec();
         ui->scene->setTool(fillDialog.getTool(*ui->scene));
+        return;
+    }
+    if (action == ui->actionManipulate) {
+        ui->scene->setTool(new ManipulateTool(*ui->scene));
         return;
     }
 
