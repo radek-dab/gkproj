@@ -60,7 +60,7 @@ public:
         { return _tool; }
     void setTool(Tool *tool);
 
-    const QList<Drawable *> objects() const
+    const QList<Drawable *> & objects() const
         { return _objects; }
     int selection() const
         { return _selection; }
