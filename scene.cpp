@@ -186,3 +186,9 @@ void Scene::mouseReleaseEvent(QMouseEvent *event)
 {
     _tool->mouseReleaseEvent(event);
 }
+
+void Scene::wheelEvent(QWheelEvent *event)
+{
+    qDebug() << "Wheel delta:" << event->delta();
+    _tool->wheelEvent(event);
+}

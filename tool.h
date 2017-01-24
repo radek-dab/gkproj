@@ -16,6 +16,9 @@ public:
     virtual void mouseMoveEvent(QMouseEvent *event) = 0;
     virtual void mouseReleaseEvent(QMouseEvent *event) = 0;
 
+    virtual void wheelEvent(QWheelEvent *event)
+        { Q_UNUSED(event); } // By default do nothing
+
 protected:
     Scene &scene;
 };

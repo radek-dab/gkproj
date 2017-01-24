@@ -66,6 +66,7 @@ void Object3D::draw(Raster &rst)
     viewport.translate(origin);
     viewport.rotate(rotx, 1, 0);
     viewport.rotate(roty, 0, 1);
+    viewport.scale(_scale);
 
     foreach (const QVector<int> &face, _faces) {
         for (int i = 1; i < face.count(); i++) {

@@ -13,7 +13,7 @@ public:
     Object3D(Scene &scene, quint32 color,
              const QString &name = QString("Object 3D %1").arg(++counter))
         : Drawable(scene, name, color),
-          near(0.1), far(10), fov(M_PI/3), origin(0, 0, -2) {}
+          near(0.1), far(10), fov(M_PI/3), origin(0, 0, -2), _scale(1) {}
 
     void load(const QString &filename);
 
@@ -23,6 +23,11 @@ public:
 
     void rotateX(float angle) { rotx += angle; }
     void rotateY(float angle) { roty += angle; }
+
+    float scale() const
+        { return _scale; }
+    void setScale(float scale)
+        { _scale = scale; }
 
 private:
     static int counter;
@@ -35,6 +40,7 @@ private:
     float fov;          // Field of view
     QVector3D origin;
     float rotx, roty;   // Rotation
+    float _scale;
 
     QMatrix4x4 perspective(float ratio);
 };
