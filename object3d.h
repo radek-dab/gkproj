@@ -10,8 +10,9 @@
 class Object3D : public Drawable
 {
 public:
-    Object3D(Scene &scene, quint32 color)
-        : Drawable(scene, QString("Object 3D %1").arg(++counter), color),
+    Object3D(Scene &scene, quint32 color,
+             const QString &name = QString("Object 3D %1").arg(++counter))
+        : Drawable(scene, name, color),
           near(0.1), far(10), fov(M_PI/3), origin(0, 0, -2) {}
 
     void load(const QString &filename);

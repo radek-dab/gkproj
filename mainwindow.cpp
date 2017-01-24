@@ -190,7 +190,8 @@ void MainWindow::on_actionObject3D_triggered()
     if (path.isNull())
         return;
 
-    Object3D *obj = new Object3D(*ui->scene, ui->scene->foregroundColor());
+    Object3D *obj = new Object3D(*ui->scene, ui->scene->foregroundColor(),
+                                 QFileInfo(path).baseName());
     ui->scene->addObject(obj);
 
     try {
