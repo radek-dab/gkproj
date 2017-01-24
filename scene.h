@@ -10,6 +10,7 @@
 #include <QOpenGLFunctions>
 #include <QMouseEvent>
 #include <QList>
+#include <QTimer>
 
 class Tool;
 class Drawable;
@@ -17,6 +18,7 @@ class Drawable;
 class Scene : public QOpenGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
+    Q_PROPERTY(int fps READ fps NOTIFY fpsChanged)
 
 public:
     Scene(QWidget *parent = nullptr);
@@ -68,6 +70,9 @@ public:
         { return _selection >= 0 ? _objects[_selection] : NULL; }
     void addObject(Drawable *obj);
 
+    int fps() const
+        { return _fps; }
+
 public slots:
     void toggleGrid(bool visible);
     void toggleClipWindow(bool visible);
@@ -87,6 +92,7 @@ signals:
     void objectDeleted(int idx);
     void objectRenamed(int idx, const QString &name);
     void painted(Scene *scene);
+    void fpsChanged(int fps);
 
 protected:
     void initializeGL();
@@ -96,6 +102,9 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void wheelEvent(QWheelEvent *event);
+
+private slots:
+    void updateFps();
 
 private:
     Raster *rst;
@@ -110,6 +119,9 @@ private:
     Tool *_tool;
     QList<Drawable *> _objects;
     int _selection;
+    int _fps;
+    QTimer *timer;
+    int counter;
 };
 
 #endif // SCENE_H

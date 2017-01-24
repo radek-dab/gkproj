@@ -24,6 +24,7 @@ public slots:
     void reorderObject(int from, int to);
     void deleteObject(int idx);
     void renameObject(int idx, const QString &name);
+    void updateStatus();
 
 signals:
     void objectSelected(int idx);
@@ -32,7 +33,6 @@ private slots:
     void on_actionForegroundColor_triggered();
     void on_actionBackgroundColor_triggered();
     void on_actionConfigureGrid_triggered();
-    void on_scene_resized();
     void setTool();
     void on_actionObject3D_triggered();
     void setFill();
@@ -45,7 +45,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QActionGroup *toolGroup;
-    QLabel *sizeLabel;
+    QLabel *statusLabel;
 };
 
 #endif // MAINWINDOW_H

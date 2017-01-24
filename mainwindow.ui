@@ -725,6 +725,7 @@
     <signal>objectReordered(int,int)</signal>
     <signal>objectRenamed(int,QString)</signal>
     <signal>painted(Scene*)</signal>
+    <signal>fpsChanged(int)</signal>
     <slot>toggleGrid(bool)</slot>
     <slot>deleteObject()</slot>
     <slot>selectObject(int)</slot>
@@ -1404,6 +1405,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>scene</sender>
+   <signal>resized()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>updateStatus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>355</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>332</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scene</sender>
+   <signal>fpsChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>updateStatus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>355</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>332</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>setTool()</slot>
@@ -1414,5 +1447,6 @@
   <slot>renameObject(int,QString)</slot>
   <slot>setFill()</slot>
   <slot>setChannel()</slot>
+  <slot>updateStatus()</slot>
  </slots>
 </ui>

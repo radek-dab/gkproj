@@ -19,9 +19,14 @@ Scene::Scene(QWidget *parent) :
     _filterWindowVisible(false),
     _filterWindow(QRect(60, 60, 300, 200), Raster::BLUE),
     _tool(NULL),
-    _selection(-1)
+    _selection(-1),
+    _fps(0),
+    timer(new QTimer(this)),
+    counter(0)
 {
     setMouseTracking(true);
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateFps()));
+    timer->start(1000);
 }
 
 Scene::~Scene()
@@ -160,6 +165,7 @@ void Scene::paintGL()
     glPixelZoom(1, -1);     // Can it be moved into initializeGL?
     glRasterPos2f(-1, 1);   // This as well.
     glDrawPixels(rst->w, rst->h, GL_BGRA, GL_UNSIGNED_BYTE, rst->pixels());
+    counter++;
 
     quint64 copying = timer.nsecsElapsed();
     qDebug() << "paintGL:" << qSetRealNumberPrecision(3)
@@ -191,4 +197,13 @@ void Scene::wheelEvent(QWheelEvent *event)
 {
     qDebug() << "Wheel delta:" << event->delta();
     _tool->wheelEvent(event);
+}
+
+void Scene::updateFps()
+{
+    if (_fps != counter) {
+        _fps = counter;
+        emit fpsChanged(_fps);
+    }
+    counter = 0;
 }

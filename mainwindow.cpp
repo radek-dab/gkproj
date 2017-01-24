@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     toolGroup(new QActionGroup(this)),
-    sizeLabel(new QLabel(this))
+    statusLabel(new QLabel(this))
 {
     ui->setupUi(this);
 
@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->histogramDock->setVisible(false);
 
-    ui->statusBar->addWidget(sizeLabel);
+    ui->statusBar->addWidget(statusLabel);
 }
 
 MainWindow::~MainWindow()
@@ -104,6 +104,16 @@ void MainWindow::renameObject(int idx, const QString &name)
     ui->outlineList->item(idx)->setText(name);
 }
 
+void MainWindow::updateStatus()
+{
+    QSize size = ui->scene->size();
+    int fps = ui->scene->fps();
+    QString text = QString("%1x%2").arg(size.width()).arg(size.height());
+    if (fps > 0)
+        text += QString(" @ %1 fps").arg(fps);
+    statusLabel->setText(text);
+}
+
 void MainWindow::on_actionForegroundColor_triggered()
 {
     QColor color = QColorDialog::getColor(ui->scene->foregroundColor(), this);
@@ -127,13 +137,6 @@ void MainWindow::on_actionConfigureGrid_triggered()
     if (dialog.exec() == QDialog::Accepted) {
         ui->scene->setGrid(dialog.grid());
     }
-}
-
-void MainWindow::on_scene_resized()
-{
-    QSize size = ui->scene->size();
-    QString text = QString("%1x%2").arg(size.width()).arg(size.height());
-    sizeLabel->setText(text);
 }
 
 void MainWindow::setTool()
