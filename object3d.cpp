@@ -1,5 +1,7 @@
 #include "object3d.h"
 #include "line.h"
+#include <QDebug>
+#include <QElapsedTimer>
 #include <QFileInfo>
 #include <QFile>
 #include <QTextStream>
@@ -58,6 +60,9 @@ void Object3D::load(const QString &filename)
 
 void Object3D::draw(Raster &rst)
 {
+    QElapsedTimer timer;
+    timer.start();
+
     QMatrix4x4 viewport;
     viewport.scale(rst.w/2, -rst.h/2, 1);
     viewport.translate(1, -1, 0);
@@ -68,16 +73,33 @@ void Object3D::draw(Raster &rst)
     viewport.rotate(roty, 0, 1);
     viewport.scale(_scale);
 
+    quint64 preparing = timer.nsecsElapsed();
+    timer.start();
+
+    QVector<QVector3D> mapped(_vertices.size());
+    for (int i = 0; i < _vertices.size(); i++)
+        mapped[i] = viewport.map(_vertices[i]);
+
+    quint64 mapping = timer.nsecsElapsed();
+    timer.start();
+
     foreach (const QVector<int> &face, _faces) {
         for (int i = 1; i < face.count(); i++) {
-            QPoint a = viewport.map(_vertices[face[i-1]]).toPoint(),
-                   b = viewport.map(_vertices[face[i]]).toPoint();
+            QPoint a = mapped[face[i-1]].toPoint(),
+                   b = mapped[face[i]].toPoint();
             Line(scene, a, b, color()).draw(rst);
         }
-        QPoint a = viewport.map(_vertices[face.first()]).toPoint(),
-               b = viewport.map(_vertices[face.last()]).toPoint();
+        QPoint a = mapped[face.first()].toPoint(),
+               b = mapped[face.last()].toPoint();
         Line(scene, a, b, color()).draw(rst);
     }
+
+    quint64 drawing = timer.nsecsElapsed();
+    qDebug() << "Object3D:" << fixed << qSetRealNumberPrecision(3)
+             << "preparing" << preparing/1e6 << "ms +"
+             << "mapping" << mapping/1e6 << "ms +"
+             << "drawing" << drawing/1e6 << "ms ="
+             << (preparing+mapping+drawing)/1e6 << "ms";
 }
 
 bool Object3D::hit(const QPoint &p)
