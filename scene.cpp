@@ -168,7 +168,7 @@ void Scene::paintGL()
     counter++;
 
     quint64 copying = timer.nsecsElapsed();
-    qDebug() << "paintGL:" << qSetRealNumberPrecision(3)
+    qDebug() << "paintGL:" << fixed << qSetRealNumberPrecision(3)
              << "drawing" << drawing/1e6 << "ms +"
              << "copying" << copying/1e6 << "ms ="
              << (drawing+copying)/1e6 << "ms";
