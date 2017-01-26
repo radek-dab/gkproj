@@ -96,9 +96,11 @@ void Polygon::updateEdges()
             return e.ymin < f.ymin;
         });
 
+#if DEBUG_POLYGON
     qDebug() << "Edge table:";
     foreach (Edge e, _edges)
         qDebug() << " " << e.ymin << e.ymax << e.x << e.slope;
+#endif
 }
 
 void Polygon::fillScanline(Raster &rst, int y, int x1, int x2)

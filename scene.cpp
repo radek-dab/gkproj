@@ -178,13 +178,17 @@ void Scene::paintGL()
 
 void Scene::mousePressEvent(QMouseEvent *event)
 {
+#if DEBUG_EVENTS
     qDebug() << "Mouse clicked at" << event->pos();
+#endif
     _tool->mousePressEvent(event);
 }
 
 void Scene::mouseMoveEvent(QMouseEvent *event)
 {
+#if DEBUG_EVENTS
     qDebug() << "Mouse move at" << event->pos();
+#endif
     _tool->mouseMoveEvent(event);
 }
 
@@ -195,7 +199,9 @@ void Scene::mouseReleaseEvent(QMouseEvent *event)
 
 void Scene::wheelEvent(QWheelEvent *event)
 {
+#if DEBUG_EVENTS
     qDebug() << "Wheel delta:" << event->delta();
+#endif
     _tool->wheelEvent(event);
 }
 

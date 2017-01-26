@@ -4,16 +4,20 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = gkproj
 TEMPLATE = app
 
+DEFINES += \
+    #DEBUG_EVENTS \
+    #DEBUG_POLYGON \
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
+SOURCES += \
+    main.cpp \
+    mainwindow.cpp \
     line.cpp \
     grid.cpp \
     circle.cpp \
@@ -40,7 +44,8 @@ SOURCES += main.cpp\
     object3d.cpp \
     manipulatetool.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS += \
+    mainwindow.h \
     raster.h \
     line.h \
     grid.h \
@@ -72,7 +77,8 @@ HEADERS  += mainwindow.h \
     object3d.h \
     manipulatetool.h
 
-FORMS    += mainwindow.ui \
+FORMS += \
+    mainwindow.ui \
     griddialog.ui \
     coloredit.ui \
     filldialog.ui
