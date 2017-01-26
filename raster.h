@@ -25,6 +25,13 @@ public:
     static quint32 makeColor(quint8 red, quint8 green, quint8 blue)
         { return 0xFF000000 | red<<16 | green<<8 | blue; }
 
+    static quint32 intensity(quint32 color, float value)
+    {
+        return makeColor(red(color) * value,
+                         green(color) * value,
+                         blue(color) * value);
+    }
+
     const int w;
     const int h;
 

@@ -1,5 +1,6 @@
 #include "object3d.h"
 #include "line.h"
+#include "polygon.h"
 #include <QDebug>
 #include <QElapsedTimer>
 #include <QFileInfo>
@@ -83,15 +84,57 @@ void Object3D::draw(Raster &rst)
     quint64 mapping = timer.nsecsElapsed();
     timer.start();
 
+//    foreach (const QVector<int> &face, _faces) {
+//        for (int i = 1; i < face.count(); i++) {
+//            QPoint a = mapped[face[i-1]].toPoint(),
+//                   b = mapped[face[i]].toPoint();
+//            Line(scene, a, b, color()).draw(rst);
+//        }
+//        QPoint a = mapped[face.first()].toPoint(),
+//               b = mapped[face.last()].toPoint();
+//        Line(scene, a, b, color()).draw(rst);
+//    }
+
+    QList<FacePolygon> polygons;
+
     foreach (const QVector<int> &face, _faces) {
-        for (int i = 1; i < face.count(); i++) {
-            QPoint a = mapped[face[i-1]].toPoint(),
-                   b = mapped[face[i]].toPoint();
-            Line(scene, a, b, color()).draw(rst);
-        }
-        QPoint a = mapped[face.first()].toPoint(),
-               b = mapped[face.last()].toPoint();
-        Line(scene, a, b, color()).draw(rst);
+        QList<QPoint> points;
+        points.reserve(face.size());
+        for (int i = 0; i < face.size(); i++)
+            points.append(mapped[face[i]].toPoint());
+
+        float z = std::numeric_limits<float>::min();
+        for (int i = 0; i < face.size(); i++)
+            if (z < mapped[face[i]].z())
+                z = mapped[face[i]].z();
+
+        QVector3D a = _vertices[face[2]] - _vertices[face[1]];
+        QVector3D b = _vertices[face[0]] - _vertices[face[1]];
+        QVector3D normal = QVector3D::normal(a, b);
+
+        QVector3D center;
+        for (int i = 0; i < face.size(); i++)
+            center += _vertices[face[i]];
+        center /= face.size();
+
+        QVector3D dir = (light-center).normalized();
+        float intensity = qMax(0.1f, QVector3D::dotProduct(normal, dir));
+        quint32 col = Raster::intensity(color(), intensity);
+
+        QLine norm(viewport.map(center).toPoint(),
+                   viewport.map(center + 0.1*normal).toPoint());
+
+        polygons.append(FacePolygon(points, z, col, norm));
+    }
+
+    qSort(polygons);
+
+    foreach (const FacePolygon &fp, polygons) {
+        Polygon pol(scene, fp.points, fp.color);
+        pol.setFill(Polygon::FILL_SOLID);
+        pol.draw(rst);
+
+        Line(scene, fp.normal.p1(), fp.normal.p2(), Raster::BLUE).draw(rst);
     }
 
     quint64 drawing = timer.nsecsElapsed();

@@ -13,7 +13,9 @@ public:
     Object3D(Scene &scene, quint32 color,
              const QString &name = QString("Object 3D %1").arg(++counter))
         : Drawable(scene, name, color),
-          near(0.1), far(10), fov(M_PI/3), origin(0, 0, -2), _scale(1) {}
+          near(0.1), far(10), fov(M_PI/3),
+          origin(0, 0, -2), light(5, 5, 5),
+          _scale(1) {}
 
     void load(const QString &filename);
 
@@ -32,6 +34,22 @@ public:
 private:
     static int counter;
 
+    struct FacePolygon
+    {
+        QList<QPoint> points;
+        float z;
+        quint32 color;
+        QLine normal;
+
+        FacePolygon(const QList<QPoint> &points, float z,
+                    quint32 color, const QLine &normal)
+            : points(points), z(z),
+              color(color), normal(normal) {}
+
+        bool operator <(const FacePolygon &p) const
+            { return z > p.z; }
+    };
+
     QVector<QVector3D> _vertices;
     QVector<QVector<int>> _faces;
     int _edges;
@@ -39,6 +57,7 @@ private:
     float near, far;
     float fov;          // Field of view
     QVector3D origin;
+    QVector3D light;
     float rotx, roty;   // Rotation
     float _scale;
 
