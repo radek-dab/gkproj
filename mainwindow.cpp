@@ -78,6 +78,12 @@ void MainWindow::selectObject(int idx)
         } else {
             ui->polygonGroupBox->setEnabled(false);
         }
+
+        if (Object3D *obj3D = dynamic_cast<Object3D *>(obj)) {
+            ui->object3DGroupBox->setEnabled(true);
+        } else {
+            ui->object3DGroupBox->setEnabled(false);
+        }
     } else {
         ui->propertiesDockContents->setEnabled(false);
     }
