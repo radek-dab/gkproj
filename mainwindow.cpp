@@ -215,7 +215,10 @@ void MainWindow::on_actionObject3D_triggered()
         QMessageBox(QMessageBox::Critical, "Error", ex,
                     QMessageBox::Ok, this).exec();
         ui->scene->deleteObject();
+        return;
     }
+
+    ui->actionManipulate->trigger();
 }
 
 void MainWindow::setFill()
