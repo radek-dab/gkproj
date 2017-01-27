@@ -120,8 +120,10 @@ void Object3D::draw(Raster &rst)
         float intensity = qMax(0.1f, QVector3D::dotProduct(normal, dir));
         quint32 col = Raster::intensity(color(), intensity);
 
-        QLine norm(viewport.map(center).toPoint(),
-                   viewport.map(center + 0.1*normal).toPoint());
+        QLine norm;
+        if (_normalsVisible)
+            norm = QLine(viewport.map(center).toPoint(),
+                         viewport.map(center + 0.1*normal).toPoint());
 
         polygons.append(FacePolygon(points, z, col, norm));
     }
@@ -133,7 +135,8 @@ void Object3D::draw(Raster &rst)
         pol.setFill(Polygon::FILL_SOLID);
         pol.draw(rst);
 
-        Line(scene, fp.normal.p1(), fp.normal.p2(), Raster::BLUE).draw(rst);
+        if (_normalsVisible)
+            Line(scene, fp.normal.p1(), fp.normal.p2(), Raster::BLUE).draw(rst);
     }
 
     quint64 drawing = timer.nsecsElapsed();
