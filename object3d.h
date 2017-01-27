@@ -17,7 +17,8 @@ public:
         : Drawable(scene, name, color),
           near(0.1), far(10), fov(M_PI/3),
           origin(0, 0, -2), light(5, 5, 5),
-          _scale(1), _shadeType(Wireframe), _normalsVisible(false) {}
+          rotx(0), roty(0), _scale(1),
+          _shadeType(Wireframe), _normalsVisible(false) {}
 
     void load(const QString &filename);
 
