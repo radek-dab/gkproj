@@ -39,6 +39,8 @@ private slots:
     void on_fillPatternToolButton_clicked();
     void on_reduceSlider_valueChanged(int value);
     void setChannel();
+    void setShade();
+    void on_normalsCheckBox_toggled(bool checked);
     void on_actionComb_triggered();
     void on_actionLenna_triggered();
 

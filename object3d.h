@@ -10,12 +10,14 @@
 class Object3D : public Drawable
 {
 public:
+    enum ShadeType { Wireframe, Flat };
+
     Object3D(Scene &scene, quint32 color,
              const QString &name = QString("Object 3D %1").arg(++counter))
         : Drawable(scene, name, color),
           near(0.1), far(10), fov(M_PI/3),
           origin(0, 0, -2), light(5, 5, 5),
-          _scale(1) {}
+          _scale(1), _shadeType(Wireframe), _normalsVisible(false) {}
 
     void load(const QString &filename);
 
@@ -30,6 +32,16 @@ public:
         { return _scale; }
     void setScale(float scale)
         { _scale = scale; }
+
+    ShadeType shadeType() const
+        { return _shadeType; }
+    void setShadeType(ShadeType type)
+        { _shadeType = type; }
+
+    bool isNormalsVisible() const
+        { return _normalsVisible; }
+    void setNormalsVisible(bool visible)
+        { _normalsVisible = visible; }
 
 private:
     static int counter;
@@ -60,6 +72,8 @@ private:
     QVector3D light;
     float rotx, roty;   // Rotation
     float _scale;
+    ShadeType _shadeType;
+    bool _normalsVisible;
 
     QMatrix4x4 perspective(float ratio);
 };

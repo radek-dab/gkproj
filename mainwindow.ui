@@ -151,9 +151,9 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-111</y>
+          <y>-144</y>
           <width>330</width>
-          <height>472</height>
+          <height>505</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="scrollAreaVerticalLayout">
@@ -381,6 +381,20 @@
              <widget class="QRadioButton" name="shadeFlatRadioButton">
               <property name="text">
                <string>Flat</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QCheckBox" name="normalsCheckBox">
+              <property name="text">
+               <string>Normals</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="showLabel">
+              <property name="text">
+               <string>Show:</string>
               </property>
              </widget>
             </item>
@@ -1127,8 +1141,8 @@
    <slot>renameObject(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>743</x>
-     <y>305</y>
+     <x>863</x>
+     <y>161</y>
     </hint>
     <hint type="destinationlabel">
      <x>263</x>
@@ -1159,8 +1173,8 @@
    <slot>setObjectColor(QColor)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>562</x>
-     <y>334</y>
+     <x>620</x>
+     <y>190</y>
     </hint>
     <hint type="destinationlabel">
      <x>263</x>
@@ -1239,12 +1253,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>673</x>
-     <y>487</y>
+     <x>731</x>
+     <y>343</y>
     </hint>
     <hint type="destinationlabel">
-     <x>717</x>
-     <y>493</y>
+     <x>775</x>
+     <y>349</y>
     </hint>
    </hints>
   </connection>
@@ -1255,8 +1269,8 @@
    <slot>setFill()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>652</x>
-     <y>414</y>
+     <x>710</x>
+     <y>270</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1271,8 +1285,8 @@
    <slot>setFill()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>647</x>
-     <y>447</y>
+     <x>705</x>
+     <y>303</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1287,8 +1301,8 @@
    <slot>setFill()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>673</x>
-     <y>487</y>
+     <x>731</x>
+     <y>343</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1303,12 +1317,12 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>711</x>
-     <y>522</y>
+     <x>824</x>
+     <y>378</y>
     </hint>
     <hint type="destinationlabel">
-     <x>782</x>
-     <y>524</y>
+     <x>862</x>
+     <y>380</y>
     </hint>
    </hints>
   </connection>
@@ -1319,12 +1333,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>673</x>
-     <y>487</y>
+     <x>731</x>
+     <y>343</y>
     </hint>
     <hint type="destinationlabel">
-     <x>711</x>
-     <y>522</y>
+     <x>824</x>
+     <y>378</y>
     </hint>
    </hints>
   </connection>
@@ -1335,8 +1349,8 @@
    <slot>setChannel()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>613</x>
-     <y>547</y>
+     <x>702</x>
+     <y>416</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1351,8 +1365,8 @@
    <slot>setChannel()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>669</x>
-     <y>547</y>
+     <x>746</x>
+     <y>416</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1367,8 +1381,8 @@
    <slot>setChannel()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>715</x>
-     <y>547</y>
+     <x>793</x>
+     <y>416</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1383,8 +1397,8 @@
    <slot>setChannel()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>761</x>
-     <y>547</y>
+     <x>839</x>
+     <y>416</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1399,12 +1413,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>627</x>
-     <y>474</y>
+     <x>731</x>
+     <y>343</y>
     </hint>
     <hint type="destinationlabel">
-     <x>682</x>
-     <y>547</y>
+     <x>841</x>
+     <y>418</y>
     </hint>
    </hints>
   </connection>
@@ -1520,6 +1534,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>shadeWireframeRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setShade()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>678</x>
+     <y>485</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>449</x>
+     <y>332</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>shadeFlatRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setShade()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>650</x>
+     <y>518</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>449</x>
+     <y>332</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>setTool()</slot>
@@ -1531,5 +1577,6 @@
   <slot>setFill()</slot>
   <slot>setChannel()</slot>
   <slot>updateStatus()</slot>
+  <slot>setShade()</slot>
  </slots>
 </ui>

@@ -81,6 +81,11 @@ void MainWindow::selectObject(int idx)
 
         if (Object3D *obj3D = dynamic_cast<Object3D *>(obj)) {
             ui->object3DGroupBox->setEnabled(true);
+            ui->shadeWireframeRadioButton->setChecked(
+                        obj3D->shadeType() == Object3D::Wireframe);
+            ui->shadeFlatRadioButton->setChecked(
+                        obj3D->shadeType() == Object3D::Flat);
+            ui->normalsCheckBox->setChecked(obj3D->isNormalsVisible());
         } else {
             ui->object3DGroupBox->setEnabled(false);
         }
@@ -286,6 +291,36 @@ void MainWindow::setChannel()
     }
 
     UNREACHED();
+}
+
+void MainWindow::setShade()
+{
+    QRadioButton *radioButton = qobject_cast<QRadioButton *>(sender());
+    Q_CHECK_PTR(radioButton);
+    Object3D *obj = dynamic_cast<Object3D *>(ui->scene->selectedObject());
+    Q_CHECK_PTR(obj);
+
+    if (radioButton == ui->shadeWireframeRadioButton) {
+        obj->setShadeType(Object3D::Wireframe);
+        ui->scene->update();
+        return;
+    }
+    if (radioButton == ui->shadeFlatRadioButton) {
+        obj->setShadeType(Object3D::Flat);
+        ui->scene->update();
+        return;
+    }
+
+    UNREACHED();
+}
+
+void MainWindow::on_normalsCheckBox_toggled(bool checked)
+{
+    Object3D *obj = dynamic_cast<Object3D *>(ui->scene->selectedObject());
+    Q_CHECK_PTR(obj);
+
+    obj->setNormalsVisible(checked);
+    ui->scene->update();
 }
 
 void MainWindow::on_actionComb_triggered()
