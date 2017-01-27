@@ -66,6 +66,10 @@ private:
     QVector<QVector<int>> _faces;
     int _edges;
 
+    // Computed variables
+    QVector<QVector3D> _normals;
+    QVector<QVector3D> _centers;
+
     float near, far;
     float fov;          // Field of view
     QVector3D origin;
@@ -75,6 +79,8 @@ private:
     ShadeType _shadeType;
     bool _normalsVisible;
 
+    void computeNormals();
+    void computeCenters();
     QMatrix4x4 perspective(float ratio);
 };
 

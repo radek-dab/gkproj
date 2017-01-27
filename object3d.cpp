@@ -57,6 +57,9 @@ void Object3D::load(const QString &filename)
     }
 
     _edges = e;
+
+    computeNormals();
+    computeCenters();
 }
 
 void Object3D::draw(Raster &rst)
@@ -97,7 +100,9 @@ void Object3D::draw(Raster &rst)
 
     QList<FacePolygon> polygons;
 
-    foreach (const QVector<int> &face, _faces) {
+    for (int f = 0; f < _faces.size(); f++) {
+        const QVector<int> &face = _faces[f];
+
         QList<QPoint> points;
         points.reserve(face.size());
         for (int i = 0; i < face.size(); i++)
@@ -108,14 +113,8 @@ void Object3D::draw(Raster &rst)
             if (z < mapped[face[i]].z())
                 z = mapped[face[i]].z();
 
-        QVector3D a = _vertices[face[2]] - _vertices[face[1]];
-        QVector3D b = _vertices[face[0]] - _vertices[face[1]];
-        QVector3D normal = QVector3D::normal(a, b);
-
-        QVector3D center;
-        for (int i = 0; i < face.size(); i++)
-            center += _vertices[face[i]];
-        center /= face.size();
+        QVector3D normal = _normals[f];
+        QVector3D center = _centers[f];
 
         QVector3D dir = (light-center).normalized();
         float intensity = qMax(0.1f, QVector3D::dotProduct(normal, dir));
@@ -154,4 +153,27 @@ bool Object3D::hit(const QPoint &p)
 void Object3D::move(const QPoint &p)
 {
     Q_UNUSED(p);
+}
+
+void Object3D::computeNormals()
+{
+    _normals.resize(_faces.size());
+    for (int i = 0; i < _faces.size(); i++) {
+        const QVector<int> &face = _faces[i];
+        QVector3D a = _vertices[face[2]] - _vertices[face[1]];
+        QVector3D b = _vertices[face[0]] - _vertices[face[1]];
+        _normals[i] = QVector3D::normal(a, b);
+    }
+}
+
+void Object3D::computeCenters()
+{
+    _centers.resize(_faces.size());
+    for (int i = 0; i < _faces.size(); i++) {
+        const QVector<int> &face = _faces[i];
+        _centers[i] = QVector3D();
+        for (int j = 0; j < face.size(); j++)
+            _centers[i] += _vertices[face[j]];
+        _centers[i] /= face.size();
+    }
 }
