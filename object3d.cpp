@@ -108,17 +108,23 @@ void Object3D::draw(Raster &rst)
         for (int i = 0; i < face.size(); i++)
             points.append(mapped[face[i]].toPoint());
 
-        float z = std::numeric_limits<float>::min();
-        for (int i = 0; i < face.size(); i++)
-            if (z < mapped[face[i]].z())
-                z = mapped[face[i]].z();
+        float z = 0;
+        if (_shadeType == Flat) {
+            z = std::numeric_limits<float>::min();
+            for (int i = 0; i < face.size(); i++)
+                if (z < mapped[face[i]].z())
+                    z = mapped[face[i]].z();
+        }
 
         QVector3D normal = _normals[f];
         QVector3D center = _centers[f];
 
-        QVector3D dir = (light-center).normalized();
-        float intensity = qMax(0.1f, QVector3D::dotProduct(normal, dir));
-        quint32 col = Raster::intensity(color(), intensity);
+        quint32 col = color();
+        if (_shadeType == Flat) {
+            QVector3D dir = (light-center).normalized();
+            float intensity = qMax(0.1f, QVector3D::dotProduct(normal, dir));
+            col = Raster::intensity(col, intensity);
+        }
 
         QLine norm;
         if (_normalsVisible)
@@ -128,11 +134,13 @@ void Object3D::draw(Raster &rst)
         polygons.append(FacePolygon(points, z, col, norm));
     }
 
-    qSort(polygons);
+    if (_shadeType == Flat)
+        qSort(polygons);
 
     foreach (const FacePolygon &fp, polygons) {
         Polygon pol(scene, fp.points, fp.color);
-        pol.setFill(Polygon::FILL_SOLID);
+        if (_shadeType == Flat)
+            pol.setFill(Polygon::FILL_SOLID);
         pol.draw(rst);
 
         if (_normalsVisible)
