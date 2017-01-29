@@ -41,6 +41,7 @@ private slots:
     void setChannel();
     void setShade();
     void on_normalsCheckBox_toggled(bool checked);
+    void on_normalsToolButton_clicked();
     void on_actionComb_triggered();
     void on_actionLenna_triggered();
 

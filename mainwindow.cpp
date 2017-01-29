@@ -326,6 +326,15 @@ void MainWindow::on_normalsCheckBox_toggled(bool checked)
     ui->scene->update();
 }
 
+void MainWindow::on_normalsToolButton_clicked()
+{
+    Object3D *obj = dynamic_cast<Object3D *>(ui->scene->selectedObject());
+    Q_CHECK_PTR(obj);
+
+    obj->flipNormals();
+    ui->scene->update();
+}
+
 void MainWindow::on_actionComb_triggered()
 {
     Polygon *comb = new Polygon(*ui->scene, {}, ui->scene->foregroundColor());

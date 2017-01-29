@@ -43,6 +43,7 @@ public:
         { return _normalsVisible; }
     void setNormalsVisible(bool visible)
         { _normalsVisible = visible; }
+    void flipNormals();
 
 private:
     static int counter;
@@ -84,6 +85,12 @@ private:
     void computeCenters();
     QMatrix4x4 perspective(float ratio);
 };
+
+inline void Object3D::flipNormals()
+{
+    for (auto it = _normals.begin(); it != _normals.end(); it++)
+        *it = -*it;
+}
 
 inline QMatrix4x4 Object3D::perspective(float ratio)
 {

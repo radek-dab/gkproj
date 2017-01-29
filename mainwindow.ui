@@ -14,7 +14,7 @@
    <string>GkProj</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QVBoxLayout" name="centralVerticalLayout">
     <item>
      <widget class="Scene" name="scene"/>
     </item>
@@ -151,9 +151,9 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-144</y>
+          <y>-191</y>
           <width>330</width>
-          <height>505</height>
+          <height>519</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="scrollAreaVerticalLayout">
@@ -384,19 +384,30 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
-             <widget class="QCheckBox" name="normalsCheckBox">
+            <item row="2" column="0">
+             <widget class="QLabel" name="normalsLabel">
               <property name="text">
-               <string>Normals</string>
+               <string>Normals:</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="showLabel">
-              <property name="text">
-               <string>Show:</string>
-              </property>
-             </widget>
+            <item row="2" column="1">
+             <layout class="QHBoxLayout" name="normalsHorizontalLayout">
+              <item>
+               <widget class="QCheckBox" name="normalsCheckBox">
+                <property name="text">
+                 <string>Visible</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="normalsToolButton">
+                <property name="text">
+                 <string>Flip</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </widget>
