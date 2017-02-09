@@ -24,6 +24,7 @@ public slots:
     void reorderObject(int from, int to);
     void deleteObject(int idx);
     void renameObject(int idx, const QString &name);
+    void toggleFilterWindow();
     void updateStatus();
 
 signals:

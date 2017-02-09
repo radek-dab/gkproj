@@ -61,6 +61,7 @@
     </property>
     <addaction name="actionOutline"/>
     <addaction name="actionProperties"/>
+    <addaction name="actionFilter"/>
     <addaction name="actionHistogram"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
@@ -151,7 +152,7 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-191</y>
+          <y>0</y>
           <width>330</width>
           <height>519</height>
          </rect>
@@ -456,6 +457,15 @@
    <addaction name="actionFront"/>
    <addaction name="actionBack"/>
    <addaction name="actionDelete"/>
+  </widget>
+  <widget class="QDockWidget" name="filterDock">
+   <property name="windowTitle">
+    <string>Filter</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="filterDockContents"/>
   </widget>
   <widget class="QDockWidget" name="histogramDock">
    <property name="windowTitle">
@@ -810,6 +820,20 @@
     <string>Ctrl+N</string>
    </property>
   </action>
+  <action name="actionFilter">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="view-filter"/>
+   </property>
+   <property name="text">
+    <string>Filter</string>
+   </property>
+   <property name="toolTip">
+    <string>Toggle filter dock</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1153,7 +1177,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>863</x>
-     <y>161</y>
+     <y>321</y>
     </hint>
     <hint type="destinationlabel">
      <x>263</x>
@@ -1185,7 +1209,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>620</x>
-     <y>190</y>
+     <y>350</y>
     </hint>
     <hint type="destinationlabel">
      <x>263</x>
@@ -1265,11 +1289,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>731</x>
-     <y>343</y>
+     <y>503</y>
     </hint>
     <hint type="destinationlabel">
      <x>775</x>
-     <y>349</y>
+     <y>509</y>
     </hint>
    </hints>
   </connection>
@@ -1281,7 +1305,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>710</x>
-     <y>270</y>
+     <y>430</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1297,7 +1321,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>705</x>
-     <y>303</y>
+     <y>463</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1313,7 +1337,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>731</x>
-     <y>343</y>
+     <y>503</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1329,11 +1353,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>824</x>
-     <y>378</y>
+     <y>538</y>
     </hint>
     <hint type="destinationlabel">
      <x>862</x>
-     <y>380</y>
+     <y>540</y>
     </hint>
    </hints>
   </connection>
@@ -1345,11 +1369,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>731</x>
-     <y>343</y>
+     <y>503</y>
     </hint>
     <hint type="destinationlabel">
      <x>824</x>
-     <y>378</y>
+     <y>538</y>
     </hint>
    </hints>
   </connection>
@@ -1361,7 +1385,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>702</x>
-     <y>416</y>
+     <y>576</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1377,7 +1401,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>746</x>
-     <y>416</y>
+     <y>576</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1393,7 +1417,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>793</x>
-     <y>416</y>
+     <y>576</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1409,7 +1433,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>839</x>
-     <y>416</y>
+     <y>576</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1425,27 +1449,27 @@
    <hints>
     <hint type="sourcelabel">
      <x>731</x>
-     <y>343</y>
+     <y>503</y>
     </hint>
     <hint type="destinationlabel">
      <x>841</x>
-     <y>418</y>
+     <y>578</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>histogramDock</sender>
    <signal>visibilityChanged(bool)</signal>
-   <receiver>scene</receiver>
-   <slot>toggleFilterWindow(bool)</slot>
+   <receiver>MainWindow</receiver>
+   <slot>toggleFilterWindow()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>643</x>
      <y>612</y>
     </hint>
     <hint type="destinationlabel">
-     <x>243</x>
-     <y>355</y>
+     <x>449</x>
+     <y>332</y>
     </hint>
    </hints>
   </connection>
@@ -1552,8 +1576,8 @@
    <slot>setShade()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>678</x>
-     <y>485</y>
+     <x>753</x>
+     <y>658</y>
     </hint>
     <hint type="destinationlabel">
      <x>449</x>
@@ -1568,8 +1592,56 @@
    <slot>setShade()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>650</x>
-     <y>518</y>
+     <x>697</x>
+     <y>691</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>449</x>
+     <y>332</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFilter</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>filterDock</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>722</x>
+     <y>561</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>filterDock</sender>
+   <signal>visibilityChanged(bool)</signal>
+   <receiver>actionFilter</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>722</x>
+     <y>561</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>filterDock</sender>
+   <signal>visibilityChanged(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>toggleFilterWindow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>722</x>
+     <y>561</y>
     </hint>
     <hint type="destinationlabel">
      <x>449</x>
@@ -1589,5 +1661,6 @@
   <slot>setChannel()</slot>
   <slot>updateStatus()</slot>
   <slot>setShade()</slot>
+  <slot>toggleFilterWindow()</slot>
  </slots>
 </ui>

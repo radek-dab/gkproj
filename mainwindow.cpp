@@ -41,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionPointer->setChecked(true);
 
     ui->propertiesDockContents->setEnabled(false);
+    ui->filterDock->setVisible(false);
     ui->histogramDock->setVisible(false);
 
     ui->statusBar->addWidget(statusLabel);
@@ -114,6 +115,12 @@ void MainWindow::deleteObject(int idx)
 void MainWindow::renameObject(int idx, const QString &name)
 {
     ui->outlineList->item(idx)->setText(name);
+}
+
+void MainWindow::toggleFilterWindow()
+{
+    ui->scene->toggleFilterWindow(ui->filterDock->isVisible() ||
+                                  ui->histogramDock->isVisible());
 }
 
 void MainWindow::updateStatus()
