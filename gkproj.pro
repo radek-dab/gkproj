@@ -42,7 +42,8 @@ SOURCES += \
     histogramwidget.cpp \
     histogramchannelwidget.cpp \
     object3d.cpp \
-    manipulatetool.cpp
+    manipulatetool.cpp \
+    filtertabwidget.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -75,10 +76,12 @@ HEADERS += \
     histogramwidget.h \
     histogramchannelwidget.h \
     object3d.h \
-    manipulatetool.h
+    manipulatetool.h \
+    filtertabwidget.h
 
 FORMS += \
     mainwindow.ui \
     griddialog.ui \
     coloredit.ui \
-    filldialog.ui
+    filldialog.ui \
+    filtertabwidget.ui

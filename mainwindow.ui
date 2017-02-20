@@ -465,7 +465,17 @@
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
-   <widget class="QWidget" name="filterDockContents"/>
+   <widget class="QWidget" name="filterDockContents">
+    <layout class="QVBoxLayout" name="filterVerticalLayout">
+     <item>
+      <widget class="FilterTabWidget" name="filterTabWidget">
+       <property name="currentIndex">
+        <number>-1</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QDockWidget" name="histogramDock">
    <property name="windowTitle">
@@ -825,10 +835,11 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="view-filter"/>
+    <iconset theme="view-filter">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Filter</string>
+    <string>&amp;Filter</string>
    </property>
    <property name="toolTip">
     <string>Toggle filter dock</string>
@@ -877,6 +888,12 @@
    <slots>
     <slot>analyze(Scene*)</slot>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>FilterTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>filtertabwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>
