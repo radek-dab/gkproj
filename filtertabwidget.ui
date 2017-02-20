@@ -13,14 +13,32 @@
   <property name="windowTitle">
    <string>TabWidget</string>
   </property>
-  <widget class="QWidget" name="tab">
+  <property name="currentIndex">
+   <number>0</number>
+  </property>
+  <widget class="QWidget" name="functionTab">
    <attribute name="title">
-    <string>Tab 1</string>
+    <string>Function</string>
    </attribute>
   </widget>
-  <widget class="QWidget" name="tab">
+  <widget class="QWidget" name="matrixTab">
    <attribute name="title">
-    <string>Tab 2</string>
+    <string>Matrix</string>
+   </attribute>
+  </widget>
+  <widget class="QWidget" name="rotationTab">
+   <attribute name="title">
+    <string>Rotation</string>
+   </attribute>
+  </widget>
+  <widget class="QWidget" name="scalingTab">
+   <attribute name="title">
+    <string>Scaling</string>
+   </attribute>
+  </widget>
+  <widget class="QWidget" name="histogramTab">
+   <attribute name="title">
+    <string>Histogram</string>
    </attribute>
   </widget>
  </widget>
