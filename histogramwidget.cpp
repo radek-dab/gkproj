@@ -23,6 +23,7 @@ void HistogramWidget::analyze(Scene *scene)
     if (!scene->isFilterWindowVisible())
         return;
 
+    Raster &rst = scene->raster();
     QRect win = scene->filterWindow().rect();
 
     QElapsedTimer timer;
@@ -34,15 +35,17 @@ void HistogramWidget::analyze(Scene *scene)
 
     // For each pixel in filter window
     // NOTE: First y loop for better performance
-    for (int y = win.top(); y <= win.bottom(); y++)
+    for (int y = win.top(); y <= win.bottom(); y++) {
+        quint32 *scanline = &rst(0, y);
         for (int x = win.left(); x <= win.right(); x++) {
-            quint32 pix = scene->raster()(x, y);
+            quint32 pix = scanline[x];
             quint8 *rgb = (quint8 *)&pix;
 
             red->increase(rgb[2]);
             green->increase(rgb[1]);
             blue->increase(rgb[0]);
         }
+    }
 
     int scale = qMax(qMax(red->max(), green->max()), blue->max());
     red->setScale(scale);
