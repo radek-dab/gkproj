@@ -4,6 +4,7 @@
 #include "circletool.h"
 #include "pointtool.h"
 #include "linetool.h"
+#include "histogramstretchingfilter.h"
 #include <QDebug>
 #include <QElapsedTimer>
 
@@ -156,8 +157,11 @@ void Scene::paintGL()
         obj->draw(*rst);
     if (_clipWindowVisible)
         _clipWindow.draw(*rst);
-    if (_filterWindowVisible)
+    if (_filterWindowVisible) {
+        HistogramStretchingFilter filter;
+        filter.apply(*rst, _filterWindow.rect());
         _filterWindow.draw(*rst);
+    }
 
     quint64 drawing = timer.nsecsElapsed();
     timer.start();

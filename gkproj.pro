@@ -14,6 +14,7 @@ TEMPLATE = app
 DEFINES += \
     #DEBUG_EVENTS \
     #DEBUG_POLYGON \
+    DEBUG_FILTERS \
 
 SOURCES += \
     main.cpp \
@@ -43,7 +44,8 @@ SOURCES += \
     histogramchannelwidget.cpp \
     object3d.cpp \
     manipulatetool.cpp \
-    filtertabwidget.cpp
+    filtertabwidget.cpp \
+    histogramstretchingfilter.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -77,7 +79,9 @@ HEADERS += \
     histogramchannelwidget.h \
     object3d.h \
     manipulatetool.h \
-    filtertabwidget.h
+    filtertabwidget.h \
+    filter.h \
+    histogramstretchingfilter.h
 
 FORMS += \
     mainwindow.ui \
