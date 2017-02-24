@@ -26,11 +26,11 @@ void HistogramStretchingFilter::apply(Raster &rst, const QRect &win)
     }
 
     float scale = 0;
-    scale = qMax(scale, *std::min_element(red.constBegin(),
+    scale = qMax(scale, *std::max_element(red.constBegin(),
                                           red.constEnd()));
-    scale = qMax(scale, *std::min_element(green.constBegin(),
+    scale = qMax(scale, *std::max_element(green.constBegin(),
                                           green.constEnd()));
-    scale = qMax(scale, *std::min_element(blue.constBegin(),
+    scale = qMax(scale, *std::max_element(blue.constBegin(),
                                           blue.constEnd()));
 
     int threshold = _threshold * scale, min, max;
@@ -47,7 +47,7 @@ void HistogramStretchingFilter::apply(Raster &rst, const QRect &win)
 
     QVector<quint8> map(256);
     for (int i = 0; i < 255; i++)
-        map[i] = qRound(double(i-min) / (max-min) * 255);
+        map[i] = qRound(qBound(0.0, double(i-min) / (max-min), 1.0) * 255);
 
 #if DEBUG_FILTERS
     quint64 analyzing = timer.nsecsElapsed();
