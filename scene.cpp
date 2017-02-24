@@ -4,7 +4,6 @@
 #include "circletool.h"
 #include "pointtool.h"
 #include "linetool.h"
-#include "histogramstretchingfilter.h"
 #include <QDebug>
 #include <QElapsedTimer>
 
@@ -19,6 +18,7 @@ Scene::Scene(QWidget *parent) :
     _clipWindow(QRect(50, 50, 300, 200), Raster::RED),
     _filterWindowVisible(false),
     _filterWindow(QRect(60, 60, 300, 200), Raster::BLUE),
+    _filter(NULL),
     _tool(NULL),
     _selection(-1),
     _fps(0),
@@ -70,6 +70,12 @@ void Scene::toggleClipWindow(bool visible)
 void Scene::toggleFilterWindow(bool visible)
 {
     _filterWindowVisible = visible;
+    update();
+}
+
+void Scene::setFilter(Filter *filter)
+{
+    _filter = filter;
     update();
 }
 
@@ -158,8 +164,8 @@ void Scene::paintGL()
     if (_clipWindowVisible)
         _clipWindow.draw(*rst);
     if (_filterWindowVisible) {
-        HistogramStretchingFilter filter;
-        filter.apply(*rst, _filterWindow.rect());
+        if (_filter)
+            _filter->apply(*rst, _filterWindow.rect());
         _filterWindow.draw(*rst);
     }
 

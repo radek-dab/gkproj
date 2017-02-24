@@ -6,6 +6,7 @@
 class Filter
 {
 public:
+    virtual ~Filter() {}
     virtual void apply(Raster &rst, const QRect &win) = 0;
 };
 

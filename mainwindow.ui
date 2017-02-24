@@ -878,6 +878,7 @@
     <slot>setObjectColor(QColor)</slot>
     <slot>toggleClipWindow(bool)</slot>
     <slot>toggleFilterWindow(bool)</slot>
+    <slot>setFilter(Filter*)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -894,6 +895,9 @@
    <extends>QTabWidget</extends>
    <header>filtertabwidget.h</header>
    <container>1</container>
+   <slots>
+    <signal>filterChanged(Filter*)</signal>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>
@@ -1663,6 +1667,22 @@
     <hint type="destinationlabel">
      <x>449</x>
      <y>332</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>filterTabWidget</sender>
+   <signal>filterChanged(Filter*)</signal>
+   <receiver>scene</receiver>
+   <slot>setFilter(Filter*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>722</x>
+     <y>573</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>272</x>
+     <y>355</y>
     </hint>
    </hints>
   </connection>

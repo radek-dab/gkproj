@@ -4,6 +4,8 @@
 #include "raster.h"
 #include "grid.h"
 #include "clipwindow.h"
+#include "window.h"
+#include "filter.h"
 #include "tool.h"
 #include "drawable.h"
 #include <QOpenGLWidget>
@@ -77,6 +79,7 @@ public slots:
     void toggleGrid(bool visible);
     void toggleClipWindow(bool visible);
     void toggleFilterWindow(bool visible);
+    void setFilter(Filter *filter);
     void selectObject(int idx);
     void reorderObject(int idx);
     void moveToFront();
@@ -116,6 +119,7 @@ private:
     ClipWindow _clipWindow;
     bool _filterWindowVisible;
     Window _filterWindow;
+    Filter *_filter;
     Tool *_tool;
     QList<Drawable *> _objects;
     int _selection;
