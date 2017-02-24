@@ -6,7 +6,7 @@
 class HistogramStretchingFilter : public Filter
 {
 public:
-    HistogramStretchingFilter(float threshold = 0.05)
+    HistogramStretchingFilter(float threshold = 0.01)
         : _threshold(threshold) {}
 
     float threshold() const
