@@ -37,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionFill->setActionGroup(toolGroup);
     ui->actionManipulate->setActionGroup(toolGroup);
 
-    ui->scene->setFilter(ui->filterTabWidget->filter());
+    ui->scene->setFilter(ui->filterWidget->filter());
     ui->scene->setTool(new Pointer(*ui->scene));
     ui->actionPointer->setChecked(true);
 

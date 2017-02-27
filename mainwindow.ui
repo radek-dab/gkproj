@@ -468,11 +468,7 @@
    <widget class="QWidget" name="filterDockContents">
     <layout class="QVBoxLayout" name="filterVerticalLayout">
      <item>
-      <widget class="FilterTabWidget" name="filterTabWidget">
-       <property name="currentIndex">
-        <number>-1</number>
-       </property>
-      </widget>
+      <widget class="FilterWidget" name="filterWidget" native="true"/>
      </item>
     </layout>
    </widget>
@@ -891,9 +887,9 @@
    </slots>
   </customwidget>
   <customwidget>
-   <class>FilterTabWidget</class>
-   <extends>QTabWidget</extends>
-   <header>filtertabwidget.h</header>
+   <class>FilterWidget</class>
+   <extends>QWidget</extends>
+   <header>filterwidget.h</header>
    <container>1</container>
    <slots>
     <signal>filterChanged(Filter*)</signal>
@@ -1671,14 +1667,14 @@
    </hints>
   </connection>
   <connection>
-   <sender>filterTabWidget</sender>
+   <sender>filterWidget</sender>
    <signal>filterChanged(Filter*)</signal>
    <receiver>scene</receiver>
    <slot>setFilter(Filter*)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>722</x>
-     <y>573</y>
+     <y>559</y>
     </hint>
     <hint type="destinationlabel">
      <x>272</x>

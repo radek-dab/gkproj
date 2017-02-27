@@ -1,27 +1,28 @@
-#include "filtertabwidget.h"
-#include "ui_filtertabwidget.h"
+#include "filterwidget.h"
+#include "ui_filterwidget.h"
 #include "histogramstretchingfilter.h"
 
-FilterTabWidget::FilterTabWidget(QWidget *parent) :
-    QTabWidget(parent),
-    ui(new Ui::FilterTabWidget),
+FilterWidget::FilterWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::FilterWidget),
     _filter(NULL)
 {
     ui->setupUi(this);
     updateFilter();
 }
 
-FilterTabWidget::~FilterTabWidget()
+FilterWidget::~FilterWidget()
 {
     delete ui;
 }
 
-void FilterTabWidget::updateFilter()
+void FilterWidget::updateFilter()
 {
     if (_filter)
         delete _filter;
 
-    if (ui->histogramTab == currentWidget()) {
+    int type = ui->comboBox->currentIndex();
+    if (type == HistogramStretching) {
         float threshold = ui->thresholdSpinBox->value() / 100.0f;
         _filter = new HistogramStretchingFilter(threshold);
     } else {
