@@ -29,7 +29,7 @@
    <item>
     <widget class="QComboBox" name="comboBox">
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <item>
       <property name="text">
@@ -61,13 +61,48 @@
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="functionPage"/>
      <widget class="QWidget" name="matrixPage"/>
-     <widget class="QWidget" name="rotationPage"/>
+     <widget class="QWidget" name="rotationPage">
+      <layout class="QFormLayout" name="rotationFormLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="angleLabel">
+         <property name="text">
+          <string>Angle:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="angleSpinBox">
+         <property name="suffix">
+          <string>°</string>
+         </property>
+         <property name="minimum">
+          <number>-360</number>
+         </property>
+         <property name="maximum">
+          <number>360</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="scalingPage">
-      <layout class="QFormLayout" name="formLayout">
+      <layout class="QFormLayout" name="scalingFormLayout">
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -203,6 +238,22 @@
    <hints>
     <hint type="sourcelabel">
      <x>104</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>angleSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>FilterWidget</receiver>
+   <slot>updateFilter()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>96</x>
      <y>61</y>
     </hint>
     <hint type="destinationlabel">

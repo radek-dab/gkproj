@@ -1,5 +1,6 @@
 #include "filterwidget.h"
 #include "ui_filterwidget.h"
+#include "rotationfilter.h"
 #include "scalingfilter.h"
 #include "histogramstretchingfilter.h"
 
@@ -23,7 +24,10 @@ void FilterWidget::updateFilter()
         delete _filter;
 
     int type = ui->comboBox->currentIndex();
-    if (type == Scaling) {
+    if (type == Rotation) {
+        float angle = ui->angleSpinBox->value();
+        _filter = new RotationFilter(angle);
+    } else if (type == Scaling) {
         float factor = ui->factorSpinBox->value();
         _filter = new ScalingFilter(factor);
     } else if (type == HistogramStretching) {
