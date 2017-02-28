@@ -45,7 +45,8 @@ SOURCES += \
     object3d.cpp \
     manipulatetool.cpp \
     filterwidget.cpp \
-    histogramstretchingfilter.cpp
+    histogramstretchingfilter.cpp \
+    scalingfilter.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -81,7 +82,8 @@ HEADERS += \
     manipulatetool.h \
     filterwidget.h \
     filter.h \
-    histogramstretchingfilter.h
+    histogramstretchingfilter.h \
+    scalingfilter.h
 
 FORMS += \
     mainwindow.ui \

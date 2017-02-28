@@ -29,7 +29,7 @@
    <item>
     <widget class="QComboBox" name="comboBox">
      <property name="currentIndex">
-      <number>4</number>
+      <number>3</number>
      </property>
      <item>
       <property name="text">
@@ -61,12 +61,50 @@
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>4</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="functionPage"/>
      <widget class="QWidget" name="matrixPage"/>
      <widget class="QWidget" name="rotationPage"/>
-     <widget class="QWidget" name="scalingPage"/>
+     <widget class="QWidget" name="scalingPage">
+      <layout class="QFormLayout" name="formLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="factorLabel">
+         <property name="text">
+          <string>Factor:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QDoubleSpinBox" name="factorSpinBox">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="minimum">
+          <double>-100.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+         <property name="value">
+          <double>1.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="histogramStretchingPage">
       <layout class="QFormLayout" name="histogramStretchingFormLayout">
        <property name="leftMargin">
@@ -149,6 +187,22 @@
    <hints>
     <hint type="sourcelabel">
      <x>131</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>factorSpinBox</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>FilterWidget</receiver>
+   <slot>updateFilter()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
      <y>61</y>
     </hint>
     <hint type="destinationlabel">

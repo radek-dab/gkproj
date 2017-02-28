@@ -1,5 +1,6 @@
 #include "filterwidget.h"
 #include "ui_filterwidget.h"
+#include "scalingfilter.h"
 #include "histogramstretchingfilter.h"
 
 FilterWidget::FilterWidget(QWidget *parent) :
@@ -22,7 +23,10 @@ void FilterWidget::updateFilter()
         delete _filter;
 
     int type = ui->comboBox->currentIndex();
-    if (type == HistogramStretching) {
+    if (type == Scaling) {
+        float factor = ui->factorSpinBox->value();
+        _filter = new ScalingFilter(factor);
+    } else if (type == HistogramStretching) {
         float threshold = ui->thresholdSpinBox->value() / 100.0f;
         _filter = new HistogramStretchingFilter(threshold);
     } else {
