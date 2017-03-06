@@ -35,6 +35,8 @@ void FilterWidget::changeMatrixSize()
         for (int j = 0; j < size; j++) {
             QLineEdit *field = new QLineEdit(this);
             field->setValidator(new QIntValidator(-99, 99, this));
+            if (i == j && j == size >> 1)
+                field->setText("1");
             connect(field, SIGNAL(textChanged(QString)),
                     this, SLOT(updateFilter()));
             ui->matrixGridLayout->addWidget(field, i, j);
