@@ -17,7 +17,7 @@ class FilterWidget : public QWidget
 public:
     enum FilterType {
         Function,
-        Matrix,
+        MatrixType,
         Rotation,
         Scaling,
         HistogramStretching
@@ -33,11 +33,14 @@ signals:
     void filterChanged(Filter *);
 
 private slots:
+    void changeMatrixSize();
     void updateFilter();
 
 private:
     Ui::FilterWidget *ui;
     Filter *_filter;
+
+    int getMatrixSize();
 };
 
 #endif // FILTERWIDGET_H

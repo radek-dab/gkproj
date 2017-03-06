@@ -74,11 +74,10 @@ public:
     {
         Q_ASSERT(0 <= x && x < w);
         Q_ASSERT(0 <= y && y < h);
-
         return _pixels[w*y + x];
     }
 
-    bool get(int x, int y, quint32 &color)
+    bool get(int x, int y, quint32 &color) const
     {
         if (0 <= x && x < w && 0 <= y && y < h) {
             color = _pixels[w*y + x];

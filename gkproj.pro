@@ -47,7 +47,9 @@ SOURCES += \
     filterwidget.cpp \
     histogramstretchingfilter.cpp \
     scalingfilter.cpp \
-    rotationfilter.cpp
+    rotationfilter.cpp \
+    matrixfilter.cpp \
+    matrix.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -85,7 +87,9 @@ HEADERS += \
     filter.h \
     histogramstretchingfilter.h \
     scalingfilter.h \
-    rotationfilter.h
+    rotationfilter.h \
+    matrixfilter.h \
+    matrix.h
 
 FORMS += \
     mainwindow.ui \
