@@ -14,7 +14,6 @@ FilterWidget::FilterWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     changeMatrixSize();
-    updateFilter();
 }
 
 FilterWidget::~FilterWidget()
@@ -41,6 +40,8 @@ void FilterWidget::changeMatrixSize()
                     this, SLOT(updateFilter()));
             ui->matrixGridLayout->addWidget(field, i, j);
         }
+
+    updateFilter();
 }
 
 void FilterWidget::updateFilter()
