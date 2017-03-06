@@ -2,7 +2,7 @@
 
 quint32 Matrix::get(const Raster &rst, int x, int y)
 {
-    int red = 0, green = 0, blue = 0, scale = 0;
+    int red = 0, green = 0, blue = 0;
     auto it = _mat.begin();
     for (int my = -r; my <= r; my++)
         for (int mx = -r; mx <= r; mx++) {
@@ -12,13 +12,12 @@ quint32 Matrix::get(const Raster &rst, int x, int y)
                 red += (float) Raster::red(col) * (*it);
                 green += (float) Raster::green(col) * (*it);
                 blue += (float) Raster::blue(col) * (*it);
-                scale += *it;
             }
             it++;
         }
 
-    quint32 result = Raster::makeColor(qRound((float) red / scale),
-                                       qRound((float) green / scale),
-                                       qRound((float) blue / scale));
-    return result;
+    red = qBound(0, red, 255);
+    green = qBound(0, green, 255);
+    blue = qBound(0, blue, 255);
+    return Raster::makeColor(red, green, blue);
 }
