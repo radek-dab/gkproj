@@ -34,6 +34,7 @@ void FilterWidget::changeMatrixSize()
         for (int j = 0; j < size; j++) {
             QLineEdit *field = new QLineEdit(this);
             field->setValidator(new QIntValidator(-99, 99, this));
+            field->setMaximumWidth(50);
             if (i == j && j == size >> 1)
                 field->setText("1");
             connect(field, SIGNAL(textChanged(QString)),
@@ -55,7 +56,8 @@ void FilterWidget::updateFilter()
         Matrix mat(size);
         for (int i = 0; i < ui->matrixGridLayout->count(); i++) {
             QWidget *widget = ui->matrixGridLayout->itemAt(i)->widget();
-            Q_CHECK_PTR(widget);
+            if (!widget)
+                continue; // Omit dump spacer
             QLineEdit *field = qobject_cast<QLineEdit *>(widget);
             Q_CHECK_PTR(field);
             bool ok;
