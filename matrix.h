@@ -29,7 +29,7 @@ public:
         return _mat[_size * (j+1) + (i+1)];
     }
 
-    quint32 get(const Raster &rst, int x, int y);
+    quint32 map(const Raster &rst, int x, int y);
 
 private:
     int _size, r;

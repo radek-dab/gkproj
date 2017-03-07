@@ -1,6 +1,6 @@
 #include "matrix.h"
 
-quint32 Matrix::get(const Raster &rst, int x, int y)
+quint32 Matrix::map(const Raster &rst, int x, int y)
 {
     int red = 0, green = 0, blue = 0;
     auto it = _mat.begin();

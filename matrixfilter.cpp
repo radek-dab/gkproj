@@ -7,6 +7,6 @@ void MatrixFilter::apply(Raster &rst, const QRect &win)
     for (int y = win.top(); y <= win.bottom(); y++) {
         quint32 *scanline = &rst(0, y);
         for (int x = win.left(); x <= win.right(); x++)
-            scanline[x] = _mat.get(original, x, y);
+            scanline[x] = _mat.map(original, x, y);
     }
 }
