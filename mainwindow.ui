@@ -52,6 +52,7 @@
     <addaction name="actionSmoothCircle"/>
     <addaction name="actionPolygon"/>
     <addaction name="actionFill"/>
+    <addaction name="actionImage"/>
     <addaction name="actionObject3D"/>
     <addaction name="actionManipulate"/>
    </widget>
@@ -451,6 +452,7 @@
    <addaction name="actionCircle"/>
    <addaction name="actionPolygon"/>
    <addaction name="actionFill"/>
+   <addaction name="actionImage"/>
    <addaction name="actionObject3D"/>
    <addaction name="actionManipulate"/>
    <addaction name="separator"/>
@@ -839,6 +841,20 @@
    </property>
    <property name="toolTip">
     <string>Toggle filter dock</string>
+   </property>
+  </action>
+  <action name="actionImage">
+   <property name="icon">
+    <iconset theme="viewimage"/>
+   </property>
+   <property name="text">
+    <string>Image</string>
+   </property>
+   <property name="toolTip">
+    <string>Add an image</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
    </property>
   </action>
  </widget>

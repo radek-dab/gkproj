@@ -204,12 +204,26 @@ void MainWindow::setTool()
     UNREACHED();
 }
 
+void MainWindow::on_actionImage_triggered()
+{
+    QString dir = QStandardPaths::standardLocations(
+                QStandardPaths::PicturesLocation).first();
+    QString path = QFileDialog::getOpenFileName(
+                this, "Choose image", dir,
+                "Image files (*.png *.jpg *.gif *.bmp)");
+    if (path.isNull())
+        return;
+
+    addImage(path);
+}
+
 void MainWindow::on_actionObject3D_triggered()
 {
     QString dir = QStandardPaths::standardLocations(
                 QStandardPaths::HomeLocation).first();
     QString path = QFileDialog::getOpenFileName(
-                this, "Choose object 3D", dir, "3D object files (*.off)");
+                this, "Choose object 3D", dir,
+                "3D object files (*.off)");
     if (path.isNull())
         return;
 
@@ -261,8 +275,10 @@ void MainWindow::on_fillPatternToolButton_clicked()
                 QStandardPaths::PicturesLocation).first();
     QString path = QFileDialog::getOpenFileName(
                 this, "Choose pattern", dir,
-                "Images files (*.png *.jpg *.gif *.bmp)");
-    if (path.isNull()) return;
+                "Image files (*.png *.jpg *.gif *.bmp)");
+    if (path.isNull())
+        return;
+
     qDebug() << "Chosen pattern:" << path;
     Raster *pattern = new Raster(QImage(path));
     qDebug("Pattern size: %dx%d", pattern->w, pattern->h);
@@ -364,15 +380,17 @@ void MainWindow::on_actionComb_triggered()
 
 void MainWindow::on_actionLenna_triggered()
 {
-    static int counter = 0;
-
-    const QString path =
+    static const QString path =
             QStandardPaths::standardLocations(
                 QStandardPaths::PicturesLocation).first()
             + "/Lenna.png";
-    const QPoint pos(50, 50);
 
-    qDebug() << "Loading test image" << path;
+    addImage(path);
+}
+
+void MainWindow::addImage(const QString &path)
+{
+    static const QPoint pos(50, 50);
 
     QImage img(path);
     if (img.isNull()) {
@@ -383,7 +401,7 @@ void MainWindow::on_actionLenna_triggered()
     }
 
     Polygon *pol = new Polygon(*ui->scene, {}, ui->scene->foregroundColor(),
-                               QString("Lenna %1").arg(++counter));
+                               QFileInfo(path).baseName());
     ui->scene->addObject(pol);
 
     pol->addVertex(pos);

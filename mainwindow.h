@@ -35,6 +35,7 @@ private slots:
     void on_actionBackgroundColor_triggered();
     void on_actionConfigureGrid_triggered();
     void setTool();
+    void on_actionImage_triggered();
     void on_actionObject3D_triggered();
     void setFill();
     void on_fillPatternToolButton_clicked();
@@ -50,6 +51,8 @@ private:
     Ui::MainWindow *ui;
     QActionGroup *toolGroup;
     QLabel *statusLabel;
+
+    void addImage(const QString &filename);
 };
 
 #endif // MAINWINDOW_H
