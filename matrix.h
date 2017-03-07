@@ -18,7 +18,7 @@ public:
 
     int & operator [](int i)
     {
-        Q_ASSERT(i < _mat.size());
+        Q_ASSERT(0 <= i && i < _mat.size());
         return _mat[i];
     }
 
