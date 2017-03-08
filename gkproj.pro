@@ -11,7 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = gkproj
 TEMPLATE = app
 
-DEFINES += \
+CONFIG(debug, debug|release): DEFINES += \
     #DEBUG_EVENTS \
     #DEBUG_POLYGON \
     DEBUG_FILTERS \
