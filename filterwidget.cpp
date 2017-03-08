@@ -45,6 +45,21 @@ void FilterWidget::changeMatrixSize()
     updateFilter();
 }
 
+void FilterWidget::on_blurButton_clicked()
+{
+    int size = getMatrixSize();
+    Matrix mat(size);
+    mat.setToGaussianBlur();
+
+    for (int i = 0; i < ui->matrixGridLayout->count(); i++) {
+        QWidget *widget = ui->matrixGridLayout->itemAt(i)->widget();
+        Q_CHECK_PTR(widget);
+        QLineEdit *field = qobject_cast<QLineEdit *>(widget);
+        Q_CHECK_PTR(field);
+        field->setText(QString::number(mat[i]));
+    }
+}
+
 void FilterWidget::updateFilter()
 {
     if (_filter)

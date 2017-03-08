@@ -34,6 +34,7 @@ signals:
 
 private slots:
     void changeMatrixSize();
+    void on_blurButton_clicked();
     void updateFilter();
 
 private:
