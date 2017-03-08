@@ -30,6 +30,7 @@ public:
     }
 
     quint32 map(const Raster &rst, int x, int y);
+    void setToGaussianBlur();
 
 private:
     int _size, r;

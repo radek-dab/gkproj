@@ -15,6 +15,7 @@ DEFINES += \
     #DEBUG_EVENTS \
     #DEBUG_POLYGON \
     DEBUG_FILTERS \
+    DEBUG_MATRIX \
 
 SOURCES += \
     main.cpp \
