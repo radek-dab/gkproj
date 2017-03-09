@@ -8,13 +8,19 @@ class Matrix
 public:
     Matrix(int size)
         : _size(size), r(size >> 1),
-          _mat(size * size)
+          _mat(size * size),
+          _divisor(1)
         { Q_ASSERT(size & 1); }
 
     int size() const
         { return _size; }
     int radius() const
         { return r; }
+
+    int divisor() const
+        { return _divisor; }
+    void setDivisor(int divisor)
+        { _divisor = divisor; }
 
     int & operator [](int i)
     {
@@ -35,6 +41,7 @@ public:
 private:
     int _size, r;
     QVector<int> _mat;
+    int _divisor;
 };
 
 #endif // MATRIX_H

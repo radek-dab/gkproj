@@ -30,6 +30,7 @@ void FilterWidget::changeMatrixSize()
     }
 
     int size = getMatrixSize();
+    ui->divisorSpinBox->setValue(1);
     for (int i = 0; i < size; i++)
         for (int j = 0; j < size; j++) {
             QLineEdit *field = new QLineEdit(this);
@@ -50,7 +51,7 @@ void FilterWidget::on_blurButton_clicked()
     int size = getMatrixSize();
     Matrix mat(size);
     mat.setToGaussianBlur();
-
+    ui->divisorSpinBox->setValue(mat.divisor());
     for (int i = 0; i < ui->matrixGridLayout->count(); i++) {
         QWidget *widget = ui->matrixGridLayout->itemAt(i)->widget();
         Q_CHECK_PTR(widget);
@@ -69,6 +70,7 @@ void FilterWidget::updateFilter()
     if (type == MatrixType) {
         int size = getMatrixSize();
         Matrix mat(size);
+        mat.setDivisor(ui->divisorSpinBox->value());
         for (int i = 0; i < ui->matrixGridLayout->count(); i++) {
             QWidget *widget = ui->matrixGridLayout->itemAt(i)->widget();
             if (!widget)

@@ -13,16 +13,21 @@ quint32 Matrix::map(const Raster &rst, int x, int y)
             Q_ASSERT(it != _mat.end());
             quint32 col;
             if (rst.get(x + mx, y + my, col)) {
-                red += (float) Raster::red(col) * (*it);
-                green += (float) Raster::green(col) * (*it);
-                blue += (float) Raster::blue(col) * (*it);
+                red += Raster::red(col) * (*it);
+                green += Raster::green(col) * (*it);
+                blue += Raster::blue(col) * (*it);
             }
             it++;
         }
 
+    red = qRound((float) red / _divisor);
+    green = qRound((float) green / _divisor);
+    blue = qRound((float) blue / _divisor);
+
     red = qBound(0, red, 255);
     green = qBound(0, green, 255);
     blue = qBound(0, blue, 255);
+
     return Raster::makeColor(red, green, blue);
 }
 
@@ -42,12 +47,18 @@ void Matrix::setToGaussianBlur()
 
     // Compute matrix product
     auto *it = _mat.begin();
+    _divisor = 0;
     for (int i = 0; i < _size; i++)
-        for (int j = 0; j < _size; j++)
-            *it++ = pascal[i] * pascal[j];
+        for (int j = 0; j < _size; j++) {
+            *it = pascal[i] * pascal[j];
+            _divisor += *it;
+            it++;
+        }
 
 #if DEBUG_MATRIX
-    qDebug() << "Gaussian blur matrix size" << _size;
+    qDebug().nospace() << "Gaussian blur matrix: "
+                       << "size = " << _size << ", "
+                       << "divisor = " << _divisor;
     it = _mat.begin();
     for (int i = 0; i < _size; i++) {
         QDebug d = qDebug();
