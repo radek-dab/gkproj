@@ -58,3 +58,8 @@ void Function::replace(int idx, const QPoint &p)
     }
     _points[idx] = q;
 }
+
+void Function::remove(int idx)
+{
+    _points.remove(idx);
+}

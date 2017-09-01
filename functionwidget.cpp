@@ -41,35 +41,39 @@ void FunctionWidget::paintEvent(QPaintEvent *event)
 
 void FunctionWidget::mousePressEvent(QMouseEvent *event)
 {
-    const QVector<QPoint> &points = _fun.points();
+    int idx;
 
     // Test points
-    for (int i = 0; i < points.count(); i++) {
-        QPoint p(viewPoint(points[i]));
-        if (dist2(p, event->pos()) < HitDist*HitDist) {
+    if ((idx = hitPoint(event->pos())) != -1) {
 #if DEBUG_FILTERS
-            qDebug() << "Hit point" << i;
+        qDebug() << "Hit point" << idx;
 #endif
-            _curridx = i;
-            return;
+        if (event->button() == Qt::LeftButton) {
+            _curridx = idx;
+        } else {
+            _curridx = -1;
+            if (event->button() == Qt::RightButton) {
+                _fun.remove(idx);
+                update();
+                emit functionChanged(_fun);
+            }
         }
+        return;
     }
 
     // Test segments
-    for (int i = 1; i < points.count(); i++) {
-        QLine line(viewPoint(points[i-1]), viewPoint(points[i]));
-        if (dist(line, event->pos()) < HitDist) {
+    if ((idx = hitSegment(event->pos())) != -1) {
 #if DEBUG_FILTERS
-            qDebug() << "Hit segment" << i;
+        qDebug() << "Hit segment" << idx;
 #endif
-            QPoint p(modelPoint(event->pos()));
-            _fun.insert(i, p);
-            _curridx = i;
-            return;
-        }
+        QPoint p(modelPoint(event->pos()));
+        _fun.insert(idx+1, p);
+        _curridx = idx+1;
+        update();
+        emit functionChanged(_fun);
+        return;
     }
 
-    // No hit
     _curridx = -1;
 }
 
@@ -88,4 +92,27 @@ void FunctionWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
     _curridx = -1;
+}
+
+int FunctionWidget::hitPoint(const QPoint &p)
+{
+    for (int i = 0; i < _fun.points().count(); i++) {
+        QPoint q(viewPoint(_fun.points()[i]));
+        if (dist2(p, q) < HitDist*HitDist)
+            return i;
+    }
+
+    return -1;
+}
+
+int FunctionWidget::hitSegment(const QPoint &p)
+{
+    for (int i = 1; i < _fun.points().count(); i++) {
+        QLine line(viewPoint(_fun.points()[i-1]),
+                   viewPoint(_fun.points()[i]));
+        if (dist(line, p) < HitDist)
+            return i-1;
+    }
+
+    return -1;
 }

@@ -20,6 +20,7 @@ public:
 
     void insert(int idx, const QPoint &p);
     void replace(int idx, const QPoint &p);
+    void remove(int idx);
 
 private:
     QVector<QPoint> _points;
