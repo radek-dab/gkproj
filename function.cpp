@@ -23,6 +23,24 @@ quint8 Function::operator ()(quint8 x) const
     return qRound(y);
 }
 
+void Function::insert(int idx, const QPoint &p)
+{
+    if (idx < 0 || idx > _points.count())
+        return;
+
+    QPoint q(0, qBound(0, p.y(), 255));
+    if (idx == 0) {
+        q.setX(0);
+    } else if (idx <= _points.count()-1) {
+        int min = _points[idx-1].x() + 1;
+        int max = _points[idx].x() - 1;
+        q.setX(qBound(min, p.x(), max));
+    } else {
+        q.setX(255);
+    }
+    _points.insert(idx, q);
+}
+
 void Function::replace(int idx, const QPoint &p)
 {
     if (idx < 0 || idx >= _points.count())

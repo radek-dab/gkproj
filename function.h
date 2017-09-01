@@ -18,6 +18,7 @@ public:
     quint8  operator ()(quint8  x) const;
     quint32 operator ()(quint32 pix) const;
 
+    void insert(int idx, const QPoint &p);
     void replace(int idx, const QPoint &p);
 
 private:

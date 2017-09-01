@@ -43,18 +43,33 @@ void FunctionWidget::mousePressEvent(QMouseEvent *event)
 {
     const QVector<QPoint> &points = _fun.points();
 
-    // Test existing point
+    // Test points
     for (int i = 0; i < points.count(); i++) {
-        if (dist2(viewPoint(points[i]), event->pos()) < HitDist*HitDist) {
-            _curridx = i;
+        QPoint p(viewPoint(points[i]));
+        if (dist2(p, event->pos()) < HitDist*HitDist) {
 #if DEBUG_FILTERS
-            qDebug() << "Point hit:" << i;
+            qDebug() << "Hit point" << i;
 #endif
+            _curridx = i;
             return;
         }
     }
 
-    // No point hit
+    // Test segments
+    for (int i = 1; i < points.count(); i++) {
+        QLine line(viewPoint(points[i-1]), viewPoint(points[i]));
+        if (dist(line, event->pos()) < HitDist) {
+#if DEBUG_FILTERS
+            qDebug() << "Hit segment" << i;
+#endif
+            QPoint p(modelPoint(event->pos()));
+            _fun.insert(i, p);
+            _curridx = i;
+            return;
+        }
+    }
+
+    // No hit
     _curridx = -1;
 }
 
