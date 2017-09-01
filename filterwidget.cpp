@@ -1,9 +1,13 @@
 #include "filterwidget.h"
 #include "ui_filterwidget.h"
+
+// Filters
+#include "functionfilter.h"
 #include "matrixfilter.h"
 #include "rotationfilter.h"
 #include "scalingfilter.h"
 #include "histogramstretchingfilter.h"
+
 #include <QLineEdit>
 #include <QIntValidator>
 
@@ -67,7 +71,10 @@ void FilterWidget::updateFilter()
         delete _filter;
 
     int type = ui->comboBox->currentIndex();
-    if (type == MatrixType) {
+    if (type == FunctionType) {
+        const Function &fun = ui->functionWidget->function();
+        _filter = new FunctionFilter(fun);
+    } else if (type == MatrixType) {
         int size = getMatrixSize();
         Matrix mat(size);
         mat.setDivisor(ui->divisorSpinBox->value());

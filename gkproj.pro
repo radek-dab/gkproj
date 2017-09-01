@@ -50,7 +50,10 @@ SOURCES += \
     scalingfilter.cpp \
     rotationfilter.cpp \
     matrixfilter.cpp \
-    matrix.cpp
+    matrix.cpp \
+    functionwidget.cpp \
+    function.cpp \
+    functionfilter.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -90,7 +93,10 @@ HEADERS += \
     scalingfilter.h \
     rotationfilter.h \
     matrixfilter.h \
-    matrix.h
+    matrix.h \
+    functionwidget.h \
+    function.h \
+    functionfilter.h
 
 FORMS += \
     mainwindow.ui \

@@ -29,7 +29,7 @@
    <item>
     <widget class="QComboBox" name="comboBox">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <item>
       <property name="text">
@@ -61,9 +61,27 @@
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="functionPage"/>
+     <widget class="QWidget" name="functionPage">
+      <layout class="QVBoxLayout" name="functionVerticalLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="FunctionWidget" name="functionWidget" native="true"/>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="matrixPage">
       <layout class="QVBoxLayout" name="matrixVerticalLayout">
        <property name="leftMargin">
@@ -338,6 +356,17 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FunctionWidget</class>
+   <extends>QWidget</extends>
+   <header>functionwidget.h</header>
+   <container>1</container>
+   <slots>
+    <signal>functionChanged(Function)</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>
@@ -445,6 +474,22 @@
     <hint type="sourcelabel">
      <x>169</x>
      <y>63</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>functionWidget</sender>
+   <signal>functionChanged(Function)</signal>
+   <receiver>FilterWidget</receiver>
+   <slot>updateFilter()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>199</x>
+     <y>171</y>
     </hint>
     <hint type="destinationlabel">
      <x>199</x>

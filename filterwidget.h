@@ -16,7 +16,7 @@ class FilterWidget : public QWidget
 
 public:
     enum FilterType {
-        Function,
+        FunctionType,
         MatrixType,
         Rotation,
         Scaling,
