@@ -52,11 +52,8 @@ void FunctionWidget::mousePressEvent(QMouseEvent *event)
             _curridx = idx;
         } else {
             _curridx = -1;
-            if (event->button() == Qt::RightButton) {
-                _fun.remove(idx);
-                update();
-                emit functionChanged(_fun);
-            }
+            if (event->button() == Qt::RightButton)
+                remove(idx);
         }
         return;
     }
@@ -66,11 +63,8 @@ void FunctionWidget::mousePressEvent(QMouseEvent *event)
 #if DEBUG_FILTERS
         qDebug() << "Hit segment" << idx;
 #endif
-        QPoint p(modelPoint(event->pos()));
-        _fun.insert(idx+1, p);
+        insert(idx+1, event->pos());
         _curridx = idx+1;
-        update();
-        emit functionChanged(_fun);
         return;
     }
 
@@ -82,15 +76,13 @@ void FunctionWidget::mouseMoveEvent(QMouseEvent *event)
     if (_curridx == -1)
         return;
 
-    _fun.replace(_curridx, modelPoint(event->pos()));
-    update();
-
-    emit functionChanged(_fun);
+    replace(_curridx, event->pos());
 }
 
 void FunctionWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
+
     _curridx = -1;
 }
 

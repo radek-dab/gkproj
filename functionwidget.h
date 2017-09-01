@@ -34,6 +34,10 @@ private:
     QPoint viewPoint(const QPoint &p);
     QPoint modelPoint(const QPoint &p);
 
+    void insert(int idx, const QPoint &p);
+    void replace(int idx, const QPoint &p);
+    void remove(int idx);
+
     int hitPoint(const QPoint &p);
     int hitSegment(const QPoint &p);
 };
@@ -58,6 +62,27 @@ inline QPoint FunctionWidget::modelPoint(const QPoint &p)
     int y = float(h-1 - p.y()) / (h-1) * 255;
 
     return QPoint(x, y);
+}
+
+inline void FunctionWidget::insert(int idx, const QPoint &p)
+{
+    _fun.insert(idx, modelPoint(p));
+    update();
+    emit functionChanged(_fun);
+}
+
+inline void FunctionWidget::replace(int idx, const QPoint &p)
+{
+    _fun.replace(idx, modelPoint(p));
+    update();
+    emit functionChanged(_fun);
+}
+
+inline void FunctionWidget::remove(int idx)
+{
+    _fun.remove(idx);
+    update();
+    emit functionChanged(_fun);
 }
 
 #endif // FUNCTIONWIDGET_H
