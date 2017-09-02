@@ -1,5 +1,5 @@
 #include "functionwidget.h"
-#include "dist.h"
+#include "common/dist.h"
 #include <QPainter>
 #include <QMouseEvent>
 

@@ -1,5 +1,5 @@
 #include "line.h"
-#include "dist.h"
+#include "common/dist.h"
 
 int Line::counter = 0;
 

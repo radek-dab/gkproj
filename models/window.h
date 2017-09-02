@@ -2,7 +2,7 @@
 #define WINDOW_H
 
 #include "raster.h"
-#include "assert.h"
+#include "common/assert.h"
 
 class Window
 {

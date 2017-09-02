@@ -1,5 +1,5 @@
 #include "circletool.h"
-#include "dist.h"
+#include "common/dist.h"
 
 void CircleTool::mousePressEvent(QMouseEvent *event)
 {

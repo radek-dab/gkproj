@@ -1,5 +1,5 @@
 #include "point.h"
-#include "dist.h"
+#include "common/dist.h"
 
 int Point::counter = 0;
 

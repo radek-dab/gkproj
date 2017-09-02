@@ -1,5 +1,5 @@
 #include "circle.h"
-#include "dist.h"
+#include "common/dist.h"
 
 int Circle::counter = 0;
 

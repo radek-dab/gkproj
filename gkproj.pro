@@ -19,9 +19,6 @@ CONFIG(debug, debug|release): DEFINES += \
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp \
-    griddialog.cpp \
-    filldialog.cpp \
     filters/functionfilter.cpp \
     filters/histogramstretchingfilter.cpp \
     filters/matrixfilter.cpp \
@@ -53,14 +50,12 @@ SOURCES += \
     models/grid.cpp \
     models/matrix.cpp \
     models/octree.cpp \
-    models/window.cpp
+    models/window.cpp \
+    windows/filldialog.cpp \
+    windows/griddialog.cpp \
+    windows/mainwindow.cpp
 
 HEADERS += \
-    mainwindow.h \
-    griddialog.h \
-    dist.h \
-    filldialog.h \
-    assert.h \
     filters/filter.h \
     filters/functionfilter.h \
     filters/histogramstretchingfilter.h \
@@ -96,11 +91,16 @@ HEADERS += \
     models/matrix.h \
     models/octree.h \
     models/raster.h \
-    models/window.h
+    models/window.h \
+    common/assert.h \
+    common/dist.h \
+    windows/filldialog.h \
+    windows/griddialog.h \
+    windows/mainwindow.h
 
 FORMS += \
-    mainwindow.ui \
-    griddialog.ui \
-    filldialog.ui \
     widgets/coloredit.ui \
-    widgets/filterwidget.ui
+    widgets/filterwidget.ui \
+    windows/filldialog.ui \
+    windows/griddialog.ui \
+    windows/mainwindow.ui
