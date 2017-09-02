@@ -1,6 +1,5 @@
 #include "scene.h"
 #include "grid.h"
-#include "line.h"
 #include "circletool.h"
 #include "pointtool.h"
 #include "linetool.h"

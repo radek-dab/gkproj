@@ -2,7 +2,7 @@
 #define POLYGONTOOL_H
 
 #include "tool.h"
-#include "polygon.h"
+#include "drawables/polygon.h"
 
 class PolygonTool : public Tool
 {

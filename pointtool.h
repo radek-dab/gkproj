@@ -2,7 +2,7 @@
 #define POINTTOOL_H
 
 #include "tool.h"
-#include "point.h"
+#include "drawables/point.h"
 
 class PointTool : public Tool
 {

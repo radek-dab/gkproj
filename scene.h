@@ -7,7 +7,7 @@
 #include "window.h"
 #include "filters/filter.h"
 #include "tool.h"
-#include "drawable.h"
+#include "drawables/drawable.h"
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 #include <QMouseEvent>

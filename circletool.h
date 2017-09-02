@@ -2,7 +2,7 @@
 #define CIRCLETOOL_H
 
 #include "tool.h"
-#include "circle.h"
+#include "drawables/circle.h"
 
 class CircleTool : public Tool
 {

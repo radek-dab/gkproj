@@ -2,7 +2,7 @@
 #define MANIPULATETOOL_H
 
 #include "tool.h"
-#include "object3d.h"
+#include "drawables/object3d.h"
 
 class ManipulateTool : public Tool
 {

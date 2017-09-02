@@ -2,7 +2,7 @@
 #define SMOOTHCIRCLETOOL_H
 
 #include "circletool.h"
-#include "smoothcircle.h"
+#include "drawables/smoothcircle.h"
 
 class SmoothCircleTool : public CircleTool
 {

@@ -2,7 +2,7 @@
 #define FILLTOOL_H
 
 #include "tool.h"
-#include "fill.h"
+#include "drawables/fill.h"
 
 class FillTool : public Tool
 {

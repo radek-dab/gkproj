@@ -9,7 +9,7 @@
 #include "smoothcircletool.h"
 #include "polygontool.h"
 #include "filldialog.h"
-#include "object3d.h"
+#include "drawables/object3d.h"
 #include "manipulatetool.h"
 #include <QDebug>
 #include <QRadioButton>

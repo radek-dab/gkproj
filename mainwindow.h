@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "drawable.h"
+#include "drawables/drawable.h"
 #include <QMainWindow>
 #include <QActionGroup>
 #include <QLabel>

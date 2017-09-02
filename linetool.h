@@ -2,7 +2,7 @@
 #define LINETOOL_H
 
 #include "tool.h"
-#include "line.h"
+#include "drawables/line.h"
 
 class LineTool : public Tool
 {
