@@ -1,7 +1,7 @@
 #ifndef TOOL_H
 #define TOOL_H
 
-#include "scene.h"
+#include "widgets/scene.h"
 #include <QMouseEvent>
 
 class Scene;

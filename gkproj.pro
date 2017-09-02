@@ -22,17 +22,11 @@ SOURCES += \
     mainwindow.cpp \
     grid.cpp \
     griddialog.cpp \
-    scene.cpp \
-    coloredit.cpp \
     clipwindow.cpp \
     octree.cpp \
     filldialog.cpp \
     window.cpp \
-    histogramwidget.cpp \
-    histogramchannelwidget.cpp \
-    filterwidget.cpp \
     matrix.cpp \
-    functionwidget.cpp \
     function.cpp \
     filters/functionfilter.cpp \
     filters/histogramstretchingfilter.cpp \
@@ -53,26 +47,26 @@ SOURCES += \
     tools/pointer.cpp \
     tools/pointtool.cpp \
     tools/polygontool.cpp \
-    tools/smoothcircletool.cpp
+    tools/smoothcircletool.cpp \
+    widgets/coloredit.cpp \
+    widgets/filterwidget.cpp \
+    widgets/functionwidget.cpp \
+    widgets/histogramchannelwidget.cpp \
+    widgets/histogramwidget.cpp \
+    widgets/scene.cpp
 
 HEADERS += \
     mainwindow.h \
     raster.h \
     grid.h \
     griddialog.h \
-    scene.h \
     dist.h \
-    coloredit.h \
     clipwindow.h \
     octree.h \
     filldialog.h \
     window.h \
     assert.h \
-    histogramwidget.h \
-    histogramchannelwidget.h \
-    filterwidget.h \
     matrix.h \
-    functionwidget.h \
     function.h \
     filters/filter.h \
     filters/functionfilter.h \
@@ -96,11 +90,17 @@ HEADERS += \
     tools/pointtool.h \
     tools/polygontool.h \
     tools/smoothcircletool.h \
-    tools/tool.h
+    tools/tool.h \
+    widgets/coloredit.h \
+    widgets/filterwidget.h \
+    widgets/functionwidget.h \
+    widgets/histogramchannelwidget.h \
+    widgets/histogramwidget.h \
+    widgets/scene.h
 
 FORMS += \
     mainwindow.ui \
     griddialog.ui \
-    coloredit.ui \
     filldialog.ui \
-    filterwidget.ui
+    widgets/coloredit.ui \
+    widgets/filterwidget.ui

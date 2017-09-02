@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>406</width>
-    <height>156</height>
+    <height>160</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -147,7 +147,7 @@
   <customwidget>
    <class>ColorEdit</class>
    <extends>QWidget</extends>
-   <header>coloredit.h</header>
+   <header>widgets/coloredit.h</header>
    <container>1</container>
    <slots>
     <signal>colorEdited(QColor)</signal>

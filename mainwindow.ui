@@ -38,7 +38,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>35</height>
+     <height>36</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -167,7 +167,7 @@
           <x>0</x>
           <y>0</y>
           <width>330</width>
-          <height>519</height>
+          <height>532</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="scrollAreaVerticalLayout">
@@ -876,7 +876,7 @@
   <customwidget>
    <class>ColorEdit</class>
    <extends>QWidget</extends>
-   <header>coloredit.h</header>
+   <header>widgets/coloredit.h</header>
    <container>1</container>
    <slots>
     <signal>colorEdited(QColor)</signal>
@@ -885,7 +885,7 @@
   <customwidget>
    <class>Scene</class>
    <extends>QOpenGLWidget</extends>
-   <header>scene.h</header>
+   <header>widgets/scene.h</header>
    <slots>
     <signal>objectAdded(Drawable*)</signal>
     <signal>objectSelected(int)</signal>
@@ -909,7 +909,7 @@
   <customwidget>
    <class>HistogramWidget</class>
    <extends>QWidget</extends>
-   <header>histogramwidget.h</header>
+   <header>widgets/histogramwidget.h</header>
    <container>1</container>
    <slots>
     <slot>analyze(Scene*)</slot>
@@ -918,7 +918,7 @@
   <customwidget>
    <class>FilterWidget</class>
    <extends>QWidget</extends>
-   <header>filterwidget.h</header>
+   <header>widgets/filterwidget.h</header>
    <container>1</container>
    <slots>
     <signal>filterChanged(Filter*)</signal>

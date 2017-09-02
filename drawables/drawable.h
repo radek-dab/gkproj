@@ -1,7 +1,7 @@
 #ifndef DRAWABLE_H
 #define DRAWABLE_H
 
-#include "scene.h"
+#include "widgets/scene.h"
 #include <QPoint>
 #include <QString>
 
