@@ -5,7 +5,7 @@
 #include "grid.h"
 #include "clipwindow.h"
 #include "window.h"
-#include "filter.h"
+#include "filters/filter.h"
 #include "tool.h"
 #include "drawable.h"
 #include <QOpenGLWidget>

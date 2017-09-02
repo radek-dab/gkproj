@@ -46,14 +46,14 @@ SOURCES += \
     object3d.cpp \
     manipulatetool.cpp \
     filterwidget.cpp \
-    histogramstretchingfilter.cpp \
-    scalingfilter.cpp \
-    rotationfilter.cpp \
-    matrixfilter.cpp \
     matrix.cpp \
     functionwidget.cpp \
     function.cpp \
-    functionfilter.cpp
+    filters/functionfilter.cpp \
+    filters/histogramstretchingfilter.cpp \
+    filters/matrixfilter.cpp \
+    filters/rotationfilter.cpp \
+    filters/scalingfilter.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -88,15 +88,15 @@ HEADERS += \
     object3d.h \
     manipulatetool.h \
     filterwidget.h \
-    filter.h \
-    histogramstretchingfilter.h \
-    scalingfilter.h \
-    rotationfilter.h \
-    matrixfilter.h \
     matrix.h \
     functionwidget.h \
     function.h \
-    functionfilter.h
+    filters/filter.h \
+    filters/functionfilter.h \
+    filters/histogramstretchingfilter.h \
+    filters/matrixfilter.h \
+    filters/rotationfilter.h \
+    filters/scalingfilter.h
 
 FORMS += \
     mainwindow.ui \

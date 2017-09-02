@@ -1,7 +1,7 @@
 #ifndef FILTERWIDGET_H
 #define FILTERWIDGET_H
 
-#include "filter.h"
+#include "filters/filter.h"
 #include <QWidget>
 
 namespace Ui {

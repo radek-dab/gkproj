@@ -2,11 +2,11 @@
 #include "ui_filterwidget.h"
 
 // Filters
-#include "functionfilter.h"
-#include "matrixfilter.h"
-#include "rotationfilter.h"
-#include "scalingfilter.h"
-#include "histogramstretchingfilter.h"
+#include "filters/functionfilter.h"
+#include "filters/matrixfilter.h"
+#include "filters/rotationfilter.h"
+#include "filters/scalingfilter.h"
+#include "filters/histogramstretchingfilter.h"
 
 #include <QLineEdit>
 #include <QIntValidator>
