@@ -6,7 +6,7 @@
 #include "clipwindow.h"
 #include "window.h"
 #include "filters/filter.h"
-#include "tool.h"
+#include "tools/tool.h"
 #include "drawables/drawable.h"
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>

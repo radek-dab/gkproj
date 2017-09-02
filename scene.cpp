@@ -1,8 +1,4 @@
 #include "scene.h"
-#include "grid.h"
-#include "circletool.h"
-#include "pointtool.h"
-#include "linetool.h"
 #include <QDebug>
 #include <QElapsedTimer>
 

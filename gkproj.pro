@@ -23,21 +23,13 @@ SOURCES += \
     grid.cpp \
     griddialog.cpp \
     scene.cpp \
-    circletool.cpp \
-    pointtool.cpp \
-    linetool.cpp \
     coloredit.cpp \
-    smoothcircletool.cpp \
-    polygontool.cpp \
-    filltool.cpp \
     clipwindow.cpp \
     octree.cpp \
     filldialog.cpp \
     window.cpp \
-    pointer.cpp \
     histogramwidget.cpp \
     histogramchannelwidget.cpp \
-    manipulatetool.cpp \
     filterwidget.cpp \
     matrix.cpp \
     functionwidget.cpp \
@@ -53,7 +45,15 @@ SOURCES += \
     drawables/object3d.cpp \
     drawables/point.cpp \
     drawables/polygon.cpp \
-    drawables/smoothcircle.cpp
+    drawables/smoothcircle.cpp \
+    tools/circletool.cpp \
+    tools/filltool.cpp \
+    tools/linetool.cpp \
+    tools/manipulatetool.cpp \
+    tools/pointer.cpp \
+    tools/pointtool.cpp \
+    tools/polygontool.cpp \
+    tools/smoothcircletool.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -61,24 +61,15 @@ HEADERS += \
     grid.h \
     griddialog.h \
     scene.h \
-    tool.h \
-    circletool.h \
     dist.h \
-    pointtool.h \
-    linetool.h \
     coloredit.h \
-    smoothcircletool.h \
-    polygontool.h \
-    filltool.h \
     clipwindow.h \
     octree.h \
     filldialog.h \
     window.h \
-    pointer.h \
     assert.h \
     histogramwidget.h \
     histogramchannelwidget.h \
-    manipulatetool.h \
     filterwidget.h \
     matrix.h \
     functionwidget.h \
@@ -96,7 +87,16 @@ HEADERS += \
     drawables/object3d.h \
     drawables/point.h \
     drawables/polygon.h \
-    drawables/smoothcircle.h
+    drawables/smoothcircle.h \
+    tools/circletool.h \
+    tools/filltool.h \
+    tools/linetool.h \
+    tools/manipulatetool.h \
+    tools/pointer.h \
+    tools/pointtool.h \
+    tools/polygontool.h \
+    tools/smoothcircletool.h \
+    tools/tool.h
 
 FORMS += \
     mainwindow.ui \

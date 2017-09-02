@@ -1,7 +1,7 @@
 #ifndef FILLDIALOG_H
 #define FILLDIALOG_H
 
-#include "filltool.h"
+#include "tools/filltool.h"
 #include <QDialog>
 
 namespace Ui {

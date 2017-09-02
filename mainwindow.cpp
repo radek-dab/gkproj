@@ -2,15 +2,20 @@
 #include "ui_mainwindow.h"
 #include "assert.h"
 #include "griddialog.h"
-#include "pointer.h"
-#include "pointtool.h"
-#include "linetool.h"
-#include "circletool.h"
-#include "smoothcircletool.h"
-#include "polygontool.h"
 #include "filldialog.h"
+
+// Drawables
 #include "drawables/object3d.h"
-#include "manipulatetool.h"
+
+// Tools
+#include "tools/pointer.h"
+#include "tools/pointtool.h"
+#include "tools/linetool.h"
+#include "tools/circletool.h"
+#include "tools/smoothcircletool.h"
+#include "tools/polygontool.h"
+#include "tools/manipulatetool.h"
+
 #include <QDebug>
 #include <QRadioButton>
 #include <QListWidgetItem>
