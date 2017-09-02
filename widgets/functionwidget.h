@@ -1,8 +1,8 @@
 #ifndef FUNCTIONWIDGET_H
 #define FUNCTIONWIDGET_H
 
+#include "models/function.h"
 #include <QWidget>
-#include "function.h"
 
 class FunctionWidget : public QWidget
 {

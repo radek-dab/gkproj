@@ -1,7 +1,7 @@
 #ifndef FILTER_H
 #define FILTER_H
 
-#include "raster.h"
+#include "models/raster.h"
 
 class Filter
 {

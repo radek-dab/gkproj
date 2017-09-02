@@ -20,14 +20,8 @@ CONFIG(debug, debug|release): DEFINES += \
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    grid.cpp \
     griddialog.cpp \
-    clipwindow.cpp \
-    octree.cpp \
     filldialog.cpp \
-    window.cpp \
-    matrix.cpp \
-    function.cpp \
     filters/functionfilter.cpp \
     filters/histogramstretchingfilter.cpp \
     filters/matrixfilter.cpp \
@@ -53,21 +47,20 @@ SOURCES += \
     widgets/functionwidget.cpp \
     widgets/histogramchannelwidget.cpp \
     widgets/histogramwidget.cpp \
-    widgets/scene.cpp
+    widgets/scene.cpp \
+    models/clipwindow.cpp \
+    models/function.cpp \
+    models/grid.cpp \
+    models/matrix.cpp \
+    models/octree.cpp \
+    models/window.cpp
 
 HEADERS += \
     mainwindow.h \
-    raster.h \
-    grid.h \
     griddialog.h \
     dist.h \
-    clipwindow.h \
-    octree.h \
     filldialog.h \
-    window.h \
     assert.h \
-    matrix.h \
-    function.h \
     filters/filter.h \
     filters/functionfilter.h \
     filters/histogramstretchingfilter.h \
@@ -96,7 +89,14 @@ HEADERS += \
     widgets/functionwidget.h \
     widgets/histogramchannelwidget.h \
     widgets/histogramwidget.h \
-    widgets/scene.h
+    widgets/scene.h \
+    models/clipwindow.h \
+    models/function.h \
+    models/grid.h \
+    models/matrix.h \
+    models/octree.h \
+    models/raster.h \
+    models/window.h
 
 FORMS += \
     mainwindow.ui \

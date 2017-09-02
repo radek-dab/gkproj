@@ -1,10 +1,10 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "raster.h"
-#include "grid.h"
-#include "clipwindow.h"
-#include "window.h"
+#include "models/raster.h"
+#include "models/grid.h"
+#include "models/clipwindow.h"
+#include "models/window.h"
 #include "filters/filter.h"
 #include "tools/tool.h"
 #include "drawables/drawable.h"

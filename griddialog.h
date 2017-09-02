@@ -1,7 +1,7 @@
 #ifndef GRIDDIALOG_H
 #define GRIDDIALOG_H
 
-#include "grid.h"
+#include "models/grid.h"
 #include <QDialog>
 
 namespace Ui {

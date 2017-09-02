@@ -2,7 +2,7 @@
 #define MATRIXFILTER_H
 
 #include "filter.h"
-#include "matrix.h"
+#include "models/matrix.h"
 
 class MatrixFilter : public Filter
 {

@@ -2,7 +2,7 @@
 #define FUNCTIONFILTER_H
 
 #include "filter.h"
-#include "function.h"
+#include "models/function.h"
 
 class FunctionFilter : public Filter
 {

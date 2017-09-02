@@ -2,7 +2,7 @@
 #include <QApplication>
 
 #if DEBUG_MATRIX
-#include "matrix.h"
+#include "models/matrix.h"
 #endif
 
 int main(int argc, char *argv[])

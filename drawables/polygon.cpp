@@ -1,6 +1,6 @@
 #include "polygon.h"
 #include "line.h"
-#include "octree.h"
+#include "models/octree.h"
 #include <QDebug>
 
 void Polygon::draw(Raster &rst)
