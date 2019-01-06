@@ -56,6 +56,11 @@
        <string>Histogram stretching</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Gamma</string>
+      </property>
+     </item>
     </widget>
    </item>
    <item>
@@ -352,6 +357,30 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="gammaPage">
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="gammaLabel">
+         <property name="text">
+          <string>Gamma:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QDoubleSpinBox" name="gammaSpinBox">
+         <property name="minimum">
+          <double>-99.989999999999995</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+         <property name="value">
+          <double>1.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -490,6 +519,22 @@
     <hint type="sourcelabel">
      <x>199</x>
      <y>171</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>gammaSpinBox</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>FilterWidget</receiver>
+   <slot>updateFilter()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>160</x>
+     <y>82</y>
     </hint>
     <hint type="destinationlabel">
      <x>199</x>

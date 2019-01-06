@@ -20,7 +20,8 @@ public:
         MatrixType,
         Rotation,
         Scaling,
-        HistogramStretching
+        HistogramStretching,
+        Gamma
     };
 
     explicit FilterWidget(QWidget *parent = 0);

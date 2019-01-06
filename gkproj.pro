@@ -53,7 +53,8 @@ SOURCES += \
     models/window.cpp \
     windows/filldialog.cpp \
     windows/griddialog.cpp \
-    windows/mainwindow.cpp
+    windows/mainwindow.cpp \
+    filters/gammafilter.cpp
 
 HEADERS += \
     filters/filter.h \
@@ -96,7 +97,8 @@ HEADERS += \
     common/dist.h \
     windows/filldialog.h \
     windows/griddialog.h \
-    windows/mainwindow.h
+    windows/mainwindow.h \
+    filters/gammafilter.h
 
 FORMS += \
     widgets/coloredit.ui \

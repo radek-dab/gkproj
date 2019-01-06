@@ -7,6 +7,7 @@
 #include "filters/rotationfilter.h"
 #include "filters/scalingfilter.h"
 #include "filters/histogramstretchingfilter.h"
+#include "filters/gammafilter.h"
 
 #include <QLineEdit>
 #include <QIntValidator>
@@ -98,6 +99,9 @@ void FilterWidget::updateFilter()
     } else if (type == HistogramStretching) {
         float threshold = ui->thresholdSpinBox->value() / 100.0f;
         _filter = new HistogramStretchingFilter(threshold);
+    } else if (type == Gamma) {
+        float gamma = ui->gammaSpinBox->value();
+        _filter = new GammaFilter(gamma);
     } else {
         _filter = NULL;
     }
