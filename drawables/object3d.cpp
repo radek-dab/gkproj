@@ -71,20 +71,20 @@ void Object3D::draw(Raster &rst)
     viewport.scale(rst.w/2, -rst.h/2, 1);
     viewport.translate(1, -1, 0);
 
-    viewport *= perspective((float)rst.h/rst.w);
+    viewport *= perspective(static_cast<float>(rst.h) / rst.w);
     viewport.translate(origin);
     viewport.rotate(rotx, 1, 0);
     viewport.rotate(roty, 0, 1);
     viewport.scale(_scale);
 
-    quint64 preparing = timer.nsecsElapsed();
+    qint64 preparing = timer.nsecsElapsed();
     timer.start();
 
     QVector<QVector3D> mapped(_vertices.size());
     for (int i = 0; i < _vertices.size(); i++)
         mapped[i] = viewport.map(_vertices[i]);
 
-    quint64 mapping = timer.nsecsElapsed();
+    qint64 mapping = timer.nsecsElapsed();
     timer.start();
 
 //    foreach (const QVector<int> &face, _faces) {
@@ -129,7 +129,7 @@ void Object3D::draw(Raster &rst)
         QLine norm;
         if (_normalsVisible)
             norm = QLine(viewport.map(center).toPoint(),
-                         viewport.map(center + 0.1*normal).toPoint());
+                         viewport.map(center + 0.1f*normal).toPoint());
 
         polygons.append(FacePolygon(points, z, col, norm));
     }
@@ -147,7 +147,7 @@ void Object3D::draw(Raster &rst)
             Line(scene, fp.normal.p1(), fp.normal.p2(), Raster::BLUE).draw(rst);
     }
 
-    quint64 drawing = timer.nsecsElapsed();
+    qint64 drawing = timer.nsecsElapsed();
     qDebug() << "Object3D:" << fixed << qSetRealNumberPrecision(3)
              << "preparing" << preparing/1e6 << "ms +"
              << "mapping" << mapping/1e6 << "ms +"

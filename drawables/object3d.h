@@ -15,7 +15,8 @@ public:
     Object3D(Scene &scene, quint32 color,
              const QString &name = QString("Object 3D %1").arg(++counter))
         : Drawable(scene, name, color),
-          near(0.1), far(10), fov(M_PI/3),
+          near(0.1f), far(10.0f),
+          fov(static_cast<float>(M_PI) / 3),
           origin(0, 0, -2), light(5, 5, 5),
           rotx(0), roty(0), _scale(1),
           _shadeType(Wireframe), _normalsVisible(false) {}
@@ -95,7 +96,7 @@ inline void Object3D::flipNormals()
 inline QMatrix4x4 Object3D::perspective(float ratio)
 {
     float n = near, f = far;
-    float e = 1 / tan(fov/2); // Focal length
+    float e = 1 / tanf(fov / 2); // Focal length
     float a = ratio;
 
     float m33 = -(f+n)/(f-n);
